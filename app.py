@@ -9,7 +9,6 @@ page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
 
 @app.route("/get_imgs")
 def get_imgs():
-    print flask.__version__
     return jsonify(page_model.get_imgs_list()) 
 
 @app.route("/")

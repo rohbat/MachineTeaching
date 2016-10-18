@@ -4,6 +4,13 @@
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
   $(document).ready(function() {
+    var javascript = $.get( "/get_imgs", function(data) {
+        console.log(data[0])
+        $("#main_img").attr("src", "/static/"+ data[0])
+        $("#compare1").attr("src", "/static/"+ data[1])
+        $("#compare2").attr("src", "/static/"+ data[2])
+    });
+    console.log(javascript);
     $("#compare1").click(function() {
       alert("Image 1 was clicked.");
     });
@@ -15,16 +22,12 @@
 </head>
 <body>
   <div style="text-align: center">
-    <img src="{{url_for('static', filename='profile1.jpg')}}"
-      height="300" width="300" />
+    <img id="main_img" height="300" width="300" />
   </div>
   <br />
   <div style="text-align: center">
-    <img id="compare1"
-      src="{{url_for('static', filename='profile2.jpg')}}" height="300"
-      width="300" /> <img id="compare2"
-      src="{{url_for('static', filename='profile3.jpg')}}" height="300"
-      width="300" />
+    <img id="compare1" height="300" width="300" /> 
+    <img id="compare2" height="300" width="300" />
   </div>
 
 </body>
