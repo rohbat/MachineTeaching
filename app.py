@@ -11,7 +11,7 @@ page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
 
-@app.route("/get_response", methods = ['POST'])
+@app.route("/get_response", methods=['POST'])
 def get_response():
     if request.method == 'POST':
         data = request.get_data()
