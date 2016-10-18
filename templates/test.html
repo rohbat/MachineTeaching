@@ -1,27 +1,32 @@
 <html>
-  <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-    $(document).ready(function(){
-        $("#compare1").click(function(){
-            alert("Image 1 was clicked.");
-        });
-        $("#compare2").click(function(){
-            alert("Image 2 was clicked.");
-        });
-    });
-    </script>
-  </head>
-  <body>
-    <center>
-      <img src="{{url_for('static', filename='profile1.jpg')}}" height="300" width="300"/>
-    </center>
-    <br/>
-    <center>
-      <img id="compare1" src="{{url_for('static', filename='profile2.jpg')}}" height="300" width="300"/>
-      <img id="compare2" src="{{url_for('static', filename='profile3.jpg')}}" height="300" width="300"/>
-    </center>
+<head>
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#compare1").click(function() {
+			alert("Image 1 was clicked.");
+		});
+		$("#compare2").click(function() {
+			alert("Image 2 was clicked.");
+		});
+	});
+</script>
+</head>
+<body>
+    <div style="text-align: center">
+        <img src="{{url_for('static', filename='profile1.jpg')}}"
+            height="300" width="300" />
+    </div>
+    <br />
+    <div style="text-align: center">
+        <img id="compare1"
+            src="{{url_for('static', filename='profile2.jpg')}}"
+            height="300" width="300" /> <img id="compare2"
+            src="{{url_for('static', filename='profile3.jpg')}}"
+            height="300" width="300" />
+    </div>
 
-  </body>
+</body>
 
 </html>
