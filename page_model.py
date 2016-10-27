@@ -7,7 +7,7 @@ class PageModel(db.Model):
     main_img = Column(String(100))
     compare_img_1 = Column(String(100))
     compare_img_2 = Column(String(100))
-    chosen = Column(String)
+    chosen = Column(String(100))
 
     def __init__(self, main_img, compare_img_1, compare_img_2):
         self.main_img = main_img
