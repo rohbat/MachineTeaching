@@ -37,10 +37,13 @@ class PageModel(db.Model):
     def set_chosen(self, img):
         self.chosen = img
 
-def get_imgs_list(page_model):
-    return [page_model.main_img, page_model.compare_img_1, page_model.compare_img_2]
-
 page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
+main_img = page_model.main_img
+compare_img_1 = page_model.compare_img_1
+compare_img_2 = page_model.compare_img_2
+
+def get_imgs_list(page_model):
+    return [main_img, compare_img_1, compare_img_2]
 
 #print 'adding initial pagemodel to session'
 db.session.add(page_model)
