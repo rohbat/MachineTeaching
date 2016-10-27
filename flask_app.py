@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, render_template
-from flask.ext.sqlalchemy import SQLAlchemy
+from database import db
 from page_model import PageModel
 
 app = Flask(__name__)
@@ -14,7 +14,8 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostnam
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 
-db = SQLAlchemy(app)
+db.init_app(app)
+db.app = app
 
 page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
 

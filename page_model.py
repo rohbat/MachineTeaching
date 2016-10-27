@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from app import db
+from database import db
 
 class PageModel(db.Model):
     __tablename__ = 'triplets'
