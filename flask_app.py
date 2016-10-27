@@ -19,11 +19,11 @@ db.app = app
 
 page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
 
-print 'adding initial pagemodel to session'
+#print 'adding initial pagemodel to session'
 db.session.add(page_model)
-print 'commiting initial session'
+#print 'commiting initial session'
 db.session.commit()
-print 'commited initial session'
+#print 'commited initial session'
 
 @app.route("/get_imgs")
 def get_imgs():
@@ -39,11 +39,11 @@ def get_response():
     elif data == "1":
         page_model.main_img, page_model.compare_img_2 = page_model.compare_img_2, page_model.main_img 
     
-    print 'adding pagemodel to session on click'
+    #print 'adding pagemodel to session on click'
     db.session.add(page_model)
-    print 'commiting pagemodel to session on click'
+    #print 'commiting pagemodel to session on click'
     db.session.commit()
-    print 'session commited on click'
+    #print 'session commited on click'
     return jsonify(page_model.get_imgs_list())
 
 @app.route("/")
