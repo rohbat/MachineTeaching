@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, render_template
 from sqlalchemy.orm.session import sessionmaker
+from sqlalchemy import create_engine
 from database import db
 from page_model import PageModel
 
@@ -18,7 +19,9 @@ app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 db.init_app(app)
 db.app = app
 
-Session = sessionmaker(expire_on_commit=False)
+engine = create_engine(SQLALCHEMY_DATABASE_URI)
+
+Session = sessionmaker(bind=engine, expire_on_commit=False)
 session = Session()
 
 page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
