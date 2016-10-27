@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, render_template
-from sqlalchemy.orm.session import sessionmaker
+from sqlalchemy.orm.session import sessionmaker, make_transient
 from sqlalchemy import create_engine
 from database import db
 from page_model import PageModel
@@ -45,7 +45,8 @@ def get_response():
         page_model.main_img, page_model.compare_img_1 = page_model.compare_img_1, page_model.main_img
     elif data == "1":
         page_model.main_img, page_model.compare_img_2 = page_model.compare_img_2, page_model.main_img 
-    
+    make_transient(page_model)
+    page_model.id = None
     #print 'adding pagemodel to session on click'
     session.add(page_model)
     #print 'commiting pagemodel to session on click'
