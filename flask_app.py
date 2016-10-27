@@ -19,6 +19,9 @@ db.app = app
 
 page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
 
+db.session.add(page_model)
+db.session.commit()
+
 @app.route("/get_imgs")
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
@@ -30,8 +33,12 @@ def get_response():
         print data
     if data == "0":
         page_model.main_img, page_model.compare_img_1 = page_model.compare_img_1, page_model.main_img
+        db.session.add(page_model)
+        db.session.commit()
     elif data == "1":
         page_model.main_img, page_model.compare_img_2 = page_model.compare_img_2, page_model.main_img 
+        db.session.add(page_model)
+        db.session.commit()
     return jsonify(page_model.get_imgs_list())
 
 @app.route("/")
