@@ -1,4 +1,4 @@
-from flask.ext.sqlalchemy import SQLAlchemy, Column, Integer, String
+from sqlalchemy import Column, Integer, String
 from app import db
 
 class PageModel(db.Model):
