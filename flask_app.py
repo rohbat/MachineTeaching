@@ -18,7 +18,8 @@ app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 db.init_app(app)
 db.app = app
 
-session = sessionmaker(expire_on_commit=False)
+Session = sessionmaker(expire_on_commit=False)
+session = Session()
 
 page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
 
