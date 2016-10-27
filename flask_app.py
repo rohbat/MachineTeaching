@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request, render_template
 #from database import db
 from sqlalchemy import Column, Integer, String
-from page_model import PageModel
+from flask_sqlalchemy import SQLAlchemy
+#from page_model import PageModel
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -36,8 +37,8 @@ class PageModel(db.Model):
     def set_chosen(self, img):
         self.chosen = img
 
-    def get_imgs_list(self):
-        return [self.main_img, self.compare_img_1, self.compare_img_2]
+def get_imgs_list(page_model):
+    return [page_model.main_img, page_model.compare_img_1, page_model.compare_img_2]
 
 page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
 
@@ -49,7 +50,7 @@ db.session.commit()
 
 @app.route("/get_imgs")
 def get_imgs():
-    return jsonify(page_model.get_imgs_list()) 
+    return jsonify(get_imgs_list(page_model)) 
 
 @app.route("/get_response", methods = ['POST'])
 def get_response():
@@ -66,7 +67,7 @@ def get_response():
     #print 'commiting pagemodel to session on click'
     db.session.commit()
     #print 'session commited on click'
-    return jsonify(page_model.get_imgs_list())
+    return jsonify(get_imgs_list(page_model))
 
 @app.route("/")
 def index():
