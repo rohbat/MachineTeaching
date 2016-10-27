@@ -1,9 +1,20 @@
-import flask
-from flask import Flask, jsonify
-from flask import request 
-from flask import render_template
+from flask import Flask, jsonify, request, render_template
+from flask.ext.sqlalchemy import SQLAlchemy
 from page_model import PageModel
+
 app = Flask(__name__)
+app.config["DEBUG"] = True
+
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="cs101teaching",
+    password="gogo_teaching",
+    hostname="cs101teaching.mysql.pythonanywhere-services.com",
+    databasename="cs101teaching$teaching",
+)
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+
+db = SQLAlchemy(app)
 
 page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
 
