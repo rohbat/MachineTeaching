@@ -1,0 +1,8 @@
+
+
+Procedure:
+
+  - Get next triple of images to provide to user
+  - Provide this triple to user
+  - Get response from user
+  - Update model based on response
