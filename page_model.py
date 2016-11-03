@@ -26,3 +26,9 @@ class PageModel(db.Model):
 
     def get_imgs_list(self):
         return [self.main_path, self.compare_1_path, self.compare_2_path]
+    
+    def get_index_list(self):
+        not_chosen = self.compare_img_1
+        if self.chosen == not_chosen:
+            not_chosen = self.compare_img_2
+        return [self.main_img, self.chosen, self.not_chosen]
