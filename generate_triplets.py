@@ -11,6 +11,7 @@ for pg_model in db_data:
         triplets.append(indices)
         
 triplets = numpy.array(triplets)
+print triplets
 cy_tste.tste(triplets,
      no_dims=2,
      lamb=0,
