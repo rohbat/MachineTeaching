@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 from database import db
 
 class PageModel(db.Model):
-    __tablename__ = 'triplets'
+    __tablename__ = 'chinese_triplets'
     id = Column(Integer, primary_key=True)
     main_img = Column(Integer)
     compare_img_1 = Column(Integer)
@@ -19,7 +19,7 @@ class PageModel(db.Model):
         self.compare_1_path = compare_1_path
         self.compare_2_path = compare_2_path
 
-        self.chosen = ''
+        self.chosen = -1
 
     def set_chosen(self, img):
         self.chosen = img
