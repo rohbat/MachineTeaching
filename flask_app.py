@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 from database import db
 from page_model import PageModel
 import glob
+import os 
 import random
 
 app = Flask(__name__)
@@ -28,6 +29,8 @@ session = Session()
 
 image_list = glob.glob("./static/chinese/ims/*/*")
 image_list.sort()
+print len(image_list)
+print os.getcwd()
 print image_list
 
 page_model = PageModel()
