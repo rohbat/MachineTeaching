@@ -12,12 +12,12 @@ for pg_model in db_data:
         
 triplets = numpy.array(triplets)
 print triplets
-cy_tste.tste(triplets,
+embedding = cy_tste.tste(triplets,
      no_dims=2,
      lamb=0,
      alpha=None,
      verbose=True,
-     max_iter=1000,
+     max_iter=100,
      save_each_iteration=False,
      initial_X=None,
      static_points=numpy.array([]),
@@ -25,3 +25,4 @@ cy_tste.tste(triplets,
      num_threads=None,
      use_log=False,
      )
+print embedding
