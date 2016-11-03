@@ -3,6 +3,8 @@ from sqlalchemy.orm.session import sessionmaker, make_transient
 from sqlalchemy import create_engine
 from database import db
 from page_model import PageModel
+import glob
+import random
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -24,13 +26,24 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI)
 Session = sessionmaker(bind=engine, expire_on_commit=False)
 session = Session()
 
-page_model = PageModel("profile1.jpg", "profile2.jpg", "profile3.jpg")
+image_list = glob.glob("./static/chinese/ims/*/*")
+image_list.sort()
+print image_list
 
-#print 'adding initial pagemodel to session'
-session.add(page_model)
-#print 'commiting initial session'
-session.commit()
-#print 'commited initial session'
+page_model = PageModel()
+random.seed()
+update_page_with_random()
+
+def update_page_with_random():
+    page_ims = random.sample(range(len(image_list)), 3)
+
+    page_model.main_img = page_ims[0]
+    page_model.compare_img_1 = page_ims[1]
+    page_model.compare_img_2 = page_ims[2]
+
+    page_model.main_path = image_list[page_ims[0]]
+    page_model.compare_1_path = image_list[page_ims[1]]
+    page_model.compare_2_path = image_list[page_ims[2]]
 
 @app.route("/get_imgs")
 def get_imgs():
@@ -40,18 +53,17 @@ def get_imgs():
 def get_response():
     if request.method == 'POST':
         data = request.get_data()
-        print data
-    if data == "0":
-        page_model.main_img, page_model.compare_img_1 = page_model.compare_img_1, page_model.main_img
-    elif data == "1":
-        page_model.main_img, page_model.compare_img_2 = page_model.compare_img_2, page_model.main_img 
+        if data == "0":
+            page_model.set_chosen(page_model.compare_img_1)
+        elif data == "1":
+            page_model.set_chosen(page_model.compare_img_2)
     make_transient(page_model)
     page_model.id = None
-    #print 'adding pagemodel to session on click'
     session.add(page_model)
-    #print 'commiting pagemodel to session on click'
     session.commit()
-    #print 'session commited on click'
+
+    update_page_with_random()
+
     return jsonify(page_model.get_imgs_list())
 
 @app.route("/")
