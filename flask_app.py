@@ -28,7 +28,7 @@ Session = sessionmaker(bind=engine, expire_on_commit=False)
 session = Session()
 
 image_list = glob.glob("./MachineTeaching/static/chinese/ims/*/*")
-image_list = [image_list[i].replace("./MachineTeaching", "")]
+image_list = [img.replace("./MachineTeaching", "") for img in image_list]
 image_list.sort()
 
 page_model = PageModel()
