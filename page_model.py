@@ -31,4 +31,4 @@ class PageModel(db.Model):
         not_chosen = self.compare_img_1
         if self.chosen == not_chosen:
             not_chosen = self.compare_img_2
-        return [self.main_img, self.chosen, self.not_chosen]
+        return [self.main_img, self.chosen, not_chosen]
