@@ -27,11 +27,9 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI)
 Session = sessionmaker(bind=engine, expire_on_commit=False)
 session = Session()
 
-image_list = glob.glob("./static/chinese/ims/*/*")
+image_list = glob.glob("./MachineTeaching/static/chinese/ims/*/*")
+image_list = [image_list[i].replace("./MachineTeaching", "")]
 image_list.sort()
-print len(image_list)
-print os.getcwd()
-print image_list
 
 page_model = PageModel()
 
