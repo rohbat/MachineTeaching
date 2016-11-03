@@ -31,8 +31,6 @@ image_list.sort()
 print image_list
 
 page_model = PageModel()
-random.seed()
-update_page_with_random()
 
 def update_page_with_random():
     page_ims = random.sample(range(len(image_list)), 3)
@@ -44,6 +42,9 @@ def update_page_with_random():
     page_model.main_path = image_list[page_ims[0]]
     page_model.compare_1_path = image_list[page_ims[1]]
     page_model.compare_2_path = image_list[page_ims[2]]
+
+random.seed()
+update_page_with_random()
 
 @app.route("/get_imgs")
 def get_imgs():
