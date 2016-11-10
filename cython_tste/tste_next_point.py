@@ -86,6 +86,8 @@ def probability(X,
 
     return K
 
+diff1s = []
+diff2s = []
 
 def prob_difference(X, 
     N, 
@@ -108,7 +110,7 @@ def prob_difference(X,
     X1 = X - (float(eta) / no_classes * N) * G
     probability(X1, N, a, b, c, no_dims, alpha, K)
 
-    correct_class = 0 # classes[b] 
+    correct_class = classes[a]
     not_in_class = []
     in_class = []
     for i in range(N): 
@@ -126,12 +128,12 @@ def prob_difference(X,
                 P = K[i, j] / (K[i,j] + K[i,k])
                 diff1 += abs(P - 1.0)
                 sm += 1
-    print diff1/sm
+    diff1s.append(diff1/sm)
     tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, sum_x, K, Q, G)
     X1 = X - (float(eta) / no_classes * N) * G
     probability(X1, N, a, b, c, no_dims, alpha, K)
 
-    correct_class = 1 # classes[c]
+    correct_class = classes[c]
     not_in_class = []
     in_class = []
     for i in range(N): 
@@ -139,7 +141,7 @@ def prob_difference(X,
             not_in_class.append(i)
         else: 
             in_class.append(i)
-    print diff1
+    #print diff1
     diff2 = 0
     sm = 0.0
     for i in [a, c, b]: 
@@ -148,7 +150,7 @@ def prob_difference(X,
                 P = K[i, j] / (K[i,j] + K[i,k])
                 sm += 1
                 diff2 += P
-    print diff2/sm
+    diff2s.append(diff2/sm)
     return -(w_right*diff1 + w_wrong*diff2)
 
 
@@ -156,32 +158,28 @@ N = 10
 no_dims = 10
 X = np.random.rand(N, no_dims)
 alpha = no_dims-1
-triplet_a = 0
 classes = np.random.randint(2, size=N)
-triplet_b = -1
-triplet_c = -1
-for i in range(N):
-	if classes[i] == classes[triplet_a] and i != triplet_a:
-		triplet_b = i
-	if classes[i] != classes[triplet_a]:
-		triplet_c = i
-	if triplet_b != -1 and triplet_c != -1:
-		break
-'''classes[0] = 0
-classes[1] = 0
-classes[2] = 1'''
-triplet = (triplet_a, triplet_b, triplet_c)
-print classes[triplet_a], classes[triplet_b], classes[triplet_c]
+#print triplet
+#print classes[triplet_a], classes[triplet_b], classes[triplet_c]
 no_classes = 2
 lamb = 0
 
-print prob_difference(X, 
-    N, 
-    no_dims, 
-    alpha,
-    lamb,
-    triplet,
-    classes, 
-    no_classes, 
-    w_right=0.5, 
-    w_wrong=0.5)
+for t in range(1000):
+	for i in range(N):
+		for j in range(N):
+			for k in range(N):
+				if classes[i] == classes[j] and classes[i] != classes[k]:
+					triplet = (i, j , k)
+					prob_difference(X, 
+					    N, 
+					    no_dims, 
+					    alpha,
+					    lamb,
+					    triplet,
+					    classes, 
+					    no_classes, 
+					    w_right=0.5, 
+					    w_wrong=0.5)
+	print t
+	print "Diff1", diff1s[-1]
+	print "Diff2", diff2s[-1]
