@@ -1,5 +1,6 @@
 import cy_tste as cy_tste
 import numpy as np
+import math
 
 def tste_grad(X, N, no_dims, triplet, lamb, alpha, sum_X, K, Q, dC):
     """ Compute the cost function and gradient update of t-STE """
@@ -34,7 +35,7 @@ def tste_grad(X, N, no_dims, triplet, lamb, alpha, sum_X, K, Q, dC):
         K[triplet_A,triplet_C])
     # This is exactly p_{ijk}, which is the equation in the lower-right
     # of page 3 of the t-STE paper.
-    C += -log(P) if use_log else -P
+    C += -math.log(P)
     # This is exactly the cost.
 
     for i in xrange(no_dims):
@@ -89,23 +90,25 @@ def probability(X,
 def prob_difference(X, 
     N, 
     no_dims, 
-    alpha, 
+    alpha,
+    lamb, 
     triplet,
     classes = [], 
     no_classes = 3, 
     w_right=0.5, 
-    w_wrong=0.5): 
+    w_wrong=0.5,
+    eta = 2.0): 
     
     a, b, c = triplet
-    sum_x = numpy.zeros(N)
-    K = np.zeros(N, N)
-    Q = np.zeros(N, N)
-    G = np.zeros(N, N)
+    sum_x = np.zeros(N)
+    K = np.zeros((N, N))
+    Q = np.zeros((N, N))
+    G = np.zeros((N, no_dims))
     tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, sum_x, K, Q, G)
     X1 = X - (float(eta) / no_classes * N) * G
     probability(X1, N, a, b, c, no_dims, alpha, K)
 
-    correct_class = 0 # classes[b]
+    correct_class = 0 # classes[b] 
     not_in_class = []
     in_class = []
     for i in range(N): 
@@ -116,15 +119,17 @@ def prob_difference(X,
 
     # Compute probability (or log-prob) for each triplet
     diff1 = 0
+    sm = 0
     for i in [a, b, c]: 
         for j in in_class: 
             for k in not_in_class: 
                 P = K[i, j] / (K[i,j] + K[i,k])
                 diff1 += abs(P - 1.0)
-    
+                sm += 1
+    print diff1/sm
     tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, sum_x, K, Q, G)
     X1 = X - (float(eta) / no_classes * N) * G
-    probability(X1, N, a, b, c no_dims, alpha, K)
+    probability(X1, N, a, b, c, no_dims, alpha, K)
 
     correct_class = 1 # classes[c]
     not_in_class = []
@@ -134,29 +139,47 @@ def prob_difference(X,
             not_in_class.append(i)
         else: 
             in_class.append(i)
-    
+    print diff1
     diff2 = 0
+    sm = 0.0
     for i in [a, c, b]: 
         for j in in_class: 
             for k in not_in_class: 
                 P = K[i, j] / (K[i,j] + K[i,k])
+                sm += 1
                 diff2 += P
-
+    print diff2/sm
     return -(w_right*diff1 + w_wrong*diff2)
 
 
-N = 100
+N = 10
 no_dims = 10
-X = numpy.random(100, 10)
+X = np.random.rand(N, no_dims)
 alpha = no_dims-1
-triplet = (0, 1, 2)
-classes = numpy.random.randint(N)
+triplet_a = 0
+classes = np.random.randint(2, size=N)
+triplet_b = -1
+triplet_c = -1
+for i in range(N):
+	if classes[i] == classes[triplet_a] and i != triplet_a:
+		triplet_b = i
+	if classes[i] != classes[triplet_a]:
+		triplet_c = i
+	if triplet_b != -1 and triplet_c != -1:
+		break
+'''classes[0] = 0
+classes[1] = 0
+classes[2] = 1'''
+triplet = (triplet_a, triplet_b, triplet_c)
+print classes[triplet_a], classes[triplet_b], classes[triplet_c]
 no_classes = 2
+lamb = 0
 
-prob_difference(X, 
+print prob_difference(X, 
     N, 
     no_dims, 
-    alpha, 
+    alpha,
+    lamb,
     triplet,
     classes, 
     no_classes, 
