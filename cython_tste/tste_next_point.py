@@ -133,23 +133,14 @@ def prob_difference(X,
     X2 = X - (float(eta) / no_classes * N) * G
     probability(X2, N, a, b, c, no_dims, alpha, K)
 
-    correct_class = classes[c]
-    not_in_class = []
-    in_class = []
-    for i in range(N): 
-        if classes[i] != correct_class: 
-            not_in_class.append(i)
-        else: 
-            in_class.append(i)
-    #print diff1
     diff2 = 0
     sm = 0.0
-    for i in [a, c, b]: 
+    for i in [a, b, c]: 
         for j in in_class: 
             for k in not_in_class: 
                 P = K[i, j] / (K[i,j] + K[i,k])
                 sm += 1
-                diff2 += P
+                diff2 += abs(P-1.0)
     diff2s.append(diff2/sm)
     return X1
 
