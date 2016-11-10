@@ -130,8 +130,8 @@ def prob_difference(X,
                 sm += 1
     diff1s.append(diff1/sm)
     tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, sum_x, K, Q, G)
-    X1 = X - (float(eta) / no_classes * N) * G
-    probability(X1, N, a, b, c, no_dims, alpha, K)
+    X2 = X - (float(eta) / no_classes * N) * G
+    probability(X2, N, a, b, c, no_dims, alpha, K)
 
     correct_class = classes[c]
     not_in_class = []
@@ -151,7 +151,7 @@ def prob_difference(X,
                 sm += 1
                 diff2 += P
     diff2s.append(diff2/sm)
-    return -(w_right*diff1 + w_wrong*diff2)
+    return X1
 
 
 N = 10
@@ -170,7 +170,7 @@ for t in range(1000):
 			for k in range(N):
 				if classes[i] == classes[j] and classes[i] != classes[k]:
 					triplet = (i, j , k)
-					prob_difference(X, 
+					X = prob_difference(X, 
 					    N, 
 					    no_dims, 
 					    alpha,
