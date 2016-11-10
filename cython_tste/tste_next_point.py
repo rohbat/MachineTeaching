@@ -7,23 +7,18 @@ def probability(X,
 	K, 
 	N, 
 	no_dims, 
-	alpha): 
-
-	triplets_A = triplets[:,0]
-	triplets_B = triplets[:,1]
-	triplets_C = triplets[:,2]
+	alpha):
 
 	K = np.zeros(N, N)
-	Q  = np.zeros(N, N)
+	Q = np.zeros(N, N)
 	sum_X = np.zeros(N)
 
-    for i in range([a,b,c]):
+    for i in [a,b,c]:
         sum_X[i] = 0
         for k in xrange(no_dims):
-            # Squared norm
             sum_X[i] += X[i,k]*X[i,k]
    
-    for i in range([a, b, c]): 
+    for i in [a, b, c]: 
         for j in range(N):
             K[i,j] = sum_X[i] + sum_X[j]
             for k in range(no_dims):
@@ -34,25 +29,57 @@ def probability(X,
     return K
 
 
-def best_point(X, 
+def prob_difference(X, 
 	K, 
 	N
 	no_dims, 
 	alpha, 
-	triplets, 
-	class): 
+	a, 
+	b, 
+	c, 
+	correct, 
+	classes, 
+	w_right=0.5, 
+	w_wrong=0.5): 
 
 	K = probability(X, K, N, no_dims, alpha)
 
+	correct_class = classes[b]
+	not_in_class = []
+	in_class = []
+	for i in range(N): 
+		if classes[i] != correct_class: 
+			not_in_class.append(i)
+		else: 
+			in_class.append(i)
+
     # Compute probability (or log-prob) for each triplet
-    for t in range(len(triplets)):
-        P = K[triplets_A[t], triplets_B[t]] / (
-            K[triplets_A[t],triplets_B[t]] +
-            K[triplets_A[t],triplets_C[t]])
-    return P
+    diff1 = 0
+    for i in [a, b, c]: 
+    	for j in in_class: 
+    		for k in not_in_class: 
+		        P = K[i, j] / (K[i,j] + K[i,k])
+		        diff1 += P - correct[i, j, k]
+	
+	
+	correct_class = classes[c]
+	not_in_class = []
+	in_class = []
+	for i in range(N): 
+		if classes[i] != correct_class: 
+			not_in_class.append(i)
+		else: 
+			in_class.append(i)
+	
+	diff2 = 0
+    for i in [a, c, b]: 
+    	for j in in_class: 
+    		for k in not_in_class: 
+		        P = K[i, j] / (K[i,j] + K[i,k])
 
+		        diff2 += P - correct[i, j, k]
 
-def test_point(a, b, c, alpha):
-	for i in [a, b, c]: 
+    return w_right*diff1 + w_wrong*diff2
+
 
 
