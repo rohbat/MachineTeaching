@@ -147,7 +147,7 @@ def prob_difference(X,
 		for j in classes1: 
 			for k in classes2: 
 				P = K[i, j] / (K[i,j] + K[i,k])
-				diff1 += abs(P - 1.0)
+				diff2 += abs(P - 1.0)
 				sm += 1
     diff2s.append(diff2/sm)
     return X1
