@@ -5,6 +5,9 @@ import numpy as np
 
 def probability(X, 
 	N, 
+	a, 
+	b, 
+	c, 
 	no_dims, 
 	alpha):
 
