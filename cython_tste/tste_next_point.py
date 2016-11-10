@@ -50,9 +50,9 @@ def tste_grad(X, N, no_dims, triplet, lamb, alpha, sum_X, K, Q, dC):
                   Q[triplet_A,triplet_C] *
                   (X[triplet_A, i] - X[triplet_C, i]))
 
-        dC[triplet_A, i]  += -const * (A_to_B - A_to_C)
-        dC[triplet_B, i] += -const * (-A_to_B)
-        dC[triplet_C, i] += -const * (A_to_C)
+        dC[triplet_A, i]  = -const * (A_to_B - A_to_C)
+        dC[triplet_B, i] = -const * (-A_to_B)
+        dC[triplet_C, i] = -const * (A_to_C)
 
     for n in triplet:
         for i in xrange(no_dims):
@@ -66,9 +66,9 @@ def probability(X,
 	b, 
 	c, 
 	no_dims, 
-	alpha):
+	alpha,
+	K):
 
-	K = np.zeros(N, N)
 	sum_X = np.zeros(N)
 
     for i in range(N):
@@ -99,9 +99,13 @@ def prob_difference(X,
 	w_right=0.5, 
 	w_wrong=0.5): 
 	
-	G = tste_grad(X, N, no_dims, (a, b, c), lamb, alpha)
+	sum_x = numpy.zeros(N)
+	K = np.zeros(N, N)
+	Q = np.zeros(N, N)
+	G = np.zeros(N, N)
+	tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, sum_x, K, Q, G)
 	X = X - (float(eta) / no_classes * N) * G
-	K = probability(X, N, a, b, c no_dims, alpha)
+	probability(X, N, a, b, c no_dims, alpha, K)
 
 	correct_class = 0 # classes[b]
 	not_in_class = []
@@ -118,12 +122,11 @@ def prob_difference(X,
     	for j in in_class: 
     		for k in not_in_class: 
 		        P = K[i, j] / (K[i,j] + K[i,k])
-		        diff1 += P - correct[i, j, k]
+		        diff1 += abs(P - 1.0)
 	
-	
-	G = tste_grad(X, N, no_dims, (a, c, b), lamb, alpha)
+	tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, sum_x, K, Q, G)
 	X = X - (float(eta) / no_classes * N) * G
-	K = probability(X, N, a, b, c no_dims, alpha)
+	probability(X, N, a, b, c no_dims, alpha, K)
 
 	correct_class = 1 # classes[c]
 	not_in_class = []
@@ -140,9 +143,9 @@ def prob_difference(X,
     		for k in not_in_class: 
 		        P = K[i, j] / (K[i,j] + K[i,k])
 
-		        diff2 += P - correct[i, j, k]
+		        diff2 += abs(P - 1.0)
 
-    return w_right*diff1 + w_wrong*diff2
+    return -(w_right*diff1 + w_wrong*diff2)
 
 
 
