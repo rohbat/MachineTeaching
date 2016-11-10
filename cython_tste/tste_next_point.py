@@ -120,11 +120,15 @@ def prob_difference(X,
             in_class.append(i)
 
     # Compute probability (or log-prob) for each triplet
-    diff1 = 0
-    sm = 0
-    for i in [a, b, c]: 
-        for j in in_class: 
-            for k in not_in_class: 
+    diff1 = 0.0
+    sm = 0.0
+    for i in [a, b, c]:
+    	classes1 = in_class
+    	classes2 = not_in_class
+    	if i == c:
+    		classes1, classes2 = classes2, classes1
+        for j in classes1: 
+            for k in classes2: 
                 P = K[i, j] / (K[i,j] + K[i,k])
                 diff1 += abs(P - 1.0)
                 sm += 1
@@ -133,14 +137,18 @@ def prob_difference(X,
     X2 = X - (float(eta) / no_classes * N) * G
     probability(X2, N, a, b, c, no_dims, alpha, K)
 
-    diff2 = 0
+    diff2 = 0.0
     sm = 0.0
-    for i in [a, b, c]: 
-        for j in in_class: 
-            for k in not_in_class: 
-                P = K[i, j] / (K[i,j] + K[i,k])
-                sm += 1
-                diff2 += abs(P-1.0)
+    for i in [a, b, c]:
+		classes1 = in_class
+		classes2 = not_in_class
+		if i == c:
+			classes1, classes2 = classes2, classes1
+		for j in classes1: 
+			for k in classes2: 
+				P = K[i, j] / (K[i,j] + K[i,k])
+				diff1 += abs(P - 1.0)
+				sm += 1
     diff2s.append(diff2/sm)
     return X1
 
