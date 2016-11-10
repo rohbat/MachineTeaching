@@ -4,7 +4,6 @@ import numpy as np
 
 
 def probability(X, 
-	K, 
 	N, 
 	no_dims, 
 	alpha):
@@ -30,21 +29,20 @@ def probability(X,
 
 
 def prob_difference(X, 
-	K, 
-	N
+	N, 
 	no_dims, 
 	alpha, 
 	a, 
 	b, 
 	c, 
 	correct, 
-	classes, 
+	classes = [], 
 	w_right=0.5, 
 	w_wrong=0.5): 
 
 	K = probability(X, K, N, no_dims, alpha)
 
-	correct_class = classes[b]
+	correct_class = 0 # classes[b]
 	not_in_class = []
 	in_class = []
 	for i in range(N): 
@@ -62,7 +60,7 @@ def prob_difference(X,
 		        diff1 += P - correct[i, j, k]
 	
 	
-	correct_class = classes[c]
+	correct_class = 1 # classes[c]
 	not_in_class = []
 	in_class = []
 	for i in range(N): 
