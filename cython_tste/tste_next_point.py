@@ -3,6 +3,64 @@ import cy_tste as cy_tste
 import numpy as np
 
 
+def tste_grad(X, N, no_dims, triplet, lamb, alpha, sum_X, K, Q, dC, dC_part):
+    """ Compute the cost function and gradient update of t-STE """
+    triplet_A = triplet[0]
+    triplet_B = triplet[1]
+    triplet_C = triplet[2]
+    P = 0
+    C = 0
+    A_to_B = 0
+    A_to_C = 0
+    # L2 Regularization cost
+    C += lamb * np.sum(X**2)
+    for i in xrange(N):
+        sum_X[i] = 0
+        for k in xrange(no_dims):
+            # Squared norm
+            sum_X[i] += X[i,k]*X[i,k]
+    for i in triplet:
+        for j in xrange(N):
+            K[i,j] = sum_X[i] + sum_X[j]
+            for k in xrange(no_dims):
+                K[i,j] += -2 * X[i,k]*X[j,k]
+            Q[i,j] = (1 + K[i,j] / alpha) ** -1
+            K[i,j] = (1 + K[i,j] / alpha) ** ((alpha+1)/-2)
+            # Now, K[i,j] = ((sqdist(i,j)/alpha + 1)) ** (-0.5*(alpha+1)),
+            # which is exactly the numerator of p_{i,j} in the lower right of
+            # t-STE paper page 3.
+            # The proof follows because sqdist(a,b) = (a-b)(a-b) = a^2+b^2-2ab
+
+    P = K[triplet_A, triplet_B] / (
+        K[triplet_A,triplet_B] +
+        K[triplet_A,triplet_C])
+    # This is exactly p_{ijk}, which is the equation in the lower-right
+    # of page 3 of the t-STE paper.
+    C += -log(P) if use_log else -P
+    # This is exactly the cost.
+
+    for i in xrange(no_dims):
+        # For i = each dimension to use
+        # Calculate the gradient of *this triplet* on its points.
+        const = (alpha+1) / alpha
+        A_to_B = ((1 - P) *
+                  # K[triplets_A[t],triplets_B[t]] *
+                  Q[triplet_A,triplet_B] *
+                  (X[triplet_A, i] - X[triplet_B, i]))
+        A_to_C = ((1 - P) *
+                  # (K[triplets_A[t],triplets_C[t]]) *
+                  Q[triplet_A,triplet_C] *
+                  (X[triplet_A, i] - X[triplet_C, i]))
+
+        dC[triplet_A, i]  += -const * (A_to_B - A_to_C)
+        dC[triplet_B, i] += -const * (-A_to_B)
+        dC[triplet_C, i] += -const * (A_to_C)
+
+    for n in triplet:
+        for i in xrange(no_dims):
+            # The 2*lamb*npx is for regularization: derivative of L2 norm
+            dC[n,i] = (dC[n,i]*-1) + 2*lamb*X[n,i]
+    return C
 
 def probability(X, 
 	N, 
