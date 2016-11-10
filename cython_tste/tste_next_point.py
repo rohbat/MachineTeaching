@@ -15,7 +15,7 @@ def probability(X,
 	K = np.zeros(N, N)
 	sum_X = np.zeros(N)
 
-    for i in [a,b,c]:
+    for i in range(N):
         sum_X[i] = 0
         for k in xrange(no_dims):
             sum_X[i] += X[i,k]*X[i,k]
