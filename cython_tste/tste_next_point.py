@@ -134,7 +134,7 @@ for t in range(1000):
 					    no_classes,
 					    w_right=0.5,
 					    w_wrong=0.5)
-                    t2 = time.time()
+                    #t2 = time.time()
                     #print t2 - t1
     print t
     print "Diff1", diff1s[-1]
