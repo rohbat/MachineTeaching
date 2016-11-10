@@ -61,86 +61,86 @@ def tste_grad(X, N, no_dims, triplet, lamb, alpha, sum_X, K, Q, dC):
     return C
 
 def probability(X, 
-	N, 
-	a, 
-	b, 
-	c, 
-	no_dims, 
-	alpha,
-	K):
+    N, 
+    a, 
+    b, 
+    c, 
+    no_dims, 
+    alpha,
+    K):
 
-	sum_X = np.zeros(N)
+    sum_X = np.zeros(N)
 
-	for i in range(N):
-		sum_X[i] = 0
+    for i in range(N):
+        sum_X[i] = 0
         for k in xrange(no_dims):
             sum_X[i] += X[i,k]*X[i,k]
    
-	for i in [a, b, c]: 
-		for j in range(N):
-			K[i,j] = sum_X[i] + sum_X[j]
-			for k in range(no_dims):
-				K[i,j] += -2 * X[i,k]*X[j,k]
-			K[i,j] = (1 + K[i,j] / alpha) ** ((alpha+1)/-2)
+    for i in [a, b, c]: 
+        for j in range(N):
+            K[i,j] = sum_X[i] + sum_X[j]
+            for k in range(no_dims):
+                K[i,j] += -2 * X[i,k]*X[j,k]
+            K[i,j] = (1 + K[i,j] / alpha) ** ((alpha+1)/-2)
 
-	return K
+    return K
 
 
 def prob_difference(X, 
-	N, 
-	no_dims, 
-	alpha, 
-	triplet,
-	classes = [], 
-	no_classes = 3, 
-	w_right=0.5, 
-	w_wrong=0.5): 
-	
-	a, b, c = triplet
-	sum_x = numpy.zeros(N)
-	K = np.zeros(N, N)
-	Q = np.zeros(N, N)
-	G = np.zeros(N, N)
-	tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, sum_x, K, Q, G)
-	X1 = X - (float(eta) / no_classes * N) * G
-	probability(X1, N, a, b, c, no_dims, alpha, K)
+    N, 
+    no_dims, 
+    alpha, 
+    triplet,
+    classes = [], 
+    no_classes = 3, 
+    w_right=0.5, 
+    w_wrong=0.5): 
+    
+    a, b, c = triplet
+    sum_x = numpy.zeros(N)
+    K = np.zeros(N, N)
+    Q = np.zeros(N, N)
+    G = np.zeros(N, N)
+    tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, sum_x, K, Q, G)
+    X1 = X - (float(eta) / no_classes * N) * G
+    probability(X1, N, a, b, c, no_dims, alpha, K)
 
-	correct_class = 0 # classes[b]
-	not_in_class = []
-	in_class = []
-	for i in range(N): 
-		if classes[i] != correct_class: 
-			not_in_class.append(i)
-		else: 
-			in_class.append(i)
+    correct_class = 0 # classes[b]
+    not_in_class = []
+    in_class = []
+    for i in range(N): 
+        if classes[i] != correct_class: 
+            not_in_class.append(i)
+        else: 
+            in_class.append(i)
 
     # Compute probability (or log-prob) for each triplet
-	diff1 = 0
-	for i in [a, b, c]: 
-    	for j in in_class: 
-    		for k in not_in_class: 
-		        P = K[i, j] / (K[i,j] + K[i,k])
-		        diff1 += abs(P - 1.0)
-	
-	tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, sum_x, K, Q, G)
-	X1 = X - (float(eta) / no_classes * N) * G
-	probability(X1, N, a, b, c no_dims, alpha, K)
+    diff1 = 0
+    for i in [a, b, c]: 
+        for j in in_class: 
+            for k in not_in_class: 
+                P = K[i, j] / (K[i,j] + K[i,k])
+                diff1 += abs(P - 1.0)
+    
+    tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, sum_x, K, Q, G)
+    X1 = X - (float(eta) / no_classes * N) * G
+    probability(X1, N, a, b, c no_dims, alpha, K)
 
-	correct_class = 1 # classes[c]
-	not_in_class = []
-	in_class = []
-	for i in range(N): 
-		if classes[i] != correct_class: 
-			not_in_class.append(i)
-		else: 
-			in_class.append(i)
-	
-	diff2 = 0
+    correct_class = 1 # classes[c]
+    not_in_class = []
+    in_class = []
+    for i in range(N): 
+        if classes[i] != correct_class: 
+            not_in_class.append(i)
+        else: 
+            in_class.append(i)
+    
+    diff2 = 0
     for i in [a, c, b]: 
-    	for j in in_class: 
-    		for k in not_in_class: 
-		        P = K[i, j] / (K[i,j] + K[i,k])
-		        diff2 += P
+        for j in in_class: 
+            for k in not_in_class: 
+                P = K[i, j] / (K[i,j] + K[i,k])
+                diff2 += P
 
     return -(w_right*diff1 + w_wrong*diff2)
 
@@ -154,11 +154,11 @@ classes = numpy.random.randint(N)
 no_classes = 2
 
 prob_difference(X, 
-	N, 
-	no_dims, 
-	alpha, 
-	triplet,
-	classes, 
-	no_classes, 
-	w_right=0.5, 
-	w_wrong=0.5)
+    N, 
+    no_dims, 
+    alpha, 
+    triplet,
+    classes, 
+    no_classes, 
+    w_right=0.5, 
+    w_wrong=0.5)
