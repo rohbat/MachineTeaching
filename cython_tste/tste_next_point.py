@@ -1,9 +1,7 @@
-from 
 import cy_tste as cy_tste
 import numpy as np
 
-
-def tste_grad(X, N, no_dims, triplet, lamb, alpha, sum_X, K, Q, dC, dC_part):
+def tste_grad(X, N, no_dims, triplet, lamb, alpha, sum_X, K, Q, dC):
     """ Compute the cost function and gradient update of t-STE """
     triplet_A = triplet[0]
     triplet_B = triplet[1]
