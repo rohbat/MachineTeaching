@@ -96,7 +96,6 @@ def prob_difference(X,
     lamb, 
     triplet,
     classes = [], 
-    no_classes = 3, 
     w_right=0.5, 
     w_wrong=0.5,
     eta = 2.0): 
@@ -107,7 +106,7 @@ def prob_difference(X,
     Q = np.zeros((N, N))
     G = np.zeros((N, no_dims))
     tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, sum_x, K, Q, G)
-    X1 = X - (float(eta) / no_classes * N) * G
+    X1 = X - (float(eta) / N) * G
     probability(X1, N, a, b, c, no_dims, alpha, K)
 
     correct_class = classes[a]
@@ -134,7 +133,7 @@ def prob_difference(X,
                 sm += 1
     diff1s.append(diff1/sm)
     tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, sum_x, K, Q, G)
-    X2 = X - (float(eta) / no_classes * N) * G
+    X2 = X - (float(eta) / N) * G
     probability(X2, N, a, b, c, no_dims, alpha, K)
 
     diff2 = 0.0
@@ -160,7 +159,6 @@ alpha = no_dims-1
 classes = np.random.randint(2, size=N)
 #print triplet
 #print classes[triplet_a], classes[triplet_b], classes[triplet_c]
-no_classes = 2
 lamb = 0
 
 for t in range(1000):
@@ -176,7 +174,6 @@ for t in range(1000):
 					    lamb,
 					    triplet,
 					    classes, 
-					    no_classes, 
 					    w_right=0.5, 
 					    w_wrong=0.5)
 	print t
