@@ -60,6 +60,7 @@ print classes_dict, len(classes_dict)
 N = 250
 no_dims = 10
 alpha = no_dims - 1
+eta = 0.01
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 page_model = PageModel()
 
@@ -87,6 +88,11 @@ def get_imgs():
 def get_response():
     if request.method == 'POST':
         data = request.get_data()
+        K = np.zeros((N, N))
+        Q = np.zeros((N, N))
+        G = np.zeros((N, no_dims))
+        tste_grad(user_x_dict[session['name']], N, no_dims, PageModel.get_index_list(), 0, no_dims-1, K, Q, G)
+        user_x_dict[session['name']] = user_x_dict[session['name']] - (float(eta) / N) * G
         if data == "0":
             page_model.set_chosen(page_model.compare_img_1)
         elif data == "1":
