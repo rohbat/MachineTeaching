@@ -33,7 +33,7 @@ class_names = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/
 
 class_name_dict = {}
 for class_name in class_names:
-    class_name_dict[class_name] = glob.glob(str("/home/cs101teaching/MachineTeaching/static/chinese/ims/") + class_name + "/*")
+    class_name_dict[class_name] = glob.glob(class_name + "/*")
 
 name_class = {}
 for k, v in class_name_dict.iteritems():
@@ -48,8 +48,8 @@ for i in range(len(image_list)):
     classes[i] = class_names.index(name_class[image_list[i]])
 
 classes_dict = {}
-for class_name in class_names:
-    classes_dict[class_name] = []
+for i in range(len(class_names)):
+    classes_dict[i] = []
 for i in range(len(classes)):
     classes_dict[classes[i]].append(i)
 
