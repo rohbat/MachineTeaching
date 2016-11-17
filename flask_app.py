@@ -63,6 +63,8 @@ alpha = no_dims - 1
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 page_model = PageModel()
 
+user_x_dict = {}
+
 def update_page_with_random():
     page_ims = random.sample(range(len(image_list)), 3)
 
@@ -108,8 +110,7 @@ def login():
     if request.method == 'POST':
         if request.form['username'] != '':
             session['name'] = request.form['username']
-            X = np.random.rand(N, no_dims)
-            session["X"] = X
+            user_x_dict[session['name']] = np.random.rand(N, no_dims)
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
  
