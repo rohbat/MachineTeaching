@@ -38,8 +38,7 @@ for class_name in class_names:
 name_class = {}
 for k, v in class_name_dict.iteritems():
     for elm in v:
-        name_class[elm] = class_name_dict.get(elm, [])
-        name_class[elm].append(k)
+        name_class[elm] = k
 
 image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
 image_list.sort()
