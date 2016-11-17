@@ -91,7 +91,7 @@ def get_response():
         K = np.zeros((N, N))
         Q = np.zeros((N, N))
         G = np.zeros((N, no_dims))
-        tste_grad(user_x_dict[session['name']], N, no_dims, PageModel.get_index_list(), 0, no_dims-1, K, Q, G)
+        tste_grad(user_x_dict[session['name']], N, no_dims, page_model.get_index_list(), 0, no_dims-1, K, Q, G)
         user_x_dict[session['name']] = user_x_dict[session['name']] - (float(eta) / N) * G
         if data == "0":
             page_model.set_chosen(page_model.compare_img_1)
