@@ -57,7 +57,7 @@ for i in range(len(classes)):
 print classes, len(classes)
 print classes_dict, len(classes_dict)
 
-N = 250
+N = len(classes)
 no_dims = 10
 alpha = no_dims - 1
 eta = 0.01
