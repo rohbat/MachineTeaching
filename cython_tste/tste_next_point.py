@@ -67,7 +67,8 @@ def prob_difference(X,
     no_classes=3,
     w_right=0.5,
     w_wrong=0.5,
-    eta=0.1): 
+    eta=0.1,
+    sample_class = 0.2): 
     
     a, b, c = triplet
     K = np.zeros((N, N))
@@ -82,8 +83,8 @@ def prob_difference(X,
     diff1 = 0.0
     sm = 0.0
     for i in triplet:
-        for j in random.sample(classes_dict[classes[i]], 50): 
-            for k in random.sample(classes_dict[1.0 - classes[i]], 50): 
+        for j in random.sample(classes_dict[classes[i]], int(sample_class*N)): 
+            for k in random.sample(classes_dict["not"+str(classes[i])], int(sample_class*N)): 
                 P = K[i, j] / (K[i, j] + K[i, k])
                 diff1 += 1.0-P
                 sm += 1
@@ -95,8 +96,8 @@ def prob_difference(X,
     diff2 = 0.0
     sm = 0.0
     for i in triplet:
-        for j in random.sample(classes_dict[classes[i]], 50): 
-            for k in random.sample(classes_dict[1.0 - classes[i]], 50): 
+        for j in random.sample(classes_dict[classes[i]], int(sample_class*N)): 
+            for k in random.sample(classes_dict["not"+str(classes[i])], int(sample_class*N)):
                 P = K[i, j] / (K[i, j] + K[i, k])
                 diff2 += 1.0-P
                 sm += 1
@@ -112,6 +113,12 @@ classes = np.random.randint(2, size=N)
 classes_dict = {0:[], 1:[]}
 for i in range(len(classes)):
     classes_dict[classes[i]].append(i)
+
+for key in classes_dict.keys():
+    classes_dict['not'+str(key)] = []
+    for key1 in classes_dict.keys():
+        if key != key1 and not 'not' in str(key1):
+            classes_dict['not'+str(key)].extend(classes_dict[key1])
 # print triplet
 # print classes[triplet_a], classes[triplet_b], classes[triplet_c]
 no_classes = 2
