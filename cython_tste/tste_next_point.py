@@ -1,5 +1,6 @@
 import numpy as np
 from numpy.core.umath_tests import inner1d
+import random
 
 def tste_grad(X, N, no_dims, triplet, lamb, alpha, K, Q, dC):
     """ Compute the cost function and gradient update of t-STE """
@@ -81,10 +82,10 @@ def prob_difference(X,
     diff1 = 0.0
     sm = 0.0
     for i in triplet:
-        for j in classes_dict[classes[i]]: 
-            for k in classes_dict[1.0 - classes[i]]: 
+        for j in random.sample(classes_dict[classes[i]], 50): 
+            for k in random.sample(classes_dict[1.0 - classes[i]], 50): 
                 P = K[i, j] / (K[i, j] + K[i, k])
-                diff1 += abs(P - 1.0)
+                diff1 += 1.0-P
                 sm += 1
     diff1s.append(diff1 / sm)
     tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, K, Q, G)
@@ -94,16 +95,16 @@ def prob_difference(X,
     diff2 = 0.0
     sm = 0.0
     for i in triplet:
-        for j in classes_dict[classes[i]]: 
-            for k in classes_dict[1.0 - classes[i]]: 
+        for j in random.sample(classes_dict[classes[i]], 50): 
+            for k in random.sample(classes_dict[1.0 - classes[i]], 50): 
                 P = K[i, j] / (K[i, j] + K[i, k])
-                diff2 += abs(P - 1.0)
+                diff2 += 1.0-P
                 sm += 1
     diff2s.append(diff2 / sm)
     return X1
 
 
-N = 10
+N = 250
 no_dims = 10
 X = np.random.rand(N, no_dims)
 alpha = no_dims - 1
@@ -134,8 +135,8 @@ for t in range(1000):
 					    no_classes,
 					    w_right=0.5,
 					    w_wrong=0.5)
-                    #t2 = time.time()
-                    #print t2 - t1
+                    t2 = time.time()
+                    print t2 - t1
     print t
     print "Diff1", diff1s[-1]
     print "Diff2", diff2s[-1]

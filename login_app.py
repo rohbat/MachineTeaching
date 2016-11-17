@@ -13,7 +13,7 @@ def login():
     error = None
     if request.method == 'POST':
         if request.form['username'] != '':
-            session['cookie-parameter'] = request.form['username']
+            session['name'] = request.form['username']
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
     # return redirect(url_for('index'))

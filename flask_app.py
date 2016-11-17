@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect, url_for
 from sqlalchemy.orm.session import sessionmaker, make_transient
 from sqlalchemy import create_engine
 from database import db
@@ -18,6 +18,7 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostnam
 )
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 db.init_app(app)
 db.app = app
@@ -71,6 +72,15 @@ def get_response():
 @app.route("/")
 def index():
     return render_template('test.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != '':
+            session['name'] = request.form['username']
+            return redirect(url_for('index'))
+    return render_template('login.html', error=error)
  
 if __name__ == "__main__":
     app.run()
