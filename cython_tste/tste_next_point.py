@@ -104,47 +104,50 @@ def prob_difference(X,
     diff2s.append(diff2 / sm)
     return X1
 
-
-N = 250
-no_dims = 10
-X = np.random.rand(N, no_dims)
-alpha = no_dims - 1
-classes = np.random.randint(3, size=N)
-classes_dict = {0:[], 1:[], 2:[]}
-for i in range(len(classes)):
-    classes_dict[classes[i]].append(i)
-
-for key in classes_dict.keys():
-    classes_dict['not'+str(key)] = []
-    for key1 in classes_dict.keys():
-        if key != key1 and not 'not' in str(key1):
-            classes_dict['not'+str(key)].extend(classes_dict[key1])
-# print triplet
-# print classes[triplet_a], classes[triplet_b], classes[triplet_c]
-no_classes = 2
-lamb = 0
-import time
-for t in range(1000):
-    for i in range(N):
-        for j in range(N):
-            for k in range(N):
-                if classes[i] == classes[j] and classes[i] != classes[k]:
-                    triplet = (i, j , k)
-                    t1 = time.time()
-                    X = prob_difference(X,
-					    N,
-					    no_dims,
-					    alpha,
-					    lamb,
-					    triplet,
-					    classes,
-					    classes_dict,
-					    no_classes,
-					    w_right=0.5,
-					    w_wrong=0.5)
-                    t2 = time.time()
-                    print t2 - t1
-    print t
-    print "Diff1", diff1s[-1]
-    print "Diff2", diff2s[-1]
-    print "Avg", (diff1s[-1]+diff2s[-1])/2.0
+def main():
+    N = 250
+    no_dims = 10
+    X = np.random.rand(N, no_dims)
+    alpha = no_dims - 1
+    classes = np.random.randint(3, size=N)
+    classes_dict = {0:[], 1:[], 2:[]}
+    for i in range(len(classes)):
+        classes_dict[classes[i]].append(i)
+    
+    for key in classes_dict.keys():
+        classes_dict['not'+str(key)] = []
+        for key1 in classes_dict.keys():
+            if key != key1 and not 'not' in str(key1):
+                classes_dict['not'+str(key)].extend(classes_dict[key1])
+    # print triplet
+    # print classes[triplet_a], classes[triplet_b], classes[triplet_c]
+    no_classes = 2
+    lamb = 0
+    import time
+    for t in range(1000):
+        for i in range(N):
+            for j in range(N):
+                for k in range(N):
+                    if classes[i] == classes[j] and classes[i] != classes[k]:
+                        triplet = (i, j , k)
+                        t1 = time.time()
+                        X = prob_difference(X,
+    					    N,
+    					    no_dims,
+    					    alpha,
+    					    lamb,
+    					    triplet,
+    					    classes,
+    					    classes_dict,
+    					    no_classes,
+    					    w_right=0.5,
+    					    w_wrong=0.5)
+                        t2 = time.time()
+                        print t2 - t1
+        print t
+        print "Diff1", diff1s[-1]
+        print "Diff2", diff2s[-1]
+        print "Avg", (diff1s[-1]+diff2s[-1])/2.0
+        
+if __name__ == '__main__':
+    main()

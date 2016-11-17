@@ -6,7 +6,8 @@ from page_model import PageModel
 import glob
 import os 
 import random
-import numpy
+import numpy as np
+from cython_tste.tste_next_point import *
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -43,7 +44,7 @@ for k, v in class_name_dict.iteritems():
 image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
 image_list.sort()
 
-classes = numpy.zeros(len(image_list))
+classes = np.zeros(len(image_list))
 for i in range(len(image_list)):
     classes[i] = class_names.index(name_class[image_list[i]])
 
@@ -55,6 +56,12 @@ for i in range(len(classes)):
 
 print classes, len(classes)
 print classes_dict, len(classes_dict)
+
+N = 250
+no_dims = 10
+X = np.random.rand(N, no_dims)
+alpha = no_dims - 1
+session["X"] = X
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 page_model = PageModel()
 
