@@ -7,8 +7,8 @@ def tste_grad(X, N, no_dims, triplet, lamb, alpha, K, Q, dC):
     triplet_A = triplet[0]
     triplet_B = triplet[1]
     triplet_C = triplet[2]
-    for i in triplet:
-        for j in xrange(N):
+    for i in [triplet_A]:
+        for j in [triplet_B, triplet_C]:
             diff = X[i, :] - X[j, :]
             K[i, j] = inner1d(diff, diff)
             Q[i, j] = (1 + K[i, j] / alpha) ** -1
@@ -52,6 +52,18 @@ def probability(X,
             diff = X[i, :] - X[j, :]
             K[i, j] = inner1d(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
+            
+            
+def probability_rand(X, N, triplet, no_dims, alpha, K, rand_triplets):
+    for i in triplet: 
+        for j in rand_triplets[i][0]:
+            diff = X[i, :] - X[j, :]
+            K[i, j] = inner1d(diff, diff)
+            K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
+        for j in rand_triplets[i][1]:
+            diff = X[i, :] - X[j, :]
+            K[i, j] = inner1d(diff, diff)
+            K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
 
 diff1s = []
 diff2s = []
@@ -67,9 +79,9 @@ def prob_difference(X,
     no_classes=3,
     w_right=0.5,
     w_wrong=0.5,
-    eta=0.1,
-    sample_class = 0.2): 
-    
+    eta=0.2,
+    sample_class = 0.05): 
+
     a, b, c = triplet
     K = np.zeros((N, N))
     Q = np.zeros((N, N))
@@ -77,40 +89,50 @@ def prob_difference(X,
 
     tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, K, Q, G)
     X1 = X - (float(eta) / no_classes * N) * G
-    probability(X1, N, triplet, no_dims, alpha, K)
+    
+    rand_triplets = {i:(random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))), random.sample(classes_dict["not"+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])])))) for i in triplet}
+    probability_rand(X1, N, triplet, no_dims, alpha, K, rand_triplets)
 
     # Compute probability (or log-prob) for each triplet
     diff1 = 0.0
     sm = 0.0
     for i in triplet:
-        for j in random.sample(classes_dict[classes[i]], int(sample_class*N)): 
-            for k in random.sample(classes_dict["not"+str(classes[i])], int(sample_class*N)): 
+        for j in rand_triplets[i][0]: 
+            for k in rand_triplets[i][1]: 
                 P = K[i, j] / (K[i, j] + K[i, k])
                 diff1 += 1.0-P
                 sm += 1
-    diff1s.append(diff1 / sm)
+    diff1 /= sm
+    diff1s.append(diff1)
+
     tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, K, Q, G)
     X2 = X - (float(eta) / no_classes * N) * G
-    probability(X2, N, triplet, no_dims, alpha, K)
+    probability_rand(X2, N, triplet, no_dims, alpha, K, rand_triplets)
 
     diff2 = 0.0
     sm = 0.0
     for i in triplet:
-        for j in random.sample(classes_dict[classes[i]], int(sample_class*N)): 
-            for k in random.sample(classes_dict["not"+str(classes[i])], int(sample_class*N)):
+        for j in rand_triplets[i][0]: 
+            for k in rand_triplets[i][1]:
                 P = K[i, j] / (K[i, j] + K[i, k])
                 diff2 += 1.0-P
                 sm += 1
-    diff2s.append(diff2 / sm)
-    return X1
+    #print sm
+    diff2 /= sm
+    diff2s.append(diff2)
+    return X1, (diff1+diff2)/2.0
 
 def main():
-    N = 250
+    global diff1s, diff2s
+    N = 750
     no_dims = 10
+    no_classes = 3
     X = np.random.rand(N, no_dims)
     alpha = no_dims - 1
-    classes = np.random.randint(3, size=N)
-    classes_dict = {0:[], 1:[], 2:[]}
+    classes = np.random.randint(no_classes, size=N)
+    classes_dict = {}
+    for i in range(no_classes):
+        classes_dict[i] = []
     for i in range(len(classes)):
         classes_dict[classes[i]].append(i)
     
@@ -121,33 +143,41 @@ def main():
                 classes_dict['not'+str(key)].extend(classes_dict[key1])
     # print triplet
     # print classes[triplet_a], classes[triplet_b], classes[triplet_c]
-    no_classes = 2
+    sample_class = 0.02
     lamb = 0
     import time
     for t in range(1000):
-        for i in range(N):
-            for j in range(N):
-                for k in range(N):
-                    if classes[i] == classes[j] and classes[i] != classes[k]:
-                        triplet = (i, j , k)
-                        t1 = time.time()
-                        X = prob_difference(X,
-    					    N,
-    					    no_dims,
-    					    alpha,
-    					    lamb,
-    					    triplet,
-    					    classes,
-    					    classes_dict,
-    					    no_classes,
-    					    w_right=0.5,
-    					    w_wrong=0.5)
-                        t2 = time.time()
-                        print t2 - t1
-        print t
-        print "Diff1", diff1s[-1]
-        print "Diff2", diff2s[-1]
-        print "Avg", (diff1s[-1]+diff2s[-1])/2.0
-        
+        count = 0
+        min_avg = 1000000
+        best_triplet = None
+        diff1s = []
+        diff2s = []
+        t1 = time.time()
+        for i in random.sample(range(N), int(N*sample_class)):
+            for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
+                for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
+                    triplet = (i, j , k)
+                    X, avg = prob_difference(X,
+    				    N,
+    				    no_dims,
+    				    alpha,
+    				    lamb,
+    				    triplet,
+    				    classes,
+    				    classes_dict,
+    				    no_classes,
+    				    w_right=0.5,
+    				    w_wrong=0.5)
+                    if avg < min_avg:
+                        min_avg = avg
+                        best_triplet = triplet
+                    count += 1
+        t2 = time.time()
+        print "Time", t2 - t1
+        print "Triplets Sampled", count
+        print "Diff1", np.average(diff1s)
+        print "Diff2", np.average(diff2s)
+        print "Min Avg", min_avg, best_triplet, '\n'
+
 if __name__ == '__main__':
     main()
