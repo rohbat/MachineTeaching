@@ -109,8 +109,8 @@ N = 250
 no_dims = 10
 X = np.random.rand(N, no_dims)
 alpha = no_dims - 1
-classes = np.random.randint(2, size=N)
-classes_dict = {0:[], 1:[]}
+classes = np.random.randint(3, size=N)
+classes_dict = {0:[], 1:[], 2:[]}
 for i in range(len(classes)):
     classes_dict[classes[i]].append(i)
 

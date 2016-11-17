@@ -6,6 +6,7 @@ from page_model import PageModel
 import glob
 import os 
 import random
+import numpy
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -28,9 +29,29 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI)
 Session_sql = sessionmaker(bind=engine, expire_on_commit=False)
 session_sql = Session_sql()
 
+class_names = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*")
+
+class_name_dict = {}
+for class_name in class_names:
+    class_name_dict[class_name] = glob.glob(str("/home/cs101teaching/MachineTeaching/static/chinese/ims/") + class_name + "/*")
+
+name_class = {}
+for k, v in class_name_dict.iteritems():
+    name_class[v] = class_name_dict.get(v, [])
+    name_class[v].append(k)
+
 image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
-image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 image_list.sort()
+
+classes = numpy.zeros(len(image_list))
+for i in range(len(image_list)):
+    classes[i] = name_class[name_class.index(image_list[i])]
+
+classes_dict = {}
+for class_name in class_names:
+    classes_dict[class_name] = []
+for i in range(len(classes)):
+    classes_dict[classes[i]].append(i)
 
 page_model = PageModel()
 
