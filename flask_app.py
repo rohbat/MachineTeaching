@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, redirect, url_for
+from flask import Flask, jsonify, request, render_template, redirect, url_for, session
 from sqlalchemy.orm.session import sessionmaker, make_transient
 from sqlalchemy import create_engine
 from database import db
@@ -25,11 +25,11 @@ db.app = app
 
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
-Session = sessionmaker(bind=engine, expire_on_commit=False)
-session = Session()
+Session_sql = sessionmaker(bind=engine, expire_on_commit=False)
+session_sql = Session_sql()
 
-image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
-image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
+image_list = glob.glob("static/machine_teaching_data/chinese/ims/*/*")
+#image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 image_list.sort()
 
 page_model = PageModel()
@@ -62,8 +62,8 @@ def get_response():
             page_model.set_chosen(page_model.compare_img_2)
     make_transient(page_model)
     page_model.id = None
-    session.add(page_model)
-    session.commit()
+    session_sql.add(page_model)
+    session_sql.commit()
 
     update_page_with_random()
 
