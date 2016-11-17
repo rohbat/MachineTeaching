@@ -55,7 +55,7 @@ for i in range(len(classes)):
 
 print classes, len(classes)
 print classes_dict, len(classes_dict)
-
+image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 page_model = PageModel()
 
 def update_page_with_random():
