@@ -37,8 +37,9 @@ for class_name in class_names:
 
 name_class = {}
 for k, v in class_name_dict.iteritems():
-    name_class[v] = class_name_dict.get(v, [])
-    name_class[v].append(k)
+    for elm in v:
+        name_class[elm] = class_name_dict.get(elm, [])
+        name_class[elm].append(k)
 
 image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
 image_list.sort()
@@ -52,6 +53,9 @@ for class_name in class_names:
     classes_dict[class_name] = []
 for i in range(len(classes)):
     classes_dict[classes[i]].append(i)
+
+print classes, len(classes)
+print classes_dict, len(classes_dict)
 
 page_model = PageModel()
 
