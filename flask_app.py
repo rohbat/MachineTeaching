@@ -45,7 +45,7 @@ image_list.sort()
 
 classes = numpy.zeros(len(image_list))
 for i in range(len(image_list)):
-    classes[i] = name_class[class_names.index(image_list[i])]
+    classes[i] = class_names.index(name_class[image_list[i]])
 
 classes_dict = {}
 for class_name in class_names:
