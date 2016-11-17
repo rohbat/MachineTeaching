@@ -61,7 +61,6 @@ N = 250
 no_dims = 10
 X = np.random.rand(N, no_dims)
 alpha = no_dims - 1
-session["X"] = X
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 page_model = PageModel()
 
@@ -110,6 +109,7 @@ def login():
     if request.method == 'POST':
         if request.form['username'] != '':
             session['name'] = request.form['username']
+            session["X"] = X
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
  
