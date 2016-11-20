@@ -132,6 +132,7 @@ def get_response_kernel():
         user_nclicks_dict[session['name']] += 1
 
     if user_nclicks_dict[session['name']] == 5: 
+        end_id = session['name']
         user_id_dict[session['name']] = end_id
         print 'logout'
         return redirect(url_for('logout'))
