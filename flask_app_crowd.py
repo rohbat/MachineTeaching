@@ -107,12 +107,11 @@ def to_login():
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
 
-@app.route("/end")
+@app.route("/end/")
 def logout():
     end_id = session['name']
     print 'end id'
-    return render_template('login_rand.html') #, end_id=str(end_id))
-
+    return render_template('login_rand.html')
 
 
 # THESE DO LOTS
