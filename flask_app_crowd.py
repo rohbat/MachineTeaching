@@ -157,7 +157,7 @@ def login():
     return render_template('login.html', error=error)
 
 @app.route('/login_rand', methods=['GET', 'POST'])
-def login(): 
+def login_rand(): 
     error = None
     if request.method == 'POST':
         np.save('nclicks.npy', user_nclicks_dict)
