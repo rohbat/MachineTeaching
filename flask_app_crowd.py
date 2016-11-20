@@ -107,10 +107,8 @@ def to_login():
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
 
-@app.route("/end")
+@app.route("/kernel/end")
 def logout():
-    end_id = session['name']
-    print 'end id'
     return render_template('end.html')
 
 
