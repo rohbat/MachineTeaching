@@ -67,6 +67,7 @@ page_model = PageModel()
 user_x_dict = {}
 user_nclicks_dict = {}
 
+
 def update_page_with_random():
     page_ims = random.sample(range(len(image_list)), 3)
 
@@ -85,7 +86,7 @@ update_page_with_random()
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
 
-@app.route("/get_response", methods = ['POST'])
+@app.route("/teaching/get_response", methods = ['POST'])
 def get_response():
     if request.method == 'POST':
         data = request.get_data()
@@ -105,12 +106,33 @@ def get_response():
     session_sql.commit()
 
     update_page_with_random()
-
     return jsonify(page_model.get_imgs_list())
 
-@app.route("/")
+@app.route("/kernel/get_response", methods = ['POST'])
+def get_response():
+    if request.method == 'POST':
+        data = request.get_data()
+        if data == "0":
+            page_model.set_chosen(page_model.compare_img_1)
+        elif data == "1":
+            page_model.set_chosen(page_model.compare_img_2)
+        user_nclicks_dict[session['name']] += 1
+
+    make_transient(page_model)
+    page_model.id = None
+    session_sql.add(page_model)
+    session_sql.commit()
+
+    update_page_with_random()
+    return jsonify(page_model.get_imgs_list())
+
+@app.route("/teaching/")
 def index():
     return render_template('test.html')
+
+@app.route("/kernel/")
+def kernel_index():
+    return render_template('kernel.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -120,8 +142,10 @@ def login():
             session['name'] = request.form['username']
             user_x_dict[session['name']] = np.random.rand((N, no_dims))
             user_nclicks_dict[session['name']] += 0
-            return redirect(url_for('index'))
+            return redirect(url_for('kernel_index'))
     return render_template('login.html', error=error)
  
 if __name__ == "__main__":
     app.run()
+
+
