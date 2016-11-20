@@ -175,6 +175,7 @@ def login():
 @app.route('/login_rand', methods=['GET', 'POST'])
 def login_rand(): 
     global counter 
+    print counter 
     error = None
     if request.method == 'POST':
         np.save('nclicks.npy', user_nclicks_dict)
