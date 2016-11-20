@@ -175,7 +175,6 @@ def login():
 @app.route('/login_rand', methods=['GET', 'POST'])
 def login_rand(): 
     global counter 
-    print request.method 
 
     error = None
     if request.method == 'POST':
