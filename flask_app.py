@@ -205,6 +205,7 @@ def kernel_index():
 def login():
     error = None
     if request.method == 'POST':
+        np.save('nclicks.npy', user_nclicks_dict)
         if request.form['username'] != '':
             session['name'] = request.form['username']
             user_x_dict[session['name']] = np.random.rand(N, no_dims)
@@ -218,5 +219,6 @@ def login():
  
 if __name__ == "__main__":
     app.run()
+
 
 
