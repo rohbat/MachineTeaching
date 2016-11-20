@@ -111,7 +111,7 @@ def get_imgs():
 def logout():
     end_id = session['name']
     print 'end id'
-    return render_template('end.html')
+    return render_template('login_rand.html') #, end_id=str(end_id))
 
 
 
