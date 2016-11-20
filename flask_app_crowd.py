@@ -190,7 +190,7 @@ def login_rand():
             session['hitId'] = request.args['hitId']
             session['turkSubmitTo'] = request.args['turkSubmitTo']
             session['workerId'] = request.args['workerId']
-            print(dict(request.args))
+            print(session['name'], session['assignmentId'], session['hitId'], session['turkSubmitTo'], session['workerId'])
         else:
             session['name'] = counter
             counter += 1
