@@ -126,6 +126,7 @@ def get_response_kernel():
     page_model.id = None
     session_sql.add(page_model)
     session_sql.commit()
+    print user_nclicks_dict
 
     update_page_with_random()
     return jsonify(page_model.get_imgs_list())
