@@ -9,8 +9,16 @@ import random
 import numpy as np
 from cython_tste.tste_next_point import *
 
+
+
+# Make Flask app
+
 app = Flask(__name__)
 app.config["DEBUG"] = True
+
+
+
+# Set up database
 
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="cs101teaching",
@@ -29,6 +37,10 @@ engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
 Session_sql = sessionmaker(bind=engine, expire_on_commit=False)
 session_sql = Session_sql()
+
+
+
+# WHAT AM I DOING?
 
 class_names = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*")
 
@@ -57,16 +69,40 @@ for i in range(len(classes)):
 print classes, len(classes)
 print classes_dict, len(classes_dict)
 
+
+
+# Set values for tste
+
 N = len(classes)
 no_dims = 10
 alpha = no_dims - 1
 eta = 0.01
+
+
+
+# WHAT AM I DOING?
+
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
+
+
+
+# Initialize page model
+
 page_model = PageModel()
+
+
+
+# Make dictionaries
+#
+#  - user_x_dict stores the users' kernels
+#  - user_nclicks_dict stores the number of jobs each user has done
 
 user_x_dict = {}
 user_nclicks_dict = {}
 
+
+
+# Choose a random triplet and set the page's triplet accordingly
 
 def update_page_with_random():
     page_ims = random.sample(range(len(image_list)), 3)
@@ -79,6 +115,10 @@ def update_page_with_random():
     page_model.compare_1_path = image_list[page_ims[1]]
     page_model.compare_2_path = image_list[page_ims[2]]
 
+
+
+# Set triplet
+
 random.seed()
 update_page_with_random()
 
@@ -86,9 +126,20 @@ update_page_with_random()
 def to_login():
     return redirect(url_for('login'))
 
+
+
+# Return image list in JSON format 
+
 @app.route("/get_imgs")
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
+
+
+
+# THESE DO LOTS
+#
+# - Gets the response from the user
+# - Updates the user's kernel
 
 @app.route("/teaching/get_response", methods = ['POST'])
 def get_response():
@@ -130,6 +181,10 @@ def get_response_kernel():
     update_page_with_random()
     return jsonify(page_model.get_imgs_list())
 
+
+
+# Render main page
+
 @app.route("/teaching/")
 def index():
     return render_template('test.html')
@@ -137,6 +192,13 @@ def index():
 @app.route("/kernel/")
 def kernel_index():
     return render_template('kernel.html')
+
+
+
+# Create new user
+#
+# - Store given user name
+# - Create initial kernel for new user
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -148,6 +210,10 @@ def login():
             user_nclicks_dict[session['name']] = 0
             return redirect(url_for('kernel_index'))
     return render_template('login.html', error=error)
+
+
+
+# Run
  
 if __name__ == "__main__":
     app.run()
