@@ -39,6 +39,7 @@ def tste_grad(X, N, no_dims, triplet, lamb, alpha, K, Q, dC):
     if lamb > 0:
         for n in triplet:
             dC[n, :] = dC[n, :] + 2 * lamb * X[n, :]
+    return P
 
 def probability(X,
     N,
@@ -87,10 +88,20 @@ def prob_difference(X,
     Q = np.zeros((N, N))
     G = np.zeros((N, no_dims))
 
-    tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, K, Q, G)
-    X1 = X - (float(eta) / no_classes * N) * G
-    
     rand_triplets = {i:(random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))), random.sample(classes_dict["not"+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])])))) for i in triplet}
+    probability_rand(X, N, triplet, no_dims, alpha, K, rand_triplets)
+    diff0 = 0.0
+    sm = 0.0
+    for i in triplet:
+        for j in rand_triplets[i][0]: 
+            for k in rand_triplets[i][1]: 
+                P = K[i, j] / (K[i, j] + K[i, k])
+                diff0 += 1.0-P
+                sm += 1
+    diff0 /= sm
+
+    p = tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, K, Q, G)
+    X1 = X - (float(eta) / no_classes * N) * G
     probability_rand(X1, N, triplet, no_dims, alpha, K, rand_triplets)
 
     # Compute probability (or log-prob) for each triplet
@@ -120,7 +131,7 @@ def prob_difference(X,
     #print sm
     diff2 /= sm
     diff2s.append(diff2)
-    return X1, (diff1+diff2)/2.0
+    return X1, p*diff1+(1.0-p)*diff2-diff0, p
 
 def main():
     global diff1s, diff2s
@@ -135,7 +146,7 @@ def main():
         classes_dict[i] = []
     for i in range(len(classes)):
         classes_dict[classes[i]].append(i)
-    
+
     for key in classes_dict.keys():
         classes_dict['not'+str(key)] = []
         for key1 in classes_dict.keys():
@@ -148,8 +159,9 @@ def main():
     import time
     for t in range(1000):
         count = 0
-        min_avg = 1000000
+        min_avg = 100000
         best_triplet = None
+        best_p = None
         diff1s = []
         diff2s = []
         t1 = time.time()
@@ -157,7 +169,7 @@ def main():
             for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
                 for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
                     triplet = (i, j , k)
-                    X, avg = prob_difference(X,
+                    X, avg, p = prob_difference(X,
     				    N,
     				    no_dims,
     				    alpha,
@@ -171,13 +183,14 @@ def main():
                     if avg < min_avg:
                         min_avg = avg
                         best_triplet = triplet
+                        best_p = p
                     count += 1
         t2 = time.time()
         print "Time", t2 - t1
         print "Triplets Sampled", count
         print "Diff1", np.average(diff1s)
         print "Diff2", np.average(diff2s)
-        print "Min Avg", min_avg, best_triplet, '\n'
+        print "Greatest Decrease", min_avg, "P", best_p, best_triplet, '\n'
 
 if __name__ == '__main__':
     main()
