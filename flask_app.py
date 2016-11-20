@@ -109,7 +109,7 @@ def get_response():
     return jsonify(page_model.get_imgs_list())
 
 @app.route("/kernel/get_response", methods = ['POST'])
-def get_response():
+def get_response_kernel():
     if request.method == 'POST':
         data = request.get_data()
         if data == "0":
