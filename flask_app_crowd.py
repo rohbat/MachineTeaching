@@ -111,7 +111,7 @@ def get_imgs():
 def logout():
     end_id = session['name']
     print 'end id'
-    return render_template('login_rand.html')
+    return render_template('end.html')
 
 
 # THESE DO LOTS
@@ -124,7 +124,7 @@ def get_response_kernel():
     if user_nclicks_dict[session['name']] == max_clicks: 
         end_id = session['name']
         user_id_dict[session['name']] = end_id
-        return redirect(url_for('logout'))
+        return url_for('logout')
         
     if request.method == 'POST':
         data = request.get_data()

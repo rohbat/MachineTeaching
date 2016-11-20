@@ -3,24 +3,29 @@
 <script
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-  $(document).ready(function() {
-    $.get( "/get_imgs", function(data) {
+
+  function processRequest(data) {
+        if(data.redirect){
+          window.location.href = data.redirect;
+        }
+        else{
         $("#main_img").attr("src", data[0])
         $("#compare1").attr("src", data[1])
         $("#compare2").attr("src", data[2])
+        }
+      }
+  $(document).ready(function() {
+    $.get( "/get_imgs", function(data) {
+      processRequest(data)
     });
     $("#compare1").click(function() {
       $.post( "/kernel/get_response", "0", function(data) {
-        $("#main_img").attr("src", data[0])
-        $("#compare1").attr("src", data[1])
-        $("#compare2").attr("src", data[2])
+        processRequest(data)
       });
     });
     $("#compare2").click(function() {
       $.post( "/kernel/get_response", "1", function(data) {
-        $("#main_img").attr("src", data[0])
-        $("#compare1").attr("src", data[1])
-        $("#compare2").attr("src", data[2])
+        processRequest(data)
       });
     });
   });
