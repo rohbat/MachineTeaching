@@ -167,10 +167,10 @@ def login_rand():
         if request.form['cont'] == "Continue": 
             session['name'] = counter
             counter += 1
-
+            
             user_nclicks_dict[session['name']] = 0
             return redirect(url_for('kernel_index'))
-    return render_template('login_rand.html', error=error)
+    return render_template('login_rand.html', user_id=str(counter), error=error)
 
 
 # Run
