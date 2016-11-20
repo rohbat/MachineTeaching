@@ -121,10 +121,6 @@ def logout():
 
 @app.route("/kernel/get_response", methods = ['POST'])
 def get_response_kernel():
-    if user_nclicks_dict[session['name']] == max_clicks: 
-        end_id = session['name']
-        user_id_dict[session['name']] = end_id
-        return url_for('logout')
         
     if request.method == 'POST':
         data = request.get_data()
@@ -133,6 +129,11 @@ def get_response_kernel():
         elif data == "1":
             page_model.set_chosen(page_model.compare_img_2)
         user_nclicks_dict[session['name']] += 1
+
+        if user_nclicks_dict[session['name']] == max_clicks: 
+            end_id = session['name']
+            user_id_dict[session['name']] = end_id
+            return flask.redirect(flask.url_for('logout'), code=307)
 
         
         
