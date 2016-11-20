@@ -134,7 +134,7 @@ def get_response_kernel():
             end_id = session['name']
             user_id_dict[session['name']] = end_id
             # return redirect(url_for('logout'), code=307)
-            return url_for('logout')
+            return jsonify([url_for('logout'), 0])
 
     make_transient(page_model)
     page_model.id = None
