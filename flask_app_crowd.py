@@ -184,6 +184,7 @@ def login_rand():
             return redirect(url_for('kernel_index'))
     elif request.method == 'GET':
         print(dict(request.args))
+        print(request.GET.get('workerId', ''))
         if 'assignmentId' in request.args:
             session['name'] = request.args['assignmentId']
             session['assignmentId'] = request.args['assignmentId']
