@@ -175,6 +175,7 @@ def login():
 @app.route('/login_rand', methods=['GET', 'POST'])
 def login_rand(): 
     global counter 
+    counter += 1
     print counter 
     error = None
     if request.method == 'POST':
@@ -190,7 +191,6 @@ def login_rand():
             session['workerId'] = request.args['workerId']
         else:
             session['name'] = counter
-            counter += 1
         user_nclicks_dict[session['name']] = 0
     return render_template('login_rand.html', user_id=str(counter), error=error)
 
