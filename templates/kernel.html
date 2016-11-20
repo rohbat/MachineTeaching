@@ -6,7 +6,8 @@
 
   function processRequest(data) {
         if(data.length == 1){
-          window.location.href = data[0];
+          alert(data[0])
+          window.location.href = data[0]
         }
         else{
         $("#main_img").attr("src", data[0])
