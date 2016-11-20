@@ -82,6 +82,10 @@ def update_page_with_random():
 random.seed()
 update_page_with_random()
 
+@app.route("/")
+def to_login():
+    return redirect(url_for('login'))
+
 @app.route("/get_imgs")
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
