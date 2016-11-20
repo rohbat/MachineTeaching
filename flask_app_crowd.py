@@ -111,7 +111,6 @@ def get_imgs():
 def logout():
     end_id = session['name']
     print 'end id'
-    session.pop(end_id, None)
     return render_template('end.html', end_id=str(end_id))
 
 
