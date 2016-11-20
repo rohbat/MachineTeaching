@@ -8,6 +8,7 @@ import os
 import random
 import numpy as np
 from cython_tste.tste_next_point import *
+import time
 
 
 
@@ -72,15 +73,14 @@ image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in 
 
 
 # Initialize page model
-
 page_model = PageModel()
 
 
 
 # Make dictionary to keep track of how many jobs each user has done
-
 user_nclicks_dict = {}
 user_id_dict = {}
+user_time_dict = {}
 
 
 
@@ -89,7 +89,7 @@ user_id_dict = {}
 random.seed()
 update_page_with_random()
 counter = 0
-max_clicks = 5
+max_clicks = 100
 
 
 
@@ -129,6 +129,7 @@ def get_response_kernel():
         elif data == "1":
             page_model.set_chosen(page_model.compare_img_2)
         user_nclicks_dict[session['name']] += 1
+        user_time_dict[session['name']][1] = time.time()
 
         if user_nclicks_dict[session['name']] == max_clicks: 
             end_id = session['name']
@@ -140,7 +141,6 @@ def get_response_kernel():
     page_model.id = None
     session_sql.add(page_model)
     session_sql.commit()
-    print user_nclicks_dict
 
     update_page_with_random()
     return jsonify(page_model.get_imgs_list())
@@ -175,10 +175,11 @@ def login():
 @app.route('/login_rand', methods=['GET', 'POST'])
 def login_rand(): 
     global counter 
-    print counter 
+
     error = None
     if request.method == 'POST':
         np.save('nclicks.npy', user_nclicks_dict)
+        np.save('time.npy', user_time_dict)
         if request.form['cont'] == "Continue": 
             return redirect(url_for('kernel_index'))
     elif request.method == 'GET':
@@ -192,6 +193,7 @@ def login_rand():
             session['name'] = counter
             counter += 1
         user_nclicks_dict[session['name']] = 0
+        user_time_dict[session['name']] = [time.time(), 0]
     return render_template('login_rand.html', error=error)
 
 
