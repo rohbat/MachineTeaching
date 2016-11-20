@@ -179,11 +179,18 @@ def login_rand():
     if request.method == 'POST':
         np.save('nclicks.npy', user_nclicks_dict)
         if request.form['cont'] == "Continue": 
+            return redirect(url_for('kernel_index'))
+    elif request.method == 'GET':
+        if 'assignmentId' in request.args:
+            session['name'] = request.args['assignmentId']
+            session['assignmentId'] = request.args['assignmentId']
+            session['hitId'] = request.args['hitId']
+            session['turkSubmitTo'] = request.args['turkSubmitTo']
+            session['workerId'] = request.args['workerId']
+        else:
             session['name'] = counter
             counter += 1
-            
-            user_nclicks_dict[session['name']] = 0
-            return redirect(url_for('kernel_index'))
+        user_nclicks_dict[session['name']] = 0
     return render_template('login_rand.html', user_id=str(counter), error=error)
 
 
