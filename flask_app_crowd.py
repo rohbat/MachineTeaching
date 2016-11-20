@@ -133,11 +133,8 @@ def get_response_kernel():
         if user_nclicks_dict[session['name']] == max_clicks: 
             end_id = session['name']
             user_id_dict[session['name']] = end_id
-            return redirect(url_for('logout'), code=307)
-
-        
-        
-
+            # return redirect(url_for('logout'), code=307)
+            return url_for('logout')
 
     make_transient(page_model)
     page_model.id = None
