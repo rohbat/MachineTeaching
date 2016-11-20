@@ -107,6 +107,13 @@ def to_login():
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
 
+@app.route("/end")
+def logout():
+    end_id = session['name']
+    print 'end id'
+    session.pop(end_id, None)
+    return render_template('end.html', end_id=str(end_id))
+
 
 
 # THESE DO LOTS
@@ -125,10 +132,10 @@ def get_response_kernel():
         user_nclicks_dict[session['name']] += 1
 
     if user_nclicks_dict[session['name']] == 5: 
-        end_id = str(session['name'])
         user_id_dict[session['name']] = end_id
-        session.pop(end_id, None)
-        return render_template('end.html', end_id=str(end_id))
+        print 'logout'
+        return redirect(url_for('logout'))
+        
         
 
 
