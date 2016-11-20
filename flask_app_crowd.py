@@ -167,7 +167,7 @@ def login_rand():
 
             user_nclicks_dict[session['name']] = 0
             return redirect(url_for('kernel_index'))
-    return render_template('login.html', error=error)
+    return render_template('login_rand.html', error=error)
 
 
 # Run
