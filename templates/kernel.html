@@ -1,0 +1,41 @@
+<html>
+<head>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $.get( "/get_imgs", function(data) {
+        $("#main_img").attr("src", data[0])
+        $("#compare1").attr("src", data[1])
+        $("#compare2").attr("src", data[2])
+    });
+    $("#compare1").click(function() {
+      $.post( "/kernel/get_response", "0", function(data) {
+        $("#main_img").attr("src", data[0])
+        $("#compare1").attr("src", data[1])
+        $("#compare2").attr("src", data[2])
+      });
+    });
+    $("#compare2").click(function() {
+      $.post( "/kernel/get_response", "1", function(data) {
+        $("#main_img").attr("src", data[0])
+        $("#compare1").attr("src", data[1])
+        $("#compare2").attr("src", data[2])
+      });
+    });
+  });
+</script>
+</head>
+<body>
+  <div style="text-align: center">
+    <img id="main_img" height="300" width="300" />
+  </div>
+  <br />
+  <div style="text-align: center">
+    <img id="compare1" height="300" width="300" /> 
+    <img id="compare2" height="300" width="300" />
+  </div>
+
+</body>
+
+</html>
