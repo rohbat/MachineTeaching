@@ -80,6 +80,7 @@ page_model = PageModel()
 # Make dictionary to keep track of how many jobs each user has done
 
 user_nclicks_dict = {}
+user_id_dict = {}
 
 
 
@@ -88,6 +89,7 @@ user_nclicks_dict = {}
 random.seed()
 update_page_with_random()
 counter = 0
+max_clicks = 5
 
 
 
@@ -121,6 +123,12 @@ def get_response_kernel():
         elif data == "1":
             page_model.set_chosen(page_model.compare_img_2)
         user_nclicks_dict[session['name']] += 1
+
+    if user_nclicks_dict[session['name']] == 5: 
+        end_id = str(session['name'])
+        user_id_dict[session['name']] = end_id
+        render_template('login_rand.html', end_id=str(end_id))
+        session.pop(end_id, None)
 
     make_transient(page_model)
     page_model.id = None
