@@ -127,8 +127,10 @@ def get_response_kernel():
     if user_nclicks_dict[session['name']] == 5: 
         end_id = str(session['name'])
         user_id_dict[session['name']] = end_id
-        render_template('end.html', end_id=str(end_id))
         session.pop(end_id, None)
+        return render_template('end.html', end_id=str(end_id))
+        
+
 
     make_transient(page_model)
     page_model.id = None
