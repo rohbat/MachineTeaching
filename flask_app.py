@@ -65,6 +65,7 @@ image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in 
 page_model = PageModel()
 
 user_x_dict = {}
+user_nclicks_dict = {}
 
 def update_page_with_random():
     page_ims = random.sample(range(len(image_list)), 3)
@@ -92,6 +93,7 @@ def get_response():
             page_model.set_chosen(page_model.compare_img_1)
         elif data == "1":
             page_model.set_chosen(page_model.compare_img_2)
+        user_nclicks_dict[session['name']] += 1
         K = np.zeros((N, N))
         Q = np.zeros((N, N))
         G = np.zeros((N, no_dims))
@@ -116,7 +118,8 @@ def login():
     if request.method == 'POST':
         if request.form['username'] != '':
             session['name'] = request.form['username']
-            user_x_dict[session['name']] = np.random.rand(N, no_dims)
+            user_x_dict[session['name']] = np.random.rand((N, no_dims))
+            user_nclicks_dict[session['name']] += 0
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
  
