@@ -107,8 +107,10 @@ def to_login():
 def get_imgs():
     return jsonify(page_model.get_imgs_list()) 
 
-@app.route("/kernel/end")
+@app.route("/end")
 def logout():
+    end_id = session['name']
+    print 'end id'
     return render_template('end.html')
 
 
@@ -128,11 +130,12 @@ def get_response_kernel():
             page_model.set_chosen(page_model.compare_img_2)
         user_nclicks_dict[session['name']] += 1
 
-    if user_nclicks_dict[session['name']] == 5: 
-        end_id = session['name']
-        user_id_dict[session['name']] = end_id
-        print 'logout'
-        return redirect(url_for('logout'))
+        if user_nclicks_dict[session['name']] == 5: 
+            print(url_for('logout'))
+            end_id = session['name']
+            user_id_dict[session['name']] = end_id
+            print 'logout'
+            return redirect(url_for('logout'))
         
         
 
