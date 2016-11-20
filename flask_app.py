@@ -40,7 +40,7 @@ session_sql = Session_sql()
 
 
 
-# WHAT AM I DOING?
+# Set up classes and classes_dict
 
 class_names = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*")
 
@@ -80,7 +80,7 @@ eta = 0.01
 
 
 
-# WHAT AM I DOING?
+# Make image list
 
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 
@@ -163,25 +163,6 @@ def get_response():
     update_page_with_random()
     return jsonify(page_model.get_imgs_list())
 
-@app.route("/kernel/get_response", methods = ['POST'])
-def get_response_kernel():
-    if request.method == 'POST':
-        data = request.get_data()
-        if data == "0":
-            page_model.set_chosen(page_model.compare_img_1)
-        elif data == "1":
-            page_model.set_chosen(page_model.compare_img_2)
-        user_nclicks_dict[session['name']] += 1
-
-    make_transient(page_model)
-    page_model.id = None
-    session_sql.add(page_model)
-    session_sql.commit()
-    print user_nclicks_dict
-
-    update_page_with_random()
-    return jsonify(page_model.get_imgs_list())
-
 
 
 # Render main page
@@ -189,10 +170,6 @@ def get_response_kernel():
 @app.route("/teaching/")
 def index():
     return render_template('test.html')
-
-@app.route("/kernel/")
-def kernel_index():
-    return render_template('kernel.html')
 
 
 
@@ -219,6 +196,3 @@ def login():
  
 if __name__ == "__main__":
     app.run()
-
-
-

@@ -86,6 +86,7 @@ user_nclicks_dict = {}
 
 random.seed()
 update_page_with_random()
+counter = 0
 
 
 
@@ -93,7 +94,7 @@ update_page_with_random()
 
 @app.route("/")
 def to_login():
-    return redirect(url_for('login'))
+    return redirect(url_for('login_rand'))
 
 
 
@@ -155,9 +156,20 @@ def login():
             return redirect(url_for('kernel_index'))
     return render_template('login.html', error=error)
 
+@app.route('/login_rand', methods=['GET', 'POST'])
+def login(): 
+    error = None
+    if request.method == 'POST':
+        np.save('nclicks.npy', user_nclicks_dict)
+        if request.form['cont'] == "Continue": 
+            session['name'] = counter
+            counter += 1
+
+            user_nclicks_dict[session['name']] = 0
+            return redirect(url_for('kernel_index'))
+    return render_template('login.html', error=error)
 
 
 # Run
- 
 if __name__ == "__main__":
     app.run()
