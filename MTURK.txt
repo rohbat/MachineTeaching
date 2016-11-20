@@ -1,9 +1,0 @@
-Before starting, in terminal type:
-
-export AWS_ACCESS_KEY_ID=AKIAIGJI3VXYBR765VLA
-export AWS_SECRET_ACCESS_KEY=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
-
-if you want to create a HIT in sandbox: 
-	export DEV_MODE=True 
-otherwise: 
-	export DEV_MODE=False
