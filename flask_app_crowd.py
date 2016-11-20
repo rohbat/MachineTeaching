@@ -36,7 +36,7 @@ def update_page_with_random():
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-hello = ''
+
 
 
 
@@ -148,6 +148,7 @@ def kernel_index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global counter 
     error = None
     if request.method == 'POST':
         np.save('nclicks.npy', user_nclicks_dict)
@@ -159,6 +160,7 @@ def login():
 
 @app.route('/login_rand', methods=['GET', 'POST'])
 def login_rand(): 
+    global counter 
     error = None
     if request.method == 'POST':
         np.save('nclicks.npy', user_nclicks_dict)
