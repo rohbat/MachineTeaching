@@ -141,7 +141,7 @@ def login():
         if request.form['username'] != '':
             session['name'] = request.form['username']
             user_x_dict[session['name']] = np.random.rand(N, no_dims)
-            user_nclicks_dict[session['name']] += 0
+            user_nclicks_dict[session['name']] = 0
             return redirect(url_for('kernel_index'))
     return render_template('login.html', error=error)
  
