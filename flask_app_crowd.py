@@ -183,14 +183,14 @@ def login_rand():
         if request.form['cont'] == "Continue": 
             return redirect(url_for('kernel_index'))
     elif request.method == 'GET':
-        print(request.args)
+        print(dict(request.args))
         if 'assignmentId' in request.args:
             session['name'] = request.args['assignmentId']
             session['assignmentId'] = request.args['assignmentId']
             session['hitId'] = request.args['hitId']
             session['turkSubmitTo'] = request.args['turkSubmitTo']
             session['workerId'] = request.args['workerId']
-            print(request.args)
+            print(dict(request.args))
         else:
             session['name'] = counter
             counter += 1
