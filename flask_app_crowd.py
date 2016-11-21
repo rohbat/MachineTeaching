@@ -9,7 +9,7 @@ import random
 import numpy as np
 from cython_tste.tste_next_point import *
 import time
-import uuid
+import hashlib
 
 
 
@@ -66,10 +66,11 @@ session_sql = Session_sql()
 
 # Make image list
 
-image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
+image_list = glob.glob("static/chinese/ims/*/*")
 image_list.sort()
 
-image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
+#image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
+print image_list[164], image_list[463]
 
 
 
@@ -112,7 +113,7 @@ def logout():
     if ('name' in session and session['name'] in user_nclicks_dict and 
         user_nclicks_dict[session['name']] == max_clicks):
             # end_id = session['name']
-            end_id = uuid.uuid1()
+            end_id = hashlib.md5(str(session['name'])).hexdigest()
             user_code_dict[session['name']] = end_id
             return render_template('end.html', end_id=end_id)
     else:
