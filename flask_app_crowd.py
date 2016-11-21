@@ -154,7 +154,7 @@ def get_response_kernel():
 
 @app.route("/kernel/")
 def kernel_index():
-    if not 'name' in session:
+    if not 'name' in session or not session['name'] in user_nclicks_dict:
         return redirect(url_for('login'))
     return render_template('kernel.html')
 
