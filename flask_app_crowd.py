@@ -97,11 +97,11 @@ max_clicks = 100
 
 @app.route("/")
 def to_login():
-    return redirect(url_for('login_rand'))
+    return redirect(url_for('login'))
 
 def check_login():
     if not 'name' in session:
-        return redirect(url_for('login_rand'))
+        return redirect(url_for('login'))
 
 # Return image list in JSON format 
 
@@ -164,19 +164,7 @@ def kernel_index():
 # - Create initial kernel for new user
 
 @app.route('/login', methods=['GET', 'POST'])
-def login():
-    global counter 
-    error = None
-    if request.method == 'POST':
-        np.save('nclicks.npy', user_nclicks_dict)
-        if request.form['username'] != '':
-            session['name'] = request.form['username'] 
-            user_nclicks_dict[session['name']] = 0
-            return redirect(url_for('kernel_index'))
-    return render_template('login.html', error=error)
-
-@app.route('/login_rand', methods=['GET', 'POST'])
-def login_rand(): 
+def login(): 
     global counter 
 
     error = None
