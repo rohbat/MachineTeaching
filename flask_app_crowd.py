@@ -91,7 +91,7 @@ user_code_dict = {}
 random.seed()
 update_page_with_random()
 counter = 0
-max_clicks = 5
+max_clicks = 100
 
 
 
@@ -114,7 +114,6 @@ def logout():
             # end_id = session['name']
             end_id = uuid.uuid1()
             user_code_dict[session['name']] = end_id
-            print(user_code_dict)
             return render_template('end.html', end_id=end_id)
     else:
         return redirect(url_for('login'))
