@@ -51,13 +51,13 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostnam
     databasename="cs101teaching$teaching",
 )
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 200
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 db.init_app(app)
 db.app = app
 
-engine = create_engine(SQLALCHEMY_DATABASE_URI)
+engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_recycle=200)
 
 Session_sql = sessionmaker(bind=engine, expire_on_commit=False)
 session_sql = Session_sql()
