@@ -183,16 +183,8 @@ def login_rand():
         if request.form['cont'] == "Continue": 
             return redirect(url_for('kernel_index'))
     elif request.method == 'GET':
-        if request.args.has_key('assignmentId'):
-            session['name'] = request.args['assignmentId']
-            session['assignmentId'] = request.args['assignmentId']
-            session['hitId'] = request.args['hitId']
-            session['turkSubmitTo'] = request.args['turkSubmitTo']
-            session['workerId'] = request.args['workerId']
-            print(session['name'], session['assignmentId'], session['hitId'], session['turkSubmitTo'], session['workerId'])
-        else:
-            session['name'] = counter
-            counter += 1
+        session['name'] = counter
+        counter += 1
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
     return render_template('login_rand.html', error=error)
