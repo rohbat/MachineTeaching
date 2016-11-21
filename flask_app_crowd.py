@@ -125,8 +125,8 @@ def logout():
 
 @app.route("/kernel/get_response", methods = ['POST'])
 def get_response_kernel():
-    if not 'name' in session:
-        return redirect(url_for('login'))
+    if not 'name' in session or not session['name'] in user_nclicks_dict:
+        return jsonify([url_for('login'), 0])
     if request.method == 'POST':
         data = request.get_data()
         if data == "0":
