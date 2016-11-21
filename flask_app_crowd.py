@@ -111,10 +111,11 @@ def get_imgs():
 
 @app.route("/end/")
 def logout():
-    if user_nclicks_dict[session['name']] == max_clicks:
-        end_id = session['name']
-        print 'end id'
-        return render_template('end.html')
+    if ('name' in session) and (session['name'] in user_nclicks_dict) and 
+    (user_nclicks_dict[session['name']] == max_clicks):
+            end_id = session['name']
+            print 'end id'
+            return render_template('end.html')
     else:
         return redirect(url_for('login'))
 
@@ -171,16 +172,15 @@ def login():
     global counter 
 
     error = None
-    if request.method == 'POST':
+    if request.method == 'POST' and request.form['cont'] == "Continue":
         np.save('nclicks.npy', user_nclicks_dict)
         np.save('time.npy', user_time_dict)
-        if request.form['cont'] == "Continue": 
-            return redirect(url_for('kernel_index'))
-    elif request.method == 'GET':
         session['name'] = counter
         counter += 1
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
+
+        return redirect(url_for('kernel_index'))
     return render_template('login_rand.html', error=error)
 
 
