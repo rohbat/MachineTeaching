@@ -114,6 +114,7 @@ def logout():
         user_nclicks_dict[session['name']] == max_clicks):
             # end_id = session['name']
             end_id = hashlib.md5(str(session['name'])).hexdigest()
+            print end_id
             user_code_dict[session['name']] = end_id
             return render_template('end.html', end_id=end_id)
     else:
@@ -139,9 +140,6 @@ def get_response_kernel():
         user_time_dict[session['name']][1] = time.time()
 
         if user_nclicks_dict[session['name']] == max_clicks: 
-            end_id = session['name']
-            user_id_dict[session['name']] = end_id
-            # return redirect(url_for('logout'), code=307)
             return jsonify([url_for('logout'), 0])
 
     make_transient(page_model)
