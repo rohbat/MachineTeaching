@@ -9,6 +9,7 @@ import random
 import numpy as np
 from cython_tste.tste_next_point import *
 import time
+import uuid
 
 
 
@@ -89,7 +90,7 @@ user_time_dict = {}
 random.seed()
 update_page_with_random()
 counter = 0
-max_clicks = 100
+max_clicks = 5
 
 
 
@@ -109,9 +110,10 @@ def get_imgs():
 def logout():
     if ('name' in session and session['name'] in user_nclicks_dict and 
         user_nclicks_dict[session['name']] == max_clicks):
-            end_id = session['name']
+            # end_id = session['name']
+            end_id = uuid.uuid1()
             print 'end id'
-            return render_template('end.html')
+            return render_template('end.html', end_id=end_id)
     else:
         return redirect(url_for('login'))
 
