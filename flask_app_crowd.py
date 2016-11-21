@@ -9,7 +9,8 @@ import random
 import numpy as np
 from cython_tste.tste_next_point import *
 import time
-import hashlib
+# import hashlib
+import uuid
 
 
 
@@ -113,9 +114,13 @@ def logout():
     if ('name' in session and session['name'] in user_nclicks_dict and 
         user_nclicks_dict[session['name']] == max_clicks):
             # end_id = session['name']
-            end_id = hashlib.md5(str(session['name'])).hexdigest()
-            print end_id
-            user_code_dict[session['name']] = end_id
+            # end_id = hashlib.md5(str(session['name'])).hexdigest()
+            # print end_id
+            if session['name'] not in user_code_dict: 
+                end_id = uuid.uuid1()
+                user_code_dict[session['name']] = end_id
+            else: 
+                end_id = user_code_dict[session['name']]
             return render_template('end.html', end_id=end_id)
     else:
         return redirect(url_for('login'))
