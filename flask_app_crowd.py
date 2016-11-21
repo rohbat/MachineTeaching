@@ -111,8 +111,8 @@ def get_imgs():
 
 @app.route("/end/")
 def logout():
-    if ('name' in session) and (session['name'] in user_nclicks_dict) and 
-    (user_nclicks_dict[session['name']] == max_clicks):
+    if ('name' in session and session['name'] in user_nclicks_dict and 
+        user_nclicks_dict[session['name']] == max_clicks):
             end_id = session['name']
             print 'end id'
             return render_template('end.html')
