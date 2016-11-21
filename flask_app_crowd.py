@@ -82,6 +82,7 @@ page_model = PageModel()
 user_nclicks_dict = {}
 user_id_dict = {}
 user_time_dict = {}
+user_code_dict = {}
 
 
 
@@ -112,7 +113,8 @@ def logout():
         user_nclicks_dict[session['name']] == max_clicks):
             # end_id = session['name']
             end_id = uuid.uuid1()
-            print 'end id'
+            user_code_dict[session['name']] = end_id
+            print(user_code_dict)
             return render_template('end.html', end_id=end_id)
     else:
         return redirect(url_for('login'))
@@ -173,8 +175,9 @@ def login():
 
     error = None
     if request.method == 'POST' and request.form['cont'] == "Continue":
-        np.save('nclicks.npy', user_nclicks_dict)
-        np.save('time.npy', user_time_dict)
+        np.save('nclicks_dict.npy', user_nclicks_dict)
+        np.save('time_dict.npy', user_time_dict)
+        np.save('code_dict.npy', user_code_dict)
         session['name'] = counter
         counter += 1
         user_nclicks_dict[session['name']] = 0
