@@ -99,10 +99,6 @@ max_clicks = 100
 def to_login():
     return redirect(url_for('login'))
 
-def check_login():
-    if not 'name' in session:
-        return redirect(url_for('login'))
-
 # Return image list in JSON format 
 
 @app.route("/get_imgs")
@@ -127,7 +123,8 @@ def logout():
 
 @app.route("/kernel/get_response", methods = ['POST'])
 def get_response_kernel():
-    check_login()
+    if not 'name' in session:
+        return redirect(url_for('login'))
     if request.method == 'POST':
         data = request.get_data()
         if data == "0":
@@ -157,7 +154,8 @@ def get_response_kernel():
 
 @app.route("/kernel/")
 def kernel_index():
-    check_login()
+    if not 'name' in session:
+        return redirect(url_for('login'))
     return render_template('kernel.html')
 
 
