@@ -111,9 +111,12 @@ def get_imgs():
 
 @app.route("/end/")
 def logout():
-    end_id = session['name']
-    print 'end id'
-    return render_template('end.html')
+    if user_nclicks_dict[session['name']] == max_clicks:
+        end_id = session['name']
+        print 'end id'
+        return render_template('end.html')
+    else:
+        return redirect(url_for('login'))
 
 
 # THESE DO LOTS
