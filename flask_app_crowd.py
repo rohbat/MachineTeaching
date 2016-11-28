@@ -145,7 +145,7 @@ def get_response_kernel():
     session_sql.commit()
 
     update_page_with_random()
-    return jsonify(page_model.get_imgs_list())
+    return jsonify(page_model.get_imgs_list() + [user_nclicks_dict[session['name']]])
 
 
 
