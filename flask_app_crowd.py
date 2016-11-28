@@ -90,7 +90,7 @@ user_code_dict = {}
 random.seed()
 update_page_with_random()
 counter = 0
-max_clicks = 100
+max_clicks = 50
 
 
 

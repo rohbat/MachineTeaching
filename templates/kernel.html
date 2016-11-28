@@ -16,8 +16,8 @@
         }
       }
   $(document).ready(function() {
+    document.getElementById("insert").innerHTML = '0'; 
     $.get( "/get_imgs", function(data) {
-      document.getElementById("insert").innerHTML = '0'; 
       processRequest(data)
     });
     $("#compare1").click(function() {
@@ -35,7 +35,7 @@
 </head>
 <body>
   <div style="text-align: right">
-  <h4> <p id="insert"></p> of 50 </h4>
+  <h4> <b id="insert"></b> of 50 </h4>
   </div>
 
   <div style="text-align: center">
