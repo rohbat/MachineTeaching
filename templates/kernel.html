@@ -3,6 +3,7 @@
 <script
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+  document.getElementById("insert").innerHTML = '0';  
 
   function processRequest(data) {
         if(data.length == 2){
@@ -13,7 +14,6 @@
         $("#compare1").attr("src", data[1])
         $("#compare2").attr("src", data[2])
         document.getElementById("insert").innerHTML = data[3]; 
-        alert(data[3])
         }
       }
   $(document).ready(function() {
@@ -35,7 +35,7 @@
 </head>
 <body>
   <div style="text-align: right">
-  <h4> <p id="insert"></p> out of 50 </h4>
+  <h4> <p id="insert"> out of 50 </p> </h4>
   </div>
 
   <div style="text-align: center">
