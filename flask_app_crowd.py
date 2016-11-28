@@ -104,7 +104,7 @@ def to_login():
 
 @app.route("/get_imgs")
 def get_imgs():
-    return jsonify(page_model.get_imgs_list()) 
+    return jsonify(page_model.get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
 
 @app.route("/end/")
 def logout():
@@ -145,8 +145,6 @@ def get_response_kernel():
     session_sql.commit()
 
     update_page_with_random()
-    print user_nclicks_dict[session['name']]
-    print (page_model.get_imgs_list() + [str(user_nclicks_dict[session['name']])])
     return jsonify(page_model.get_imgs_list() + [str(user_nclicks_dict[session['name']])])
 
 
