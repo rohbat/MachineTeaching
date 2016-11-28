@@ -17,6 +17,7 @@
       }
   $(document).ready(function() {
     $.get( "/get_imgs", function(data) {
+      document.getElementById("insert").innerHTML = '0'; 
       processRequest(data)
     });
     $("#compare1").click(function() {
