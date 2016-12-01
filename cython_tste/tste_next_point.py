@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.core.umath_tests import inner1d
 import random
+import time
 
 def tste_grad(X, N, no_dims, triplet, lamb, alpha, K, Q, dC):
     """ Compute the cost function and gradient update of t-STE """
@@ -41,13 +42,15 @@ def tste_grad(X, N, no_dims, triplet, lamb, alpha, K, Q, dC):
             dC[n, :] = dC[n, :] + 2 * lamb * X[n, :]
     return P
 
-def probability(X,
-    N,
-    triplet,
-    no_dims,
-    alpha,
-    K):
+def compute_kernel(X, N, no_dims, alpha, K):
+    for i in range(N): 
+        for j in range(i, N):
+            diff = X[i, :] - X[j, :]
+            K[i, j] = inner1d(diff, diff)
+            K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
+            K[j, i] = K[i, j]
 
+def compute_kernel_from_triplet(X, N, triplet, no_dims, alpha, K):
     for i in triplet: 
         for j in range(N):
             diff = X[i, :] - X[j, :]
@@ -55,86 +58,151 @@ def probability(X,
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
             
             
-def probability_rand(X, N, triplet, no_dims, alpha, K, rand_triplets):
+def compute_kernel_from_triplet_to_dst_triplets(X, X_new, N, triplet, no_dims, alpha, K, dst_triplets_dict):
     for i in triplet: 
-        for j in rand_triplets[i][0]:
-            diff = X[i, :] - X[j, :]
+        for j in dst_triplets_dict[i][0]:
+            if j in triplet:
+                diff = X_new[i, :] - X_new[j, :]
+            else:
+                diff = X_new[i, :] - X[j, :]
             K[i, j] = inner1d(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
-        for j in rand_triplets[i][1]:
-            diff = X[i, :] - X[j, :]
+        for j in dst_triplets_dict[i][1]:
+            if j in triplet:
+                diff = X_new[i, :] - X_new[j, :]
+            else:
+                diff = X_new[i, :] - X[j, :]
             K[i, j] = inner1d(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
 
-diff1s = []
-diff2s = []
+def compute_kernel_and_probability_at_triplet(X, N, triplet, no_dims, alpha, K):
+    i, j, k = triplet
+    diff = X[i, :] - X[j, :]
+    K[i, j] = inner1d(diff, diff)
+    K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
+    diff = X[i, :] - X[k, :]
+    K[i, k] = inner1d(diff, diff)
+    K[i, k] = (1 + K[i, k] / alpha) ** ((alpha + 1) / -2)
+    return K[i, j] / (K[i, j] + K[i, k])
+    
+    
 
-def prob_difference(X,
-    N,
-    no_dims,
-    alpha,
-    lamb,
-    triplet,
-    classes,
-    classes_dict,
-    no_classes=3,
-    w_right=0.5,
-    w_wrong=0.5,
-    eta=0.2,
-    sample_class = 0.05): 
+def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.1):
+    K = np.zeros((N, N))
+    #compute_kernel(X, N, no_dims, alpha, K)
+    best_triplet = None
+    best_diff = 10000000
+    best_p = None
+    for i in random.sample(range(N), int(N*sample_class)):
+        for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
+            for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
+                #P = K[i, j] / (K[i, j] + K[i, k])
+                P = compute_kernel_and_probability_at_triplet(X, N, (i, j, k), no_dims, alpha, K)
+                if abs(P-0.5) < best_diff:
+                    best_diff = abs(P-0.5)
+                    best_triplet = (i, j, k)
+                    best_p = P
+    return best_triplet, best_p
 
-    a, b, c = triplet
+def best_gradient_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2, sample_class = 0.05):
+    best_triplet = None
+    max_val = 0
+    best_p = None
+    X1 = np.zeros((N, no_dims))
     K = np.zeros((N, N))
     Q = np.zeros((N, N))
     G = np.zeros((N, no_dims))
+    for i in random.sample(range(N), int(N*sample_class)):
+        for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
+            for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
+                triplet = (i, j, k)
+                p = tste_grad(X, N, no_dims, (i, j, k), lamb, alpha, K, Q, G)
+                for a in triplet:
+                    X1[a, :] = X[a, :] - (float(eta) / no_classes * N) * G[a, :]
+                p1 = compute_kernel_and_probability_at_triplet(X1, N, triplet, no_dims, alpha, K)
+                tste_grad(X, N, no_dims, (i, k, j), lamb, alpha, K, Q, G)
+                for a in triplet:
+                    X1[a, :] = X[a, :] - (float(eta) / no_classes * N) * G[a, :]
+                p2 = compute_kernel_and_probability_at_triplet(X1, N, triplet, no_dims, alpha, K)
+                val = p*p1+(1.0-p)*p2 - p
+                if val > max_val:
+                    max_val = val
+                    best_triplet = (i, j, k)
+                    best_p = p
+    return best_triplet, best_p
 
+def score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes,classes_dict, K, Q, G, X_new, no_classes=3,eta=0.2,sample_class = 0.025): 
+
+    a, b, c = triplet
     rand_triplets = {i:(random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))), random.sample(classes_dict["not"+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])])))) for i in triplet}
-    probability_rand(X, N, triplet, no_dims, alpha, K, rand_triplets)
-    diff0 = 0.0
+    if not b in rand_triplets[a][0]:
+        rand_triplets[a][0].append(b)
+    if not c in rand_triplets[a][1]:
+        rand_triplets[a][1].append(c) 
+    compute_kernel_from_triplet_to_dst_triplets(X, X, N, triplet, no_dims, alpha, K, rand_triplets)
+    prob0 = 0.0
     sm = 0.0
     for i in triplet:
         for j in rand_triplets[i][0]: 
             for k in rand_triplets[i][1]: 
                 P = K[i, j] / (K[i, j] + K[i, k])
-                diff0 += 1.0-P
+                prob0 += P
                 sm += 1
-    diff0 /= sm
+    prob0 /= sm
 
     p = tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, K, Q, G)
-    X1 = X - (float(eta) / no_classes * N) * G
-    probability_rand(X1, N, triplet, no_dims, alpha, K, rand_triplets)
+    for t in triplet:
+        X_new[t, :] = X[t, :] - (float(eta) / no_classes * N) * G[t, :]
+    compute_kernel_from_triplet_to_dst_triplets(X, X_new, N, triplet, no_dims, alpha, K, rand_triplets)
 
     # Compute probability (or log-prob) for each triplet
-    diff1 = 0.0
+    prob1 = 0.0
     sm = 0.0
     for i in triplet:
         for j in rand_triplets[i][0]: 
             for k in rand_triplets[i][1]: 
                 P = K[i, j] / (K[i, j] + K[i, k])
-                diff1 += 1.0-P
+                prob1 += P
                 sm += 1
-    diff1 /= sm
-    diff1s.append(diff1)
+    prob1 /= sm
 
     tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, K, Q, G)
-    X2 = X - (float(eta) / no_classes * N) * G
-    probability_rand(X2, N, triplet, no_dims, alpha, K, rand_triplets)
+    for t in triplet:
+        X_new[t, :] = X[t, :] - (float(eta) / no_classes * N) * G[t, :]
+    compute_kernel_from_triplet_to_dst_triplets(X, X_new, N, triplet, no_dims, alpha, K, rand_triplets)
 
-    diff2 = 0.0
+    prob2 = 0.0
     sm = 0.0
     for i in triplet:
         for j in rand_triplets[i][0]: 
             for k in rand_triplets[i][1]:
                 P = K[i, j] / (K[i, j] + K[i, k])
-                diff2 += 1.0-P
+                prob2 += P
                 sm += 1
     #print sm
-    diff2 /= sm
-    diff2s.append(diff2)
-    return X1, p*diff1+(1.0-p)*diff2-diff0, p
+    prob2 /= sm
+    return p*prob1+(1.0-p)*prob2-prob0, p
+
+def best_gradient_triplet_rand_evaluation(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.02):
+    best_triplet = None
+    max_val = 0
+    best_p = None
+    K = np.zeros((N, N))
+    Q = np.zeros((N, N))
+    G = np.zeros((N, no_dims))
+    X_new = np.zeros(X.shape)
+    for i in random.sample(range(N), int(N*sample_class)):
+        for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
+            for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
+                triplet = (i, j , k)
+                val, p = score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes, classes_dict, K, Q, G, X_new, no_classes)
+                if val > max_val:
+                    max_val = val
+                    best_triplet = triplet
+                    best_p = p
+    return best_triplet, best_p
 
 def main():
-    global diff1s, diff2s
     N = 750
     no_dims = 10
     no_classes = 3
@@ -152,45 +220,22 @@ def main():
         for key1 in classes_dict.keys():
             if key != key1 and not 'not' in str(key1):
                 classes_dict['not'+str(key)].extend(classes_dict[key1])
-    # print triplet
-    # print classes[triplet_a], classes[triplet_b], classes[triplet_c]
-    sample_class = 0.02
+
     lamb = 0
-    import time
     for t in range(1000):
-        count = 0
-        min_avg = 100000
-        best_triplet = None
-        best_p = None
-        diff1s = []
-        diff2s = []
+        print t
         t1 = time.time()
-        for i in random.sample(range(N), int(N*sample_class)):
-            for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
-                for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
-                    triplet = (i, j , k)
-                    X, avg, p = prob_difference(X,
-    				    N,
-    				    no_dims,
-    				    alpha,
-    				    lamb,
-    				    triplet,
-    				    classes,
-    				    classes_dict,
-    				    no_classes,
-    				    w_right=0.5,
-    				    w_wrong=0.5)
-                    if avg < min_avg:
-                        min_avg = avg
-                        best_triplet = triplet
-                        best_p = p
-                    count += 1
+        best_triplet, best_p = most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict)
         t2 = time.time()
-        print "Time", t2 - t1
-        print "Triplets Sampled", count
-        print "Diff1", np.average(diff1s)
-        print "Diff2", np.average(diff2s)
-        print "Greatest Decrease", min_avg, "P", best_p, best_triplet, '\n'
+        print best_triplet, best_p, t2-t1
+        t1 = time.time()
+        best_triplet, best_p = best_gradient_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict)
+        t2 = time.time()
+        print best_triplet, best_p, t2-t1
+        t1 = time.time()
+        best_triplet, best_p = best_gradient_triplet_rand_evaluation(X,N,no_dims,alpha,lamb,classes,classes_dict)
+        t2 = time.time()
+        print best_triplet, best_p, t2-t1
 
 if __name__ == '__main__':
     main()
