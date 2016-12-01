@@ -21,13 +21,13 @@ import hashlib
 def update_page_with_random():
     page_ims = random.sample(range(len(image_list)), 3)
 
-    page_model.main_img = page_ims[0]
-    page_model.compare_img_1 = page_ims[1]
-    page_model.compare_img_2 = page_ims[2]
+    page_model_dict[session['name']].main_img = page_ims[0]
+    page_model_dict[session['name']].compare_img_1 = page_ims[1]
+    page_model_dict[session['name']].compare_img_2 = page_ims[2]
 
-    page_model.main_path = image_list[page_ims[0]]
-    page_model.compare_1_path = image_list[page_ims[1]]
-    page_model.compare_2_path = image_list[page_ims[2]]
+    page_model_dict[session['name']].main_path = image_list[page_ims[0]]
+    page_model_dict[session['name']].compare_1_path = image_list[page_ims[1]]
+    page_model_dict[session['name']].compare_2_path = image_list[page_ims[2]]
 
 
 
@@ -72,8 +72,8 @@ image_list.sort()
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 
 
-# Initialize page model
-page_model = PageModel()
+# Make dictionary to keep track of page models
+page_model_dict = {}
 
 
 
@@ -104,7 +104,7 @@ def to_login():
 
 @app.route("/get_imgs")
 def get_imgs():
-    return jsonify(page_model.get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
+    return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
 
 @app.route("/end/")
 def logout():
@@ -130,22 +130,22 @@ def get_response_kernel():
     if request.method == 'POST':
         data = request.get_data()
         if data == "0":
-            page_model.set_chosen(page_model.compare_img_1)
+            page_model_dict[session['name']].set_chosen(page_model_dict[session['name']].compare_img_1)
         elif data == "1":
-            page_model.set_chosen(page_model.compare_img_2)
+            page_model_dict[session['name']].set_chosen(page_model_dict[session['name']].compare_img_2)
         user_nclicks_dict[session['name']] += 1
         user_time_dict[session['name']][1] = time.time()
 
         if user_nclicks_dict[session['name']] == max_clicks: 
             return jsonify([url_for('logout'), 0])
 
-    make_transient(page_model)
-    page_model.id = None
-    session_sql.add(page_model)
+    make_transient(page_model_dict[session['name']])
+    page_model_dict[session['name']].id = None
+    session_sql.add(page_model_dict[session['name']])
     session_sql.commit()
 
     update_page_with_random()
-    return jsonify(page_model.get_imgs_list() + [str(user_nclicks_dict[session['name']])])
+    return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])])
 
 
 
@@ -175,6 +175,7 @@ def login():
         np.save('code_dict.npy', user_code_dict)
         session['name'] = counter
         counter += 1
+        page_model_dict[session['name']] = PageModel()
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
 
