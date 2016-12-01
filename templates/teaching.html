@@ -16,8 +16,8 @@
         document.getElementById("main_label").style.display = "none";
         document.getElementById("c1_label").style.display = "none";
         document.getElementById("c2_label").style.display = "none";
-        document.getElementById("result").style.display = "none";
-        document.getElementById("cont").style.display = "none";
+        document.getElementById("result_img").style.display = "none";
+        $(".button").style.display = "none";
         }
       }
 
@@ -28,11 +28,11 @@
         document.getElementById("c1_label").innerHTML = data[1]; 
         document.getElementById("c2_label").innerHTML = data[2]; 
         $("#result_img").attr("src", data[3])
-        document.getElementById("main_label").style.visibility = "visible";
-        document.getElementById("c1_label").style.visibility = "visible";
-        document.getElementById("c2_label").style.visibility = "visible";
-        document.getElementById("result_img").style.visibility = "visible";
-        document.getElementById("cont").style.visibility = "visible";
+        document.getElementById("main_label").style.display = "initial";
+        document.getElementById("c1_label").style.display = "initial";
+        document.getElementById("c2_label").style.display = "initial";
+        document.getElementById("result_img").style.display = "initial";
+        $(".button").style.display = "initial";
       }   
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0'; 
@@ -76,7 +76,9 @@
     <p id="c2_label"> </p>
   </div>
 
-  <input class="btn btn-default" id='cont' name='cont' type="submit" value="Continue">
+  <div class="button"> 
+    <input class="btn btn-default" id='cont' name='cont' type="submit" value="Continue"> 
+  </div>
 
 </body>
 
