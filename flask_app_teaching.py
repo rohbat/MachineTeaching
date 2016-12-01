@@ -36,7 +36,7 @@ def update_page_with_random():
 # Make Flask app
 
 app = Flask(__name__)
-app.config["DEBUG"] = True
+#app.config["DEBUG"] = True
 
 
 
