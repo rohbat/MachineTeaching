@@ -213,11 +213,11 @@ def get_response_kernel():
 
 # Render main page
 
-@app.route("/kernel/")
-def kernel_index():
+@app.route("/teaching/")
+def teaching_index():
     if not 'name' in session or not session['name'] in user_nclicks_dict:
         return redirect(url_for('login'))
-    return render_template('kernel.html')
+    return render_template('teaching.html')
 
 
 
@@ -243,7 +243,7 @@ def login():
         user_time_dict[session['name']] = [time.time(), 0]
         user_x_dict[session['name']] = np.random.rand(N, no_dims)
 
-        return redirect(url_for('kernel_index'))
+        return redirect(url_for('teaching_index'))
     return render_template('login_rand.html', error=error)
 
 

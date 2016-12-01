@@ -149,11 +149,11 @@ def get_response_kernel():
 
 # Render main page
 
-@app.route("/teaching/")
-def teaching_index():
+@app.route("/kernel/")
+def kernel_index():
     if not 'name' in session or not session['name'] in user_nclicks_dict:
         return redirect(url_for('login'))
-    return render_template('teaching.html')
+    return render_template('kernel.html')
 
 
 
@@ -178,7 +178,7 @@ def login():
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
 
-        return redirect(url_for('teaching_index'))
+        return redirect(url_for('kernel_index'))
     return render_template('login_rand.html', error=error)
 
 
