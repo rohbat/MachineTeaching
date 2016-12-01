@@ -50,7 +50,7 @@
       });
     });
     $("#cont").click(function() {
-      $.post( "/kernel/get_next", function(data) {
+      $.post( "/get_imgs", function(data) {
         processRequest(data)
       });
     });
