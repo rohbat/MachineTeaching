@@ -35,7 +35,7 @@ def get_label_list():
     main_label = class_names[classes[page_model.main_img]]
     compare_img_1_label = class_names[classes[page_model.compare_img_1]]
     compare_img_2_label = class_names[classes[page_model.compare_img_2]]
-    return (main_label, compare_img_1_label, compare_img_2_label)
+    return ("main_label", "compare_img_1_label", "compare_img_2_label")
 
 def get_result_img(result):
     if result == True:
