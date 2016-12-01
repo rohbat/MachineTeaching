@@ -20,6 +20,7 @@
         document.getElementById("c2_label").style.display = "none";
         document.getElementById("result_img").style.display = "none";
         $("#cont").prop("disabled", true);
+        processed = false;
         }
       }
 
@@ -36,6 +37,7 @@
           document.getElementById("c2_label").style.display = "initial";
           document.getElementById("result_img").style.display = "initial";
           $("#cont").prop("disabled", false);
+          processed = true;
         }
       }   
   $(document).ready(function() {
