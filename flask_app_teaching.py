@@ -151,7 +151,7 @@ def to_login():
 
 # Return image list in JSON format 
 
-@app.route("/get_imgs")
+@app.route("/get_imgs", methods = ['GET', 'POST'])
 def get_imgs():
     update_page_with_random()
     return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
