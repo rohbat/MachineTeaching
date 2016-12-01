@@ -174,6 +174,7 @@ def login():
         session['name'] = counter
         counter += 1
         page_model_dict[session['name']] = PageModel()
+        update_page_with_random()
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
 
