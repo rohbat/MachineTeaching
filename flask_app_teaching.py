@@ -14,7 +14,7 @@ import hashlib
 
 
 
-
+print "HELLO"
 
 # Choose a random triplet and set the page's triplet accordingly
 
