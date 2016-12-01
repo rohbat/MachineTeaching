@@ -4,6 +4,8 @@
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
+  processed = false;
+
   function processRequest(data) {
         if(data.length == 2){
           window.location.href = data[0]
@@ -22,17 +24,19 @@
       }
 
   function processResponse(data) {
-        $("#compare1").attr("onclick", "return false")
-        $("#compare2").attr("onclick", "return false")
-        document.getElementById("main_label").innerHTML = data[0]; 
-        document.getElementById("c1_label").innerHTML = data[1]; 
-        document.getElementById("c2_label").innerHTML = data[2]; 
-        $("#result_img").attr("src", data[3])
-        document.getElementById("main_label").style.display = "initial";
-        document.getElementById("c1_label").style.display = "initial";
-        document.getElementById("c2_label").style.display = "initial";
-        document.getElementById("result_img").style.display = "initial";
-        $("#cont").prop("disabled", false);
+        if(!processed) {
+          $("#compare1").attr("onclick", "return false")
+          $("#compare2").attr("onclick", "return false")
+          document.getElementById("main_label").innerHTML = data[0]; 
+          document.getElementById("c1_label").innerHTML = data[1]; 
+          document.getElementById("c2_label").innerHTML = data[2]; 
+          $("#result_img").attr("src", data[3])
+          document.getElementById("main_label").style.display = "initial";
+          document.getElementById("c1_label").style.display = "initial";
+          document.getElementById("c2_label").style.display = "initial";
+          document.getElementById("result_img").style.display = "initial";
+          $("#cont").prop("disabled", false);
+        }
       }   
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0'; 
