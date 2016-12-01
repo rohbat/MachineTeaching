@@ -17,8 +17,7 @@
         document.getElementById("c1_label").style.display = "none";
         document.getElementById("c2_label").style.display = "none";
         document.getElementById("result_img").style.display = "none";
-        $(".button").style.display = "none";
-        $(".btn btn-default").style.display = "none";
+        $(".btn btn-default").disabled = true;
         }
       }
 
@@ -33,8 +32,6 @@
         document.getElementById("c1_label").style.display = "initial";
         document.getElementById("c2_label").style.display = "initial";
         document.getElementById("result_img").style.display = "initial";
-        $(".button").style.display = "initial";
-        $(".btn btn-default").style.display = "none";
       }   
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0'; 
