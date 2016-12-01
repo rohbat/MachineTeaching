@@ -32,10 +32,10 @@ def update_page_with_random():
 
 
 def get_label_list():
-    main_label = class_names[int(classes[page_model_dict[session['name']].main_img])]
-    # compare_img_1_label = class_names[classes[page_model_dict[session['name']].compare_img_1]]
-    # compare_img_2_label = class_names[classes[page_model_dict[session['name']].compare_img_2]]
-    return (len(classes), str(class_names), str(set(classes)))
+    main_label = class_names[classes[page_model_dict[session['name']].main_img]]
+    compare_img_1_label = class_names[classes[page_model_dict[session['name']].compare_img_1]]
+    compare_img_2_label = class_names[classes[page_model_dict[session['name']].compare_img_2]]
+    return (main_label, compare_img_1_label, compare_img_2_label)
 
 def get_result_img(result):
     if result == True:
@@ -89,9 +89,11 @@ for k, v in class_name_dict.iteritems():
 image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
 image_list.sort()
 
-classes = np.zeros(len(image_list))
+classes = np.zeros(len(image_list), dtype=int)
 for i in range(len(image_list)):
     classes[i] = class_names.index(name_class[image_list[i]])
+
+classes = [c.replace("/home/cs101teaching/MachineTeaching/static/chinese/ims/", "") for c in classes]
 
 classes_dict = {}
 for i in range(len(class_names)):
