@@ -32,9 +32,9 @@ def update_page_with_random():
 
 
 def get_label_list():
-    main_label = class_names[classes[page_model_dict[session['name']].main_img]]
-    compare_img_1_label = class_names[classes[page_model_dict[session['name']].compare_img_1]]
-    compare_img_2_label = class_names[classes[page_model_dict[session['name']].compare_img_2]]
+    # main_label = class_names[classes[page_model_dict[session['name']].main_img]]
+    # compare_img_1_label = class_names[classes[page_model_dict[session['name']].compare_img_1]]
+    # compare_img_2_label = class_names[classes[page_model_dict[session['name']].compare_img_2]]
     return (page_model_dict[session['name']].main_img], page_model_dict[session['name']].main_img], page_model_dict[session['name']].main_img])
 
 def get_result_img(result):
