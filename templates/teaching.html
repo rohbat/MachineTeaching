@@ -13,8 +13,27 @@
         $("#compare1").attr("src", data[1])
         $("#compare2").attr("src", data[2])
         document.getElementById("insert").innerHTML = data[3]; 
+        document.getElementById("main_label").style.visibility == "hidden";
+        document.getElementById("c1_label").style.visibility == "hidden";
+        document.getElementById("c2_label").style.visibility == "hidden";
+        document.getElementById("result").style.visibility == "hidden";
+        document.getElementById("cont").style.visibility == "hidden";
         }
       }
+
+  function processResponse(data) {
+        $("#compare1").attr("onclick", "return false")
+        $("#compare2").attr("onclick", "return false")
+        document.getElementById("main_label").innerHTML = data[0]; 
+        document.getElementById("c1_label").innerHTML = data[1]; 
+        document.getElementById("c2_label").innerHTML = data[2]; 
+        $("#result_img").attr("src", data[3])
+        document.getElementById("main_label").style.visibility == "visible";
+        document.getElementById("c1_label").style.visibility == "visible";
+        document.getElementById("c2_label").style.visibility == "visible";
+        document.getElementById("result_img").style.visibility == "visible";
+        document.getElementById("cont").style.visibility == "visible";
+      }   
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0'; 
     $.get( "/get_imgs", function(data) {
@@ -22,11 +41,16 @@
     });
     $("#compare1").click(function() {
       $.post( "/kernel/get_response", "0", function(data) {
-        processRequest(data)
+        processResponse(data)
       });
     });
     $("#compare2").click(function() {
       $.post( "/kernel/get_response", "1", function(data) {
+        processResponse(data)
+      });
+    });
+    $("#cont").click(function() {
+      $.post( "/get_imgs", function(data) {
         processRequest(data)
       });
     });
@@ -40,13 +64,19 @@
 
   <div style="text-align: center">
     <h1>Target Image</h1>
+    <img id="result" height="100" width="100" />
     <img id="main_img" height="250" width="250" />
+    <p id="main_label"> </p>
   </div>
   <div style="text-align: center">
     <h3>Please click on the image below that looks most similar to the one above: </h3>
     <input type="image" id="compare1" width="250" />
+    <p id="c1_label"> </p>
     <input type="image" id="compare2" width="250" />
+    <p id="c2_label"> </p>
   </div>
+
+  <input class="btn btn-default" id='cont' name='cont' type="submit" value="Continue">
 
 </body>
 
