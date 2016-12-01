@@ -28,6 +28,7 @@ def update_page_with_random():
     page_model.main_path = image_list[page_ims[0]]
     page_model.compare_1_path = image_list[page_ims[1]]
     page_model.compare_2_path = image_list[page_ims[2]]
+    print page_model.main_img, page_model.compare_img_1, page_model.compare_img_2
 
 
 
