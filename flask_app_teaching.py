@@ -177,7 +177,7 @@ def get_response_kernel():
         G = np.zeros((N, no_dims))
         tste_grad(user_x_dict[session['name']], N, no_dims, page_model_dict[session['name']].get_index_list(), 0, no_dims-1, K, Q, G)
         user_x_dict[session['name']] = user_x_dict[session['name']] - (float(eta) / N) * G
-        print user_x_dict[session['name']]
+        #print user_x_dict[session['name']]
         if user_nclicks_dict[session['name']] == max_clicks: 
             return jsonify([url_for('logout'), 0])
 
