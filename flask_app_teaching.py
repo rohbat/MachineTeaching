@@ -93,7 +93,7 @@ classes = np.zeros(len(image_list), dtype=int)
 for i in range(len(image_list)):
     classes[i] = class_names.index(name_class[image_list[i]])
 
-classes = [c.replace("/home/cs101teaching/MachineTeaching/static/chinese/ims/", "") for c in classes]
+class_names = [c.replace("/home/cs101teaching/MachineTeaching/static/chinese/ims/", "") for c in class_names]
 
 classes_dict = {}
 for i in range(len(class_names)):
@@ -209,7 +209,7 @@ def get_response_kernel():
     session_sql.commit()
 
     
-    return jsonify([main_label, c1_label, c2_label, get_result_img(True)])
+    return jsonify([main_label, c1_label, c2_label, get_result_img(result)])
 
 
 
