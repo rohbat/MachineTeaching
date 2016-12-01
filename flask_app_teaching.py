@@ -207,7 +207,7 @@ def get_response_kernel():
     session_sql.commit()
 
     
-    return jsonify(["main_label", "c1_label", "c2_label", get_result_img(True)])
+    return jsonify(["main_label", "c1_label", "c2_label", "get_result_img(result)"])
 
 
 
