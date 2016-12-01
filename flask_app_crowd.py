@@ -25,9 +25,16 @@ def update_page_with_random():
     page_model_dict[session['name']].compare_img_1 = page_ims[1]
     page_model_dict[session['name']].compare_img_2 = page_ims[2]
 
+<<<<<<< HEAD
     page_model_dict[session['name']].main_path = image_list[page_ims[0]]
     page_model_dict[session['name']].compare_1_path = image_list[page_ims[1]]
     page_model_dict[session['name']].compare_2_path = image_list[page_ims[2]]
+=======
+    page_model.main_path = image_list[page_ims[0]]
+    page_model.compare_1_path = image_list[page_ims[1]]
+    page_model.compare_2_path = image_list[page_ims[2]]
+    print page_model.main_img, page_model.compare_img_1, page_model.compare_img_2
+>>>>>>> 8b63140bc9e6a565a4285f9f4d920496bd3aeb79
 
 
 
