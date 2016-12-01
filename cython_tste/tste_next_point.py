@@ -85,7 +85,12 @@ def compute_kernel_and_probability_at_triplet(X, N, triplet, no_dims, alpha, K):
     K[i, k] = (1 + K[i, k] / alpha) ** ((alpha + 1) / -2)
     return K[i, j] / (K[i, j] + K[i, k])
     
-    
+
+def random_triplet(classes, classes_dict):
+    i = random.randrange(10)
+    j = random.choice(classes_dict[classes[i]])
+    k = random.choice(classes_dict['not'+str(classes[i])])
+    return (i, j, k)
 
 def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.1):
     K = np.zeros((N, N))
@@ -224,6 +229,10 @@ def main():
     lamb = 0
     for t in range(1000):
         print t
+        t1 = time.time()
+        best_triplet = random_triplet(classes,classes_dict)
+        t2 = time.time()
+        print best_triplet, t2-t1
         t1 = time.time()
         best_triplet, best_p = most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict)
         t2 = time.time()
