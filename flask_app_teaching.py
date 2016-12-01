@@ -31,8 +31,17 @@ def update_page_with_random():
     page_model_dict[session['name']].compare_2_path = image_list[page_ims[2]]
 
 
+def get_label_list():
+    main_label = class_names[classes[page_model.main_img]]
+    compare_img_1_label = class_names[classes[page_model.compare_img_1]]
+    compare_img_2_label = class_names[classes[page_model.compare_img_2]]
+    return (main_label, compare_img_1_label, compare_img_2_label)
 
-
+def get_result_img(result):
+    if result == True:
+        return '/home/cs101teaching/MachineTeaching/static/correct_check_mark.png'
+    else:
+        return '/home/cs101teaching/MachineTeaching/static/you_know_you_fucked_up_right.jpg'
 
 # Make Flask app
 
@@ -142,6 +151,7 @@ def to_login():
 
 @app.route("/get_imgs")
 def get_imgs():
+    update_page_with_random()
     return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
 
 @app.route("/end/")
@@ -167,10 +177,19 @@ def get_response_kernel():
         return jsonify([url_for('login'), 0])
     if request.method == 'POST':
         data = request.get_data()
+        (main_label, c1_label, c2_label) = get_label_list()
         if data == "0":
             page_model_dict[session['name']].set_chosen(page_model_dict[session['name']].compare_img_1)
+            if (main_label == c1_label):
+                result = True
+            else:
+                result = False
         elif data == "1":
             page_model_dict[session['name']].set_chosen(page_model_dict[session['name']].compare_img_2)
+            if (main_label == c2_label):
+                result = True
+            else:
+                result = False
         user_nclicks_dict[session['name']] += 1
         user_time_dict[session['name']][1] = time.time()
         K = np.zeros((N, N))
@@ -187,8 +206,8 @@ def get_response_kernel():
     session_sql.add(page_model_dict[session['name']])
     session_sql.commit()
 
-    update_page_with_random()
-    return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])])
+    
+    return jsonify([main_label, c1_label, c2_label, get_result_img(result)])
 
 
 
