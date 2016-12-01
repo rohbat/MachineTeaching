@@ -10,10 +10,11 @@ import numpy as np
 from cython_tste.tste_next_point import *
 import time
 import hashlib
+import sys
 
 
 
-
+print >> sys.stderr, "lol"
 print "HELLO"
 
 # Choose a random triplet and set the page's triplet accordingly
