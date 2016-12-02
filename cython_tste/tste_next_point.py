@@ -1,5 +1,4 @@
 import numpy as np
-from numpy.core.umath_tests import inner1d
 import random
 import time
 
@@ -11,7 +10,7 @@ def tste_grad(X, N, no_dims, triplet, lamb, alpha, K, Q, dC):
     for i in [triplet_A]:
         for j in [triplet_B, triplet_C]:
             diff = X[i, :] - X[j, :]
-            K[i, j] = inner1d(diff, diff)
+            K[i, j] = np.dot(diff, diff)
             Q[i, j] = (1 + K[i, j] / alpha) ** -1
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
             # Now, K[i,j] = ((sqdist(i,j)/alpha + 1)) ** (-0.5*(alpha+1)),
@@ -46,7 +45,7 @@ def compute_kernel(X, N, no_dims, alpha, K):
     for i in range(N): 
         for j in range(i, N):
             diff = X[i, :] - X[j, :]
-            K[i, j] = inner1d(diff, diff)
+            K[i, j] = np.dot(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
             K[j, i] = K[i, j]
 
@@ -54,7 +53,7 @@ def compute_kernel_from_triplet(X, N, triplet, no_dims, alpha, K):
     for i in triplet: 
         for j in range(N):
             diff = X[i, :] - X[j, :]
-            K[i, j] = inner1d(diff, diff)
+            K[i, j] = np.dot(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
             
             
@@ -65,30 +64,30 @@ def compute_kernel_from_triplet_to_dst_triplets(X, X_triplet, N, triplet, no_dim
                 diff = X_triplet[i, :] - X_triplet[j, :]
             else:
                 diff = X_triplet[i, :] - X[j, :]
-            K[i, j] = inner1d(diff, diff)
+            K[i, j] = np.dot(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
         for j in dst_triplets_dict[i][1]:
             if j in triplet:
                 diff = X_triplet[i, :] - X_triplet[j, :]
             else:
                 diff = X_triplet[i, :] - X[j, :]
-            K[i, j] = inner1d(diff, diff)
+            K[i, j] = np.dot(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
 
 def compute_kernel_at_pair(X, N, pair, no_dims, alpha, K):
     i, j = pair
     diff = X[i, :] - X[j, :]
-    K[i, j] = inner1d(diff, diff)
+    K[i, j] = np.dot(diff, diff)
     K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
     K[j, i] = K[i, j]
 
 def compute_kernel_and_probability_at_triplet(X, N, triplet, no_dims, alpha, K):
     i, j, k = triplet
     diff = X[i, :] - X[j, :]
-    K[i, j] = inner1d(diff, diff)
+    K[i, j] = np.dot(diff, diff)
     K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
     diff = X[i, :] - X[k, :]
-    K[i, k] = inner1d(diff, diff)
+    K[i, k] = np.dot(diff, diff)
     K[i, k] = (1 + K[i, k] / alpha) ** ((alpha + 1) / -2)
     return K[i, j] / (K[i, j] + K[i, k])
     
@@ -107,10 +106,10 @@ def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classe
     best_p = None
     for i in random.sample(range(N), int(N*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
-            compute_kernel_at_pair(X, N, (i, j), no_dims, alpha, K)
+            k_ij = compute_kernel_at_pair(X, N, (i, j), no_dims, alpha, K)
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
-                compute_kernel_at_pair(X, N, (i, k), no_dims, alpha, K)
-                P = K[i, j] / (K[i, j] + K[i, k])
+                k_ik = compute_kernel_at_pair(X, N, (i, k), no_dims, alpha, K)
+                P = k_ij / (k_ij + k_ik)
                 #P = compute_kernel_and_probability_at_triplet(X, N, (i, j, k), no_dims, alpha, K)
                 if abs(P-0.5) < best_diff:
                     best_diff = abs(P-0.5)
