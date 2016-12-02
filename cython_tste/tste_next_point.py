@@ -93,8 +93,8 @@ def compute_kernel_and_probability_at_triplet(X, N, triplet, no_dims, alpha, K):
     return K[i, j] / (K[i, j] + K[i, k])
     
 
-def random_triplet(classes, classes_dict):
-    i = random.randrange(10)
+def random_triplet(N, classes, classes_dict):
+    i = random.randrange(N)
     j = random.choice(classes_dict[classes[i]])
     k = random.choice(classes_dict['not'+str(classes[i])])
     return (i, j, k)
