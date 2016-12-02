@@ -220,7 +220,7 @@ def main():
     no_dims = 10
     no_classes = 3
     X = np.random.rand(N, no_dims)
-    alpha = no_dims - 1
+    alpha = no_dims - 1.0
     classes = np.random.randint(no_classes, size=N)
     classes_dict = {}
     for i in range(no_classes):
@@ -238,7 +238,7 @@ def main():
     for t in range(1000):
         print t
         t1 = time.time()
-        best_triplet = random_triplet(classes,classes_dict)
+        best_triplet = random_triplet(N, classes,classes_dict)
         t2 = time.time()
         print best_triplet, t2-t1
         t1 = time.time()
