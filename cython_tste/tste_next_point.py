@@ -74,12 +74,11 @@ def compute_kernel_from_triplet_to_dst_triplets(X, X_triplet, N, triplet, no_dim
             K[i, j] = np.dot(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
 
-def compute_kernel_at_pair(X, N, pair, no_dims, alpha, K):
+def compute_kernel_at_pair(X, N, pair, no_dims, alpha):
     i, j = pair
     diff = X[i, :] - X[j, :]
-    K[i, j] = np.dot(diff, diff)
-    K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
-    K[j, i] = K[i, j]
+    k_ij = np.dot(diff, diff)
+    return (1 + k_ij / alpha) ** ((alpha + 1) / -2)
 
 def compute_kernel_and_probability_at_triplet(X, N, triplet, no_dims, alpha, K):
     i, j, k = triplet
@@ -106,9 +105,9 @@ def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classe
     best_p = None
     for i in random.sample(range(N), int(N*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
-            k_ij = compute_kernel_at_pair(X, N, (i, j), no_dims, alpha, K)
+            k_ij = compute_kernel_at_pair(X, N, (i, j), no_dims, alpha)
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
-                k_ik = compute_kernel_at_pair(X, N, (i, k), no_dims, alpha, K)
+                k_ik = compute_kernel_at_pair(X, N, (i, k), no_dims, alpha)
                 P = k_ij / (k_ij + k_ik)
                 #P = compute_kernel_and_probability_at_triplet(X, N, (i, j, k), no_dims, alpha, K)
                 if abs(P-0.5) < best_diff:
