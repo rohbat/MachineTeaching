@@ -58,22 +58,29 @@ def compute_kernel_from_triplet(X, N, triplet, no_dims, alpha, K):
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
             
             
-def compute_kernel_from_triplet_to_dst_triplets(X, X_new, N, triplet, no_dims, alpha, K, dst_triplets_dict):
+def compute_kernel_from_triplet_to_dst_triplets(X, X_triplet, N, triplet, no_dims, alpha, K, dst_triplets_dict):
     for i in triplet: 
         for j in dst_triplets_dict[i][0]:
             if j in triplet:
-                diff = X_new[i, :] - X_new[j, :]
+                diff = X_triplet[i, :] - X_triplet[j, :]
             else:
-                diff = X_new[i, :] - X[j, :]
+                diff = X_triplet[i, :] - X[j, :]
             K[i, j] = inner1d(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
         for j in dst_triplets_dict[i][1]:
             if j in triplet:
-                diff = X_new[i, :] - X_new[j, :]
+                diff = X_triplet[i, :] - X_triplet[j, :]
             else:
-                diff = X_new[i, :] - X[j, :]
+                diff = X_triplet[i, :] - X[j, :]
             K[i, j] = inner1d(diff, diff)
             K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
+
+def compute_kernel_at_pair(X, N, pair, no_dims, alpha, K):
+    i, j = pair
+    diff = X[i, :] - X[j, :]
+    K[i, j] = inner1d(diff, diff)
+    K[i, j] = (1 + K[i, j] / alpha) ** ((alpha + 1) / -2)
+    K[j, i] = K[i, j]
 
 def compute_kernel_and_probability_at_triplet(X, N, triplet, no_dims, alpha, K):
     i, j, k = triplet
@@ -92,7 +99,7 @@ def random_triplet(classes, classes_dict):
     k = random.choice(classes_dict['not'+str(classes[i])])
     return (i, j, k)
 
-def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.1):
+def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.135):
     K = np.zeros((N, N))
     #compute_kernel(X, N, no_dims, alpha, K)
     best_triplet = None
@@ -100,16 +107,18 @@ def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classe
     best_p = None
     for i in random.sample(range(N), int(N*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
+            compute_kernel_at_pair(X, N, (i, j), no_dims, alpha, K)
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
-                #P = K[i, j] / (K[i, j] + K[i, k])
-                P = compute_kernel_and_probability_at_triplet(X, N, (i, j, k), no_dims, alpha, K)
+                compute_kernel_at_pair(X, N, (i, k), no_dims, alpha, K)
+                P = K[i, j] / (K[i, j] + K[i, k])
+                #P = compute_kernel_and_probability_at_triplet(X, N, (i, j, k), no_dims, alpha, K)
                 if abs(P-0.5) < best_diff:
                     best_diff = abs(P-0.5)
                     best_triplet = (i, j, k)
                     best_p = P
     return best_triplet, best_p
 
-def best_gradient_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2, sample_class = 0.05):
+def best_gradient_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2, sample_class = 0.06):
     best_triplet = None
     max_val = 0
     best_p = None
@@ -136,7 +145,7 @@ def best_gradient_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes
                     best_p = p
     return best_triplet, best_p
 
-def score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes,classes_dict, K, Q, G, X_new, no_classes=3,eta=0.2,sample_class = 0.025): 
+def score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes,classes_dict, K, Q, G, X_new, no_classes=3,eta=0.2,sample_class = 0.02): 
 
     a, b, c = triplet
     rand_triplets = {i:(random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))), random.sample(classes_dict["not"+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])])))) for i in triplet}
@@ -188,7 +197,7 @@ def score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes,classes_d
     prob2 /= sm
     return p*prob1+(1.0-p)*prob2-prob0, p
 
-def best_gradient_triplet_rand_evaluation(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.02):
+def best_gradient_triplet_rand_evaluation(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.025):
     best_triplet = None
     max_val = 0
     best_p = None
