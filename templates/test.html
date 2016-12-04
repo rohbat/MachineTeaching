@@ -47,9 +47,7 @@
     });
 
     $("#register").click(function() {
-      data = document.forms["form"]["class"].value
-      $.post( "/testing/get_response", function(data) {
-        alert(data)
+      $.post( "/testing/get_response", document.forms["form"]["class"].value, function(data) {
         processResponse(data)
       });
     });
