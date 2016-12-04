@@ -76,6 +76,7 @@ session_sql = Session_sql()
 # Set up classes and classes_dict
 
 class_names = glob.glob("/home/cs101teaching2/MachineTeaching/static/chinese/ims/*")
+class_names.sort()
 
 class_name_dict = {}
 for class_name in class_names:
@@ -88,6 +89,7 @@ for k, v in class_name_dict.iteritems():
 
 image_list = glob.glob("/home/cs101teaching2/MachineTeaching/static/chinese/ims/*/*")
 image_list.sort()
+N = len(image_list)
 
 classes = np.zeros(len(image_list), dtype=int)
 for i in range(len(image_list)):
@@ -98,8 +100,21 @@ class_names = [c.replace("/home/cs101teaching2/MachineTeaching/static/chinese/im
 classes_dict = {}
 for i in range(len(class_names)):
     classes_dict[i] = []
-for i in range(len(classes)):
+
+full = range(N)
+random.shuffle(full)
+N_test = 30
+test = full[0:N_test]
+train = full[N_test:]
+
+for i in train:
     classes_dict[classes[i]].append(i)
+
+for key in classes_dict.keys():
+    classes_dict['not'+str(key)] = []
+    for key1 in classes_dict.keys():
+        if key != key1 and not 'not' in str(key1):
+            classes_dict['not'+str(key)].extend(classes_dict[key1])
 
 print classes, len(classes)
 print classes_dict, len(classes_dict)
