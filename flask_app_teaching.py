@@ -178,7 +178,6 @@ def logout():
     if ('name' in session and session['name'] in user_nclicks_dict and 
         user_nclicks_dict[session['name']] == max_clicks and user_test_counter_dict[session['name']] == max_test):
             # end_id = session['name']
-            print user_test_counter_dict
             end_id = hashlib.md5(str(session['name'])).hexdigest()
             # print end_id
             return render_template('end.html', end_id=end_id)
@@ -235,8 +234,7 @@ def get_response_testing():
         return jsonify([url_for('logout'), 0])
     if request.method == 'POST':
         data = request.get_data()
-        print user_test_counter_dict[session['name']]
-        print data
+        print data # class name 'stem' 'mound' 'fart'
     user_test_counter_dict[session['name']] += 1
     return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], str(user_test_counter_dict[session['name']]), 0]) 
 
