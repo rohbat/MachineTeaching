@@ -231,7 +231,7 @@ def get_response_kernel():
 
 
 @app.route("/testing/get_response", methods = ['POST'])
-def get_response_kernel():
+def get_response_testing():
     if request.method == 'POST':
         data = request.get_data()
         print data
