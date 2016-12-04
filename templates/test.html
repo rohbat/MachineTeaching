@@ -4,6 +4,7 @@
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
+  
   function processRequest(data) {
         if(data.length == 2){
           window.location.href = data[0]
@@ -15,8 +16,41 @@
         document.getElementById("insert").innerHTML = data[3]; 
         }
       }
+
+  function() {
+    $('form > input').keyup(function() {
+
+        var empty = false;
+        $('form > input').each(function() {
+          alert(empty)
+            if ($(this).val() != '') {
+                empty = true;
+            }
+        });
+
+        if (empty) {
+            $('#register').attr('disabled', 'disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+        } else {
+            $('#register').removeAttr('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+        }
+    });
+  }
+
   $(document).ready(function() {
-    document.getElementById("insert").innerHTML = '0'; 
+    document.getElementById("insert").innerHTML = '0';
+    alert('clicked');  
+
+    $('#register').click(function() {
+      alert('clicked'); 
+      if (!$("input[name='class']:checked").val()) {
+        alert('Nothing is checked!');
+        return false;}
+        
+      else {
+        alert('One of the radio buttons is checked!');}
+      });
+
+
     $.get( "/get_imgs", function(data) {
       processRequest(data)
     });
@@ -32,6 +66,7 @@
     });
   });
 </script>
+
 </head>
 <body>
   <div style="text-align: right">
@@ -47,12 +82,12 @@
   </div>
   <div style="text-align: center">
     <form>
-      <input type="radio" name="class" value="stem" > stem &nbsp; &nbsp; &nbsp;
-      <input type="radio" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
-      <input type="radio" name="class" value="leaf" > leaf <br>
+      <input type="radio" id="radio_button" name="class" value="stem" > stem &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="radio_button" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="radio_button" name="class" value="leaf" > leaf <br>
       <br>
       <br>
-      <input type="submit" value="Submit" >
+      <input type="submit" id='register' value="Submit" >
     </form>
   </div>
   
