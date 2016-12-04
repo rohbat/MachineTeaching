@@ -235,7 +235,7 @@ def get_response_testing():
     if request.method == 'POST':
         data = request.get_data()
         print data
-        return jsonify(image_list[test[user_test_counter_dict[session['name']]-1]]) 
+        return jsonify([image_list[test[user_test_counter_dict[session['name']]-1]]]) 
 
 
 
@@ -283,7 +283,7 @@ def login():
 @app.route("/get_test_img", methods = ['GET', 'POST'])
 def get_test_img():
     user_test_counter_dict[session['name']] += 1
-    return jsonify(image_list[test[user_test_counter_dict[session['name']]-1]]) 
+    return jsonify([image_list[test[user_test_counter_dict[session['name']]-1]]]) 
 
 
 # Run
