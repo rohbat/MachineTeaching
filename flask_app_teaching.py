@@ -86,7 +86,6 @@ name_class = {}
 for k, v in class_name_dict.iteritems():
     for elm in v:
         name_class[elm] = k
-print name_class
 
 image_list = glob.glob("/home/cs101teaching2/MachineTeaching/static/chinese/ims/*/*")
 image_list.sort()
@@ -95,6 +94,7 @@ N = len(image_list)
 classes = np.zeros(len(image_list), dtype=int)
 for i in range(len(image_list)):
     classes[i] = class_names.index(name_class[image_list[i]])
+print classes
 
 class_names = [c.replace("/home/cs101teaching2/MachineTeaching/static/chinese/ims/", "") for c in class_names]
 
