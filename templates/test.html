@@ -4,19 +4,44 @@
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
+  
   function processRequest(data) {
-        if(data.length == 2){
+        if(data.length == 1){
           window.location.href = data[0]
         }
         else{
         $("#main_img").attr("src", data[0])
-        $("#compare1").attr("src", data[1])
-        $("#compare2").attr("src", data[2])
-        document.getElementById("insert").innerHTML = data[3]; 
+        document.getElementById("insert").innerHTML = data[1]; 
         }
       }
+  
+  function validate() {
+    var x = document.forms["form"]["class"].value;
+    alert(x); 
+    if (x == "") {
+        alert("not selected");
+        return false;
+    }
+  }
+
+  function enable(){
+    $(":submit").removeAttr("disabled");
+  }
+
+
   $(document).ready(function() {
-    document.getElementById("insert").innerHTML = '0'; 
+    document.getElementById("insert").innerHTML = '0';
+
+    $('#register').click(function() {
+      if (!$("input[name='class']:checked").val()) {
+        alert('Nothing is checked!');
+        return false;}
+        
+      else {
+        alert('One of the radio buttons is checked!');}
+      });
+
+
     $.get( "/get_imgs", function(data) {
       processRequest(data)
     });
@@ -32,6 +57,7 @@
     });
   });
 </script>
+
 </head>
 <body>
   <div style="text-align: right">
@@ -43,16 +69,16 @@
     <img id="main_img" height="250" width="250" />
   </div>
   <div style="text-align: center">
-    <h2>Please select the option which matches the target image's class. </h2>
+    <h2>Please select and submit the option which matches the target image's class. </h2>
   </div>
   <div style="text-align: center">
-    <form>
-      <input type="radio" name="class" value="stem" > stem &nbsp; &nbsp; &nbsp;
-      <input type="radio" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
-      <input type="radio" name="class" value="leaf" > leaf <br>
+    <form name='form' onsubmit="return validate()">
+      <input type="radio" id="radio_button" name="class" value="stem" onclick='return enable()'> stem &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="radio_button" name="class" value="mound" onclick='return enable()'> mound &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="radio_button" name="class" value="leaf" onclick='return enable()'> leaf <br>
       <br>
       <br>
-      <input type="submit" value="Submit" >
+      <input type="submit" id='register' value="Submit" disabled="disabled">
     </form>
   </div>
   
