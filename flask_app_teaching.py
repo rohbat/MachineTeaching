@@ -237,6 +237,10 @@ def teaching_index():
         return redirect(url_for('login'))
     return render_template('teaching.html')
 
+@app.route("/testing/")
+def testing_index():
+    return render_template('teaching.html')
+
 
 
 # Create new user
