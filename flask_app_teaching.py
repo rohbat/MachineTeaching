@@ -151,7 +151,7 @@ user_test_images_dict = {}
 
 random.seed()
 counter = 0
-max_clicks = 9
+max_clicks = 2
 max_test = 5
 
 
@@ -178,6 +178,7 @@ def logout():
     if ('name' in session and session['name'] in user_nclicks_dict and 
         user_nclicks_dict[session['name']] == max_clicks and user_test_counter_dict[session['name']] == max_test):
             # end_id = session['name']
+            print user_test_counter_dict
             end_id = hashlib.md5(str(session['name'])).hexdigest()
             # print end_id
             return render_template('end.html', end_id=end_id)
@@ -245,7 +246,7 @@ def get_response_testing():
 def get_test_img():
     if user_test_counter_dict[session['name']] == max_test: 
         return jsonify([url_for('logout'), 0])
-    user_test_counter_dict[session['name']] += 1
+    # user_test_counter_dict[session['name']] += 1
     return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], str(user_test_counter_dict[session['name']]), 0]) 
 
 # Render main page
