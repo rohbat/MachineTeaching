@@ -230,20 +230,22 @@ def get_response_kernel():
 
 @app.route("/testing/get_response", methods = ['POST'])
 def get_response_testing():
+    if user_test_counter_dict[session['name']] == max_test: 
+        return jsonify([url_for('logout'), 0])
     if request.method == 'POST':
         data = request.get_data()
         print data
     user_test_counter_dict[session['name']] += 1
-    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], user_test_counter_dict[session['name']]]) 
+    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], str(user_test_counter_dict[session['name']]), 0]) 
 
 
 # Test stuff
 @app.route("/get_test_img", methods = ['GET', 'POST'])
 def get_test_img():
     if user_test_counter_dict[session['name']] == max_test: 
-        return redirect(url_for('logout'))
+        return jsonify([url_for('logout'), 0])
     user_test_counter_dict[session['name']] += 1
-    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], user_test_counter_dict[session['name']]]) 
+    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], str(user_test_counter_dict[session['name']]), 0]) 
 
 # Render main page
 @app.route("/teaching/")
