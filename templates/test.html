@@ -31,15 +31,6 @@
     document.getElementById("insert").innerHTML = '0';
     $(".class").click($(":submit").removeAttr("disabled")); 
 
-    // $('#register').click(function() {
-    //   if (!$("input[name='class']:checked").val()) {
-    //     alert('Nothing is checked!');
-    //     return false;}
-        
-    //   else {
-    //     alert('One of the radio buttons is checked!');}
-    //   });
-
 
     $.get( "/get_test_img", function(data) {
       processRequest(data)
@@ -74,7 +65,7 @@
       <input type="radio" id="class3" name="class" value="leaf" > leaf <br>
       <br>
       <br>
-      <input type="submit" id='register' value="Submit" disabled="disabled" />
+      <input type="submit" id='register' value="Submit" disabled="disabled" >
     </form>
   </div>
   
