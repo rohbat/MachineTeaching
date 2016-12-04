@@ -184,6 +184,7 @@ def logout():
         return redirect(url_for('login'))
 
 
+
 # THESE DO LOTS
 #
 # - Gets the response from the user
@@ -226,6 +227,15 @@ def get_response_kernel():
 
     
     return jsonify([main_label, c1_label, c2_label, get_result_img(result)])
+
+
+
+@app.route("/testing/get_response", methods = ['POST'])
+def get_response_kernel():
+    if request.method == 'POST':
+        data = request.get_data()
+        print data
+        return jsonify(image_list[test[user_test_counter_dict[session['name']]-1]]) 
 
 
 

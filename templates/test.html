@@ -11,7 +11,7 @@
         }
         else{
         $("#main_img").attr("src", data[0])
-        document.getElementById("insert").innerHTML = data[1]; 
+        // document.getElementById("insert").innerHTML = data[1]; 
         }
       }
   
@@ -32,29 +32,27 @@
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0';
 
-    $('#register').click(function() {
-      if (!$("input[name='class']:checked").val()) {
-        alert('Nothing is checked!');
-        return false;}
+    // $('#register').click(function() {
+    //   if (!$("input[name='class']:checked").val()) {
+    //     alert('Nothing is checked!');
+    //     return false;}
         
-      else {
-        alert('One of the radio buttons is checked!');}
-      });
+    //   else {
+    //     alert('One of the radio buttons is checked!');}
+    //   });
 
 
-    $.get( "/get_imgs", function(data) {
+    $.get( "/get_test_img", function(data) {
       processRequest(data)
     });
-    $("#compare1").click(function() {
-      $.post( "/kernel/get_response", "0", function(data) {
-        processRequest(data)
+
+    $("#register").click(function() {
+      $.post( "/testing/get_response", document.forms["form"]["class"].value, function(data) {
+        alert(document.forms["form"]["class"].value)
+        processResponse(data)
       });
     });
-    $("#compare2").click(function() {
-      $.post( "/kernel/get_response", "1", function(data) {
-        processRequest(data)
-      });
-    });
+
   });
 </script>
 
@@ -72,7 +70,7 @@
     <h2>Please select and submit the option which matches the target image's class. </h2>
   </div>
   <div style="text-align: center">
-    <form name='form' onsubmit="return validate()">
+    <form name='form' >
       <input type="radio" id="radio_button" name="class" value="stem" onclick='return enable()'> stem &nbsp; &nbsp; &nbsp;
       <input type="radio" id="radio_button" name="class" value="mound" onclick='return enable()'> mound &nbsp; &nbsp; &nbsp;
       <input type="radio" id="radio_button" name="class" value="leaf" onclick='return enable()'> leaf <br>
