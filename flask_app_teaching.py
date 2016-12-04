@@ -78,6 +78,8 @@ session_sql = Session_sql()
 class_names = glob.glob("/home/cs101teaching2/MachineTeaching/static/chinese/ims/*")
 class_names.sort()
 
+print 'CLASS NAMES'
+print class_names
 class_name_dict = {}
 for class_name in class_names:
     class_name_dict[class_name] = glob.glob(class_name + "/*")
@@ -94,8 +96,7 @@ N = len(image_list)
 classes = np.zeros(len(image_list), dtype=int)
 for i in range(len(image_list)):
     classes[i] = class_names.index(name_class[image_list[i]])
-print 'CLASSES'
-print classes
+
 
 class_names = [c.replace("/home/cs101teaching2/MachineTeaching/static/chinese/ims/", "") for c in class_names]
 
