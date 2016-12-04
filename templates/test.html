@@ -16,12 +16,13 @@
       }
   
   function validate() {
-    var x = document.forms["form"]["class"].value;
-    alert(x); 
-    if (x == "") {
-        alert("not selected");
-        return false;
-    }
+    // var x = document.forms["form"]["class"].value;
+    // alert(x); 
+    // if (x == "") {
+    //     alert("not selected");
+    //     return false;
+    // }
+    $(":submit").removeAttr("disabled");
   }
 
   
@@ -30,14 +31,6 @@
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0';
     
-    if (!$("input[name='class']:checked").val()) {
-      alert('Nothing is checked!');}
-    else {
-      alert('One of the radio buttons is checked!');
-      $(":submit").removeAttr("disabled");
-    } 
-
-
     $.get( "/get_test_img", function(data) {
       processRequest(data)
     });
@@ -67,8 +60,8 @@
   <div style="text-align: center">
     <form name='form' >
       <input type="radio" id="class1" name="class" value="stem" onclick="validate()"> stem &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="class2" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="class3" name="class" value="leaf" > leaf <br>
+      <input type="radio" id="class2" name="class" value="mound" onclick="validate()"> mound &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="class3" name="class" value="leaf" onclick="validate()"> leaf <br>
       <br>
       <br>
       <input type="submit" id='register' value="Submit" disabled="disabled" >
