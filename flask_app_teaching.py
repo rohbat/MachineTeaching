@@ -284,7 +284,6 @@ def login():
         user_time_dict[session['name']] = [time.time(), 0]
         user_x_dict[session['name']] = np.random.rand(N, no_dims)
         user_images_dict[session['name']] = set([])
-        user_test_counter_dict[session['name']] = 0
 
         return redirect(url_for('teaching_index'))
     return render_template('login_rand.html', error=error)
