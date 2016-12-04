@@ -91,24 +91,26 @@ def compute_kernel_and_probability_at_triplet(X, N, triplet, no_dims, alpha, K):
     return K[i, j] / (K[i, j] + K[i, k])
     
 
-def random_triplet(N, classes, classes_dict):
-    i = random.randrange(N)
+def random_triplet(train, classes, classes_dict):
+    i = random.choice(train)
     j = random.choice(classes_dict[classes[i]])
     k = random.choice(classes_dict['not'+str(classes[i])])
     return (i, j, k)
 
-def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.135):
+def most_uncertain_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.135):
     K = np.zeros((N, N))
     #compute_kernel(X, N, no_dims, alpha, K)
     best_triplet = None
     best_diff = 10000000
     best_p = None
-    for i in random.sample(range(N), int(N*sample_class)):
+    count = 0
+    for i in random.sample(train, int(len(train)*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
             k_ij = compute_kernel_at_pair(X, N, (i, j), no_dims, alpha)
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
                 k_ik = compute_kernel_at_pair(X, N, (i, k), no_dims, alpha)
                 P = k_ij / (k_ij + k_ik)
+                count += 1
                 #P = compute_kernel_and_probability_at_triplet(X, N, (i, j, k), no_dims, alpha, K)
                 if abs(P-0.5) < best_diff:
                     best_diff = abs(P-0.5)
@@ -116,7 +118,7 @@ def most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classe
                     best_p = P
     return best_triplet, best_p
 
-def best_gradient_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2, sample_class = 0.06):
+def best_gradient_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2, sample_class = 0.06):
     best_triplet = None
     max_val = 0
     best_p = None
@@ -124,7 +126,7 @@ def best_gradient_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes
     K = np.zeros((N, N))
     Q = np.zeros((N, N))
     G = np.zeros((N, no_dims))
-    for i in random.sample(range(N), int(N*sample_class)):
+    for i in random.sample(train, int(len(train)*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
                 triplet = (i, j, k)
@@ -195,7 +197,7 @@ def score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes,classes_d
     prob2 /= sm
     return p*prob1+(1.0-p)*prob2-prob0, p
 
-def best_gradient_triplet_rand_evaluation(X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.025):
+def best_gradient_triplet_rand_evaluation(train,X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.025):
     best_triplet = None
     max_val = 0
     best_p = None
@@ -203,7 +205,7 @@ def best_gradient_triplet_rand_evaluation(X,N,no_dims,alpha,lamb,classes,classes
     Q = np.zeros((N, N))
     G = np.zeros((N, no_dims))
     X_new = np.zeros(X.shape)
-    for i in random.sample(range(N), int(N*sample_class)):
+    for i in random.sample(train, int(len(train)*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
                 triplet = (i, j , k)
@@ -220,6 +222,7 @@ def main():
     no_classes = 3
     X = np.random.rand(N, no_dims)
     alpha = no_dims - 1.0
+    train = list(range(N))
     classes = np.random.randint(no_classes, size=N)
     classes_dict = {}
     for i in range(no_classes):
@@ -237,19 +240,19 @@ def main():
     for t in range(1000):
         print t
         t1 = time.time()
-        best_triplet = random_triplet(N, classes,classes_dict)
+        best_triplet = random_triplet(train,classes,classes_dict)
         t2 = time.time()
         print best_triplet, t2-t1
         t1 = time.time()
-        best_triplet, best_p = most_uncertain_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict)
+        best_triplet, best_p = most_uncertain_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict)
         t2 = time.time()
         print best_triplet, best_p, t2-t1
         t1 = time.time()
-        best_triplet, best_p = best_gradient_triplet(X,N,no_dims,alpha,lamb,classes,classes_dict)
+        best_triplet, best_p = best_gradient_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict)
         t2 = time.time()
         print best_triplet, best_p, t2-t1
         t1 = time.time()
-        best_triplet, best_p = best_gradient_triplet_rand_evaluation(X,N,no_dims,alpha,lamb,classes,classes_dict)
+        best_triplet, best_p = best_gradient_triplet_rand_evaluation(train, X,N,no_dims,alpha,lamb,classes,classes_dict)
         t2 = time.time()
         print best_triplet, best_p, t2-t1
 
