@@ -235,7 +235,8 @@ def get_response_testing():
     if request.method == 'POST':
         data = request.get_data()
         print data
-        return jsonify([image_list[test[user_test_counter_dict[session['name']]-1]]]) 
+    user_test_counter_dict[session['name']] += 1
+    return jsonify([image_list[test[user_test_counter_dict[session['name']]-1]]]) 
 
 
 
