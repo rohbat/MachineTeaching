@@ -14,12 +14,10 @@
         $("#main_img").attr("src", data[0])
         $("#compare1").attr("src", data[1])
         $("#compare2").attr("src", data[2])
-        document.getElementById("insert").innerHTML = data[3]; 
+        document.getElementById("insert").innerHTML = data[3];
+        document.getElementById("main_label").innerHTML = ""; 
         document.getElementById("c1_label").innerHTML = ""; 
         document.getElementById("c2_label").innerHTML = ""; 
-        document.getElementById("main_label").style.display = "none";
-        //document.getElementById("c1_label").style.display = "none";
-        //document.getElementById("c2_label").style.display = "none";
         document.getElementById("result_img").style.display = "none";
         $("#cont").prop("disabled", true);
         processed = false;
@@ -34,9 +32,6 @@
           document.getElementById("c1_label").innerHTML = data[1]; 
           document.getElementById("c2_label").innerHTML = data[2]; 
           $("#result_img").attr("src", data[3])
-          document.getElementById("main_label").style.display = "initial";
-          //document.getElementById("c1_label").style.display = "initial";
-          //document.getElementById("c2_label").style.display = "initial";
           document.getElementById("result_img").style.display = "initial";
           $("#cont").prop("disabled", false);
           processed = true;
