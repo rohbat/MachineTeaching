@@ -22,7 +22,7 @@
       $.post( "/testing/get_response", document.forms["form"]["class"].value, function(data) {
         processResponse(data)
       });
-      $(".radio").removeAttr("checked");
+      $("input[name='radio']").removeAttr("checked");
       $("#register").prop("disabled", true);
     });
     
