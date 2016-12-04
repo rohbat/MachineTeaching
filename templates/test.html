@@ -6,16 +6,15 @@
 
   
   function processRequest(data) {
-        if(data.length == 2){
+        if(data.length == 1){
           window.location.href = data[0]
         }
         else{
         $("#main_img").attr("src", data[0])
-        $("#compare1").attr("src", data[1])
-        $("#compare2").attr("src", data[2])
-        document.getElementById("insert").innerHTML = data[3]; 
+        document.getElementById("insert").innerHTML = data[1]; 
         }
       }
+  
   function validate() {
     var x = document.forms["form"]["class"].value;
     alert(x); 
