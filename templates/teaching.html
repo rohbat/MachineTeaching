@@ -65,7 +65,7 @@
 </head>
 
 <style>
-div.item {
+.item {
     /* To correctly align image, regardless of content height: */
     vertical-align: top;
     display: inline-block;
@@ -88,21 +88,21 @@ div.item {
   <div style="text-align: center">
     <h1>Target Image</h1>
     <img id="result_img" height="100" width="100" />
-    <div class="item">  
+    <figure class="item">  
       <img id="main_img" height="250" width="250" />
       <figcaption class="caption" id="main_label"> </figcaption>
-    </div>
+    </figure>
   </div>
   <div style="text-align: center">
     <h3>Please click on the image below that looks most similar to the one above: </h3>
-    <div class="item">
+    <figure class="item">
       <input type="image" id="compare1" width="250" />
       <figcaption class="caption" id="c1_label"> </figcaption>
-    </div>
-    <div class="item">
+    </figure>
+    <figure class="item">
       <input type="image" id="compare2" width="250" />
       <figcaption class="caption" id="c2_label"> </figcaption>
-    </div>
+    </figure>
   </div>
 
   <input class="btn btn-default" id='cont' name='cont' type="submit" value="Continue"> 
