@@ -239,7 +239,7 @@ def teaching_index():
 
 @app.route("/testing/")
 def testing_index():
-    return render_template('teaching.html')
+    return render_template('test.html')
 
 
 
