@@ -18,7 +18,7 @@
     //     alert("not selected");
     //     return false;
     // }
-    $(":submit").removeAttr("disabled");
+    $("register").prop("disabled", false);
   }
 
   
@@ -35,7 +35,11 @@
       $.post( "/testing/get_response", document.forms["form"]["class"].value, function(data) {
         processResponse(data)
       });
+      $(".radio").removeAttr("checked");
+      $("register").prop("disabled", true);
     });
+    
+    $(".radio").click(validate)
 
   });
 </script>
@@ -55,9 +59,9 @@
   </div>
   <div style="text-align: center">
     <form name='form' >
-      <input type="radio" id="class1" name="class" value="stem" onclick="validate()"> stem &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="class2" name="class" value="mound" onclick="validate()"> mound &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="class3" name="class" value="leaf" onclick="validate()"> leaf <br>
+      <input type="radio" id="id1" class="radio" value="stem"> stem &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="id2" class="radio" value="mound"> mound &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="id3" class="radio" value="leaf"> leaf <br>
       <br>
       <br>
       <input type="submit" id='register' value="Submit" disabled="disabled" >
