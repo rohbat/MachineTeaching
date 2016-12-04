@@ -29,7 +29,7 @@
 
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0';
-    $(".class").click(function enable(){$(":submit").removeAttr("disabled");}); 
+    $(".class").click($(":submit").removeAttr("disabled")); 
 
     // $('#register').click(function() {
     //   if (!$("input[name='class']:checked").val()) {
@@ -69,12 +69,12 @@
   </div>
   <div style="text-align: center">
     <form name='form' >
-      <input type="radio" id="radio_button" name="class" value="stem" > stem &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="radio_button" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="radio_button" name="class" value="leaf" > leaf <br>
+      <input type="radio" id="class1" name="class" value="stem" > stem &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="class2" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="class3" name="class" value="leaf" > leaf <br>
       <br>
       <br>
-      <input type="submit" id='register' value="Submit">
+      <input type="submit" id='register' value="Submit" disabled="disabled" />
     </form>
   </div>
   
