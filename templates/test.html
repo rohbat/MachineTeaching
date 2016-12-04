@@ -19,7 +19,7 @@
     var x = document.forms["form"]["class"].value;
     alert(x); 
     if (x == "") {
-        alert("Name must be filled out");
+        alert("not selected");
         return false;
     }
   }
@@ -33,7 +33,6 @@
     document.getElementById("insert").innerHTML = '0';
 
     $('#register').click(function() {
-      alert('clicked'); 
       if (!$("input[name='class']:checked").val()) {
         alert('Nothing is checked!');
         return false;}
