@@ -165,6 +165,9 @@ def to_login():
 
 @app.route("/get_imgs", methods = ['GET', 'POST'])
 def get_imgs():
+    if user_nclicks_dict[session['name']] == max_clicks:
+        user_test_images_dict[session['name']] = random.sample(set(range(N)) - user_images_dict[session['name']], N_test)
+        return jsonify([url_for('testing_index'), 0])
     update_page_with_random()
     user_images_dict[session['name']].update(page_model_dict[session['name']].get_index_list())
     return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
@@ -214,9 +217,6 @@ def get_response_kernel():
         tste_grad(user_x_dict[session['name']], N, no_dims, page_model_dict[session['name']].get_index_list(), 0, no_dims-1, K, Q, G)
         user_x_dict[session['name']] = user_x_dict[session['name']] - (float(eta) / N) * G
         #print user_x_dict[session['name']]
-        if user_nclicks_dict[session['name']] == max_clicks:
-            user_test_images_dict[session['name']] = random.sample(set(range(N)) - user_images_dict[session['name']], N_test)
-            return jsonify([url_for('testing_index'), 0])
 
     make_transient(page_model_dict[session['name']])
     page_model_dict[session['name']].id = None
