@@ -30,5 +30,6 @@ class PageModel(db.Model):
     def get_index_list(self):
         not_chosen = self.compare_img_1
         if self.chosen == not_chosen:
+            chosen = self.compare_img_1
             not_chosen = self.compare_img_2
-        return [self.main_img, self.chosen, not_chosen]
+        return [self.main_img, chosen, not_chosen]

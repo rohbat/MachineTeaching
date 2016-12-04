@@ -101,13 +101,9 @@ classes_dict = {}
 for i in range(len(class_names)):
     classes_dict[i] = []
 
-full = range(N)
-random.shuffle(full)
 N_test = 30
-test = full[0:N_test]
-train = full[N_test:]
 
-for i in train:
+for i in range(N):
     classes_dict[classes[i]].append(i)
 
 for key in classes_dict.keys():
@@ -148,14 +144,14 @@ user_id_dict = {}
 user_time_dict = {}
 user_code_dict = {}
 user_test_counter_dict = {}
-
-
+user_images_dict = {}
+user_test_images_dict = {}
 
 # Set triplet
 
 random.seed()
 counter = 0
-max_clicks = 50
+max_clicks = 9
 
 
 
@@ -170,6 +166,7 @@ def to_login():
 @app.route("/get_imgs", methods = ['GET', 'POST'])
 def get_imgs():
     update_page_with_random()
+    user_images_dict[session['name']].update(page_model_dict[session['name']].get_index_list())
     return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
 
 @app.route("/end/")
@@ -217,8 +214,9 @@ def get_response_kernel():
         tste_grad(user_x_dict[session['name']], N, no_dims, page_model_dict[session['name']].get_index_list(), 0, no_dims-1, K, Q, G)
         user_x_dict[session['name']] = user_x_dict[session['name']] - (float(eta) / N) * G
         #print user_x_dict[session['name']]
-        if user_nclicks_dict[session['name']] == max_clicks: 
-            return jsonify([url_for('logout'), 0])
+        if user_nclicks_dict[session['name']] == max_clicks:
+            user_test_images_dict[session['name']] = random.sample(set(range(N)) - user_images_dict[session['name']], N_test)
+            return jsonify([url_for('testing_index'), 0])
 
     make_transient(page_model_dict[session['name']])
     page_model_dict[session['name']].id = None
@@ -236,7 +234,7 @@ def get_response_testing():
         data = request.get_data()
         print data
     user_test_counter_dict[session['name']] += 1
-    return jsonify([image_list[test[user_test_counter_dict[session['name']]-1]]]) 
+    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]]) 
 
 
 
@@ -275,6 +273,7 @@ def login():
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
         user_x_dict[session['name']] = np.random.rand(N, no_dims)
+        user_images_dict[session['name']] = set([])
         user_test_counter_dict[session['name']] = 0
 
         return redirect(url_for('teaching_index'))
@@ -284,7 +283,7 @@ def login():
 @app.route("/get_test_img", methods = ['GET', 'POST'])
 def get_test_img():
     user_test_counter_dict[session['name']] += 1
-    return jsonify([image_list[test[user_test_counter_dict[session['name']]-1]]]) 
+    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]]) 
 
 
 # Run
