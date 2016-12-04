@@ -16,29 +16,22 @@
         document.getElementById("insert").innerHTML = data[3]; 
         }
       }
-
-  function() {
-    $('form > input').keyup(function() {
-
-        var empty = false;
-        $('form > input').each(function() {
-          alert(empty)
-            if ($(this).val() != '') {
-                empty = true;
-            }
-        });
-
-        if (empty) {
-            $('#register').attr('disabled', 'disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
-        } else {
-            $('#register').removeAttr('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
-        }
-    });
+  function validate() {
+    var x = document.forms["form"]["class"].value;
+    alert(x); 
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
   }
+
+  function enable(){
+    $(":submit").removeAttr("disabled");
+  }
+
 
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0';
-    alert('clicked');  
 
     $('#register').click(function() {
       alert('clicked'); 
@@ -78,16 +71,16 @@
     <img id="main_img" height="250" width="250" />
   </div>
   <div style="text-align: center">
-    <h2>Please select the option which matches the target image's class. </h2>
+    <h2>Please select and submit the option which matches the target image's class. </h2>
   </div>
   <div style="text-align: center">
-    <form>
-      <input type="radio" id="radio_button" name="class" value="stem" > stem &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="radio_button" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="radio_button" name="class" value="leaf" > leaf <br>
+    <form name='form' onsubmit="return validate()">
+      <input type="radio" id="radio_button" name="class" value="stem" onclick='return enable()'> stem &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="radio_button" name="class" value="mound" onclick='return enable()'> mound &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="radio_button" name="class" value="leaf" onclick='return enable()'> leaf <br>
       <br>
       <br>
-      <input type="submit" id='register' value="Submit" >
+      <input type="submit" id='register' value="Submit" disabled="disabled">
     </form>
   </div>
   
