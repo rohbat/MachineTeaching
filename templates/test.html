@@ -6,14 +6,10 @@
 
   
   function processRequest(data) {
-        if(data.length == 2){
-          window.location.href = data[0]
-        }
-        else{
-        $("#main_img").attr("src", data[0])
+    $("#main_img").attr("src", data[0])
         // document.getElementById("insert").innerHTML = data[1]; 
-        }
-      }
+
+    }
   
   function validate() {
     // var x = document.forms["form"]["class"].value;
