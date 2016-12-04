@@ -152,7 +152,7 @@ user_test_images_dict = {}
 random.seed()
 counter = 0
 max_clicks = 9
-
+max_test = 5
 
 
 # Redirect user to login page
@@ -167,6 +167,7 @@ def to_login():
 def get_imgs():
     if user_nclicks_dict[session['name']] == max_clicks:
         user_test_images_dict[session['name']] = random.sample(set(range(N)) - user_images_dict[session['name']], N_test)
+        user_test_counter_dict[session['name']] = 0
         return jsonify([url_for('testing_index'), 0])
     update_page_with_random()
     user_images_dict[session['name']].update(page_model_dict[session['name']].get_index_list())
@@ -227,19 +228,24 @@ def get_response_kernel():
     return jsonify([main_label, c1_label, c2_label, get_result_img(result)])
 
 
-
 @app.route("/testing/get_response", methods = ['POST'])
 def get_response_testing():
     if request.method == 'POST':
         data = request.get_data()
         print data
     user_test_counter_dict[session['name']] += 1
-    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]]) 
+    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], user_test_counter_dict[session['name']]]) 
 
 
+# Test stuff
+@app.route("/get_test_img", methods = ['GET', 'POST'])
+def get_test_img():
+    if user_test_counter_dict[session['name']] == max_test: 
+        return redirect(url_for('logout'))
+    user_test_counter_dict[session['name']] += 1
+    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], user_test_counter_dict[session['name']]]) 
 
 # Render main page
-
 @app.route("/teaching/")
 def teaching_index():
     if not 'name' in session or not session['name'] in user_nclicks_dict:
@@ -248,6 +254,8 @@ def teaching_index():
 
 @app.route("/testing/")
 def testing_index():
+    if not 'name' in session or not session['name'] in user_test_counter_dict:
+        return redirect(url_for('login'))
     return render_template('test.html')
 
 
@@ -279,11 +287,6 @@ def login():
         return redirect(url_for('teaching_index'))
     return render_template('login_rand.html', error=error)
 
-# Test stuff
-@app.route("/get_test_img", methods = ['GET', 'POST'])
-def get_test_img():
-    user_test_counter_dict[session['name']] += 1
-    return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]]) 
 
 
 # Run

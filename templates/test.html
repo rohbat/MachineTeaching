@@ -7,6 +7,7 @@
   
   function processRequest(data) {
     $("#main_img").attr("src", data[0])
+    document.getElementById("insert").innerHTML = data[1]; 
   }
 
   $(document).ready(function() {
@@ -34,7 +35,7 @@
 </head>
 <body>
   <div style="text-align: right">
-  <h4> <b id="insert"></b> of 50 </h4>
+  <h4> <b id="insert"></b> of 5 </h4>
   </div>
 
   <div style="text-align: center">
