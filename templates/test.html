@@ -1,0 +1,60 @@
+<html>
+<head>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+  function processRequest(data) {
+        if(data.length == 2){
+          window.location.href = data[0]
+        }
+        else{
+        $("#main_img").attr("src", data[0])
+        $("#compare1").attr("src", data[1])
+        $("#compare2").attr("src", data[2])
+        document.getElementById("insert").innerHTML = data[3]; 
+        }
+      }
+  $(document).ready(function() {
+    document.getElementById("insert").innerHTML = '0'; 
+    $.get( "/get_imgs", function(data) {
+      processRequest(data)
+    });
+    $("#compare1").click(function() {
+      $.post( "/kernel/get_response", "0", function(data) {
+        processRequest(data)
+      });
+    });
+    $("#compare2").click(function() {
+      $.post( "/kernel/get_response", "1", function(data) {
+        processRequest(data)
+      });
+    });
+  });
+</script>
+</head>
+<body>
+  <div style="text-align: right">
+  <h4> <b id="insert"></b> of 50 </h4>
+  </div>
+
+  <div style="text-align: center">
+    <h1>Target Image</h1>
+    <img id="main_img" height="250" width="250" />
+  </div>
+  <div style="text-align: center">
+    <h2>Please select the option which matches the target image's class. </h2>
+  </div>
+  <div style="text-align: center">
+    <form>
+      <input type="radio" name="class" value="stem" > stem &nbsp; &nbsp; &nbsp;
+      <input type="radio" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
+      <input type="radio" name="class" value="leaf" > leaf <br>
+      <br>
+      <br>
+      <input type="submit" value="Submit" >
+    </form>
+  </div>
+  
+
+</body>
