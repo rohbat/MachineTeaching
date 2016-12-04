@@ -7,9 +7,7 @@
   
   function processRequest(data) {
     $("#main_img").attr("src", data[0])
-        // document.getElementById("insert").innerHTML = data[1]; 
-
-    }
+  }
 
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0';
@@ -20,7 +18,7 @@
 
     $("#register").click(function() {
       $.post( "/testing/get_response", document.forms["form"]["class"].value, function(data) {
-        processResponse(data)
+        processRequest(data)
       });
       $("input[name='radio']").removeAttr("checked");
       $("#register").prop("disabled", true);
