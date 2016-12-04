@@ -54,10 +54,10 @@ app = Flask(__name__)
 # Set up database
 
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="cs101teaching",
+    username="cs101teaching2",
     password="gogo_teaching",
-    hostname="cs101teaching.mysql.pythonanywhere-services.com",
-    databasename="cs101teaching$teaching",
+    hostname="cs101teaching2.mysql.pythonanywhere-services.com",
+    databasename="cs101teaching2$teaching",
 )
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 200
@@ -75,7 +75,7 @@ session_sql = Session_sql()
 
 # Set up classes and classes_dict
 
-class_names = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*")
+class_names = glob.glob("/home/cs101teaching2/MachineTeaching/static/chinese/ims/*")
 
 class_name_dict = {}
 for class_name in class_names:
@@ -86,14 +86,14 @@ for k, v in class_name_dict.iteritems():
     for elm in v:
         name_class[elm] = k
 
-image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
+image_list = glob.glob("/home/cs101teaching2/MachineTeaching/static/chinese/ims/*/*")
 image_list.sort()
 
 classes = np.zeros(len(image_list), dtype=int)
 for i in range(len(image_list)):
     classes[i] = class_names.index(name_class[image_list[i]])
 
-class_names = [c.replace("/home/cs101teaching/MachineTeaching/static/chinese/ims/", "") for c in class_names]
+class_names = [c.replace("/home/cs101teaching2/MachineTeaching/static/chinese/ims/", "") for c in class_names]
 
 classes_dict = {}
 for i in range(len(class_names)):
@@ -117,7 +117,7 @@ eta = 0.01
 
 # Make image list
 
-image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
+image_list = [img.replace("/home/cs101teaching2/MachineTeaching", "") for img in image_list]
 
 
 
@@ -252,4 +252,3 @@ def login():
 # Run
 if __name__ == "__main__":
     app.run()
-
