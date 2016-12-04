@@ -147,6 +147,7 @@ user_x_dict = {}
 user_id_dict = {}
 user_time_dict = {}
 user_code_dict = {}
+user_test_counter_dict = {}
 
 
 
@@ -259,9 +260,16 @@ def login():
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
         user_x_dict[session['name']] = np.random.rand(N, no_dims)
+        user_test_counter_dict[session['name']] = 0
 
         return redirect(url_for('teaching_index'))
     return render_template('login_rand.html', error=error)
+
+# Test stuff
+@app.route("/get_test_img", methods = ['GET', 'POST'])
+def get_test_img():
+    user_test_counter_dict[session['name']] += 1
+    return jsonify(image_list[test[user_test_counter_dict[session['name']]-1]]) 
 
 
 # Run
