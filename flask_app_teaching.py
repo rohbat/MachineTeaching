@@ -167,7 +167,7 @@ def to_login():
 def get_imgs():
     if user_nclicks_dict[session['name']] == max_clicks:
         user_test_images_dict[session['name']] = random.sample(set(range(N)) - user_images_dict[session['name']], N_test)
-        user_test_counter_dict[session['name']] = 0
+        user_test_counter_dict[session['name']] = 1
         return jsonify([url_for('testing_index'), 0])
     update_page_with_random()
     user_images_dict[session['name']].update(page_model_dict[session['name']].get_index_list())
