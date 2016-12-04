@@ -10,7 +10,6 @@
           window.location.href = data[0]
         }
         else{
-        alert(data[0])
         $("#main_img").attr("src", data[0])
         // document.getElementById("insert").innerHTML = data[1]; 
         }
@@ -44,7 +43,6 @@
 
 
     $.get( "/get_test_img", function(data) {
-      alert(data)
       processRequest(data)
     });
 
