@@ -24,13 +24,12 @@
     }
   }
 
-  function enable(){
-    $(":submit").removeAttr("disabled");
-  }
+  
 
 
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0';
+    $(".class").click(function enable(){$(":submit").removeAttr("disabled");}); 
 
     // $('#register').click(function() {
     //   if (!$("input[name='class']:checked").val()) {
@@ -70,9 +69,9 @@
   </div>
   <div style="text-align: center">
     <form name='form' >
-      <input type="radio" id="radio_button" name="class" value="stem" onclick='return enable()'> stem &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="radio_button" name="class" value="mound" onclick='return enable()'> mound &nbsp; &nbsp; &nbsp;
-      <input type="radio" id="radio_button" name="class" value="leaf" onclick='return enable()'> leaf <br>
+      <input type="radio" id="radio_button" name="class" value="stem" > stem &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="radio_button" name="class" value="mound" > mound &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="radio_button" name="class" value="leaf" > leaf <br>
       <br>
       <br>
       <input type="submit" id='register' value="Submit" disabled="disabled">
