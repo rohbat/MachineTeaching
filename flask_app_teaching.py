@@ -247,6 +247,9 @@ def get_response_testing():
         print data # class name 'stem' 'mound' 'fart'
         print image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
         truth = classes[image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]]
+        print truth 
+        print user_test_ans_dict
+        print user_test_counter_dict
 
         if truth == data: 
             user_test_ans_dict[session['name']].append(1)
