@@ -339,6 +339,8 @@ def login():
         user_x_dict[session['name']] = np.random.rand(N, no_dims)
         user_images_dict[session['name']] = set([])
 
+        print 'Selection Method: ' + str(user_selection_method_dict[session['name']])
+
         return redirect(url_for('teaching_index'))
     return render_template('login_rand.html', error=error)
 
