@@ -19,7 +19,7 @@ def update_page_with_indices(main, comp1, comp2):
     if random.random() > .5:
         temp = comp1
         comp1 = comp2
-        comp2 = comp1
+        comp2 = temp
 
     page_model_dict[session['name']].main_img = main
     page_model_dict[session['name']].compare_img_1 = comp1
