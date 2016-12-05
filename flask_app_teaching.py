@@ -151,6 +151,7 @@ user_images_dict = {}
 user_test_images_dict = {}
 user_test_error_dict = {}
 user_test_ans_dict = {}
+user_test_time_dict = {}
 
 # Set triplet
 
@@ -175,6 +176,7 @@ def get_imgs():
         user_test_counter_dict[session['name']] = 1
         user_test_error_dict[session['name']] = 0
         user_test_ans_dict[session['name']] = []
+        user_test_time_dict[session['name']] = time.time()
         return jsonify([url_for('testing_index'), 0])
     update_page_with_random()
     user_images_dict[session['name']].update(page_model_dict[session['name']].get_index_list())
@@ -189,7 +191,15 @@ def logout():
             user_test_error_dict[session['name']] = 1-float(np.sum(user_test_ans_dict[session['name']])) / float(max_test)
             end_id = hashlib.md5(str(session['name'])).hexdigest()
             print user_test_counter_dict
-            print user_test_error_dict 
+            print user_test_error_dict
+
+            np.save('/testfiles/ans_dict.npy', user_test_ans_dict)
+            np.save('/testfiles/error_dict.npy', user_test_error_dict)
+
+            with open('/testfiles/' + str(session['name']) + "_test.txt", "w") as myfile:
+                myfile.write(user_test_ans_dict[session['name']])
+                myfile.write(user_test_error_dict[session['name']])
+                myfile.write(time.time() - user_test_time_dict[session['name']])
             # print end_id
             return render_template('end.html', end_id=end_id)
     else:
@@ -242,17 +252,17 @@ def get_response_kernel():
 @app.route("/testing/get_response", methods = ['POST'])
 def get_response_testing():
     if request.method == 'POST':
-        print 'clicked'
+        # print 'clicked'
         data = request.get_data()
-        print 'test image list', user_test_images_dict[session['name']]
-        print 'test image index', user_test_counter_dict[session['name']]-1
-        print 'image index', user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]
+        # print 'test image list', user_test_images_dict[session['name']]
+        # print 'test image index', user_test_counter_dict[session['name']]-1
+        # print 'image index', user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]
         truth = classes[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
         print 'data', data 
         print 'truth', truth 
-        print user_test_ans_dict
-        print user_test_counter_dict
-        print '\n'
+        # print user_test_ans_dict
+        # print user_test_counter_dict
+        # print '\n'
 
         if str(truth) == str(data): 
             user_test_ans_dict[session['name']].append(1)
