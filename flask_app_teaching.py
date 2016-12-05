@@ -246,7 +246,7 @@ def get_response_testing():
         print 'clicked'
         data = request.get_data()
         print 'data', data # class name 'stem' 'mound' 'fart'
-        print 'image', image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
+        print 'test image list', user_test_images_dict[session['name']]
         print 'test image index', user_test_counter_dict[session['name']]-1
         print 'image index', user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]
         truth = classes[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
