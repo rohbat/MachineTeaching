@@ -247,6 +247,7 @@ def get_response_testing():
         data = request.get_data()
         print data # class name 'stem' 'mound' 'fart'
         print image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
+        print user_test_images_dict[session['name']
         truth = classes[image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]]
         print truth 
         print user_test_ans_dict
@@ -281,7 +282,7 @@ def testing_index():
         return redirect(url_for('login'))
     print 'going to test'
     print user_test_ans_dict
-    print user_test_ans_dict
+    print user_test_counter_dict
     return render_template('test.html')
 
 
