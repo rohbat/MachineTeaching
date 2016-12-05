@@ -15,6 +15,12 @@ import sys
 print 'Initializing site!'
 
 def update_page_with_indices(main, comp1, comp2):
+    # Switch order of images with probability .5
+    if random.random() > .5:
+        temp = comp1
+        comp1 = comp2
+        comp2 = comp1
+
     page_model_dict[session['name']].main_img = main
     page_model_dict[session['name']].compare_img_1 = comp1
     page_model_dict[session['name']].compare_img_2 = comp2
