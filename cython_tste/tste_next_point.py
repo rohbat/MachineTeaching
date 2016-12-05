@@ -106,6 +106,8 @@ def most_uncertain_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,et
     count = 0
     for i in random.sample(train, int(len(train)*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
+            if j == i:
+                continue
             k_ij = compute_kernel_at_pair(X, N, (i, j), no_dims, alpha)
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
                 k_ik = compute_kernel_at_pair(X, N, (i, k), no_dims, alpha)
@@ -128,6 +130,8 @@ def best_gradient_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,eta
     G = np.zeros((N, no_dims))
     for i in random.sample(train, int(len(train)*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
+            if j == i:
+                continue
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
                 triplet = (i, j, k)
                 p = tste_grad(X, N, no_dims, (i, j, k), lamb, alpha, K, Q, G)
@@ -207,6 +211,8 @@ def best_gradient_triplet_rand_evaluation(train,X,N,no_dims,alpha,lamb,classes,c
     X_new = np.zeros(X.shape)
     for i in random.sample(train, int(len(train)*sample_class)):
         for j in random.sample(classes_dict[classes[i]], int(sample_class*len(classes_dict[classes[i]]))):
+            if j == i:
+                continue
             for k in random.sample(classes_dict['not'+str(classes[i])], int(sample_class*len(classes_dict["not"+str(classes[i])]))):
                 triplet = (i, j , k)
                 val, p = score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes, classes_dict, K, Q, G, X_new, no_classes)
