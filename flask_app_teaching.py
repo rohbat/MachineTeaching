@@ -150,6 +150,7 @@ user_test_counter_dict = {}
 user_images_dict = {}
 user_test_images_dict = {}
 user_test_error_dict = {}
+user_test_ans_dict = {}
 
 # Set triplet
 
@@ -173,6 +174,7 @@ def get_imgs():
         user_test_images_dict[session['name']] = random.sample(set(range(N)) - user_images_dict[session['name']], N_test)
         user_test_counter_dict[session['name']] = 1
         user_test_error_dict[session['name']] = 0
+        user_test_ans_dict[session['name']] = []
         return jsonify([url_for('testing_index'), 0])
     update_page_with_random()
     user_images_dict[session['name']].update(page_model_dict[session['name']].get_index_list())
@@ -183,7 +185,10 @@ def logout():
     if ('name' in session and session['name'] in user_nclicks_dict and 
         user_nclicks_dict[session['name']] == max_clicks and user_test_counter_dict[session['name']] == max_test):
             # end_id = session['name']
+            print user_test_ans_dict 
+            user_test_error_dict[session['name']] = np.sum(user_test_ans_dict[session['name']]) / max_test
             end_id = hashlib.md5(str(session['name'])).hexdigest()
+            print user_test_error_dict 
             # print end_id
             return render_template('end.html', end_id=end_id)
     else:
@@ -240,6 +245,13 @@ def get_response_testing():
     if request.method == 'POST':
         data = request.get_data()
         print data # class name 'stem' 'mound' 'fart'
+        print image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
+        truth = classes[image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]]
+
+        if truth == data: 
+            user_test_ans_dict[session['name']].append(1)
+        else: 
+            user_test_ans_dict[session['name']].append(0)
     user_test_counter_dict[session['name']] += 1
     return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], str(user_test_counter_dict[session['name']]), 0]) 
 
