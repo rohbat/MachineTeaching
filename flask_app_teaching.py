@@ -240,16 +240,14 @@ def get_response_kernel():
 
 @app.route("/testing/get_response", methods = ['POST'])
 def get_response_testing():
-    if user_test_counter_dict[session['name']] == max_test: 
-        return jsonify([url_for('logout'), 0])
     if request.method == 'POST':
         print 'clicked'
         data = request.get_data()
-        print 'data', data # class name 'stem' 'mound' 'fart'
         print 'test image list', user_test_images_dict[session['name']]
         print 'test image index', user_test_counter_dict[session['name']]-1
         print 'image index', user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]
         truth = classes[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
+        print 'data', data 
         print 'truth', truth 
         print user_test_ans_dict
         print user_test_counter_dict
@@ -259,6 +257,8 @@ def get_response_testing():
             user_test_ans_dict[session['name']].append(1)
         else: 
             user_test_ans_dict[session['name']].append(0)
+    if user_test_counter_dict[session['name']] == max_test: 
+        return jsonify([url_for('logout'), 0])
     user_test_counter_dict[session['name']] += 1
     return jsonify([image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]], str(user_test_counter_dict[session['name']]), 0]) 
 
