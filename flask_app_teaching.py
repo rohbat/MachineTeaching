@@ -253,8 +253,9 @@ def get_response_testing():
         print 'truth', truth 
         print user_test_ans_dict
         print user_test_counter_dict
+        print '\n'
 
-        if truth == data: 
+        if str(truth) == str(data): 
             user_test_ans_dict[session['name']].append(1)
         else: 
             user_test_ans_dict[session['name']].append(0)
