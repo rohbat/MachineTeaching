@@ -29,10 +29,7 @@ def update_page_with_indices(main, comp1, comp2):
 def update_page(selection_method):
     train = range(N)
     X = user_x_dict[session['name']]
-    no_dims = 5
-    alpha = no_dims - 1
     lamb = 0
-    eta = .1
 
     if selection_method == 1:
         (main, comp1, comp2) = random_triplet(train, classes, classes_dict)
@@ -138,9 +135,9 @@ print classes_dict, len(classes_dict)
 # Set values for tste
 
 N = len(classes)
-no_dims = 10
+no_dims = 5
 alpha = no_dims - 1
-eta = 0.01
+eta = 0.1
 
 
 
