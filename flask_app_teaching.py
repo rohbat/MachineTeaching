@@ -188,6 +188,7 @@ def logout():
         user_nclicks_dict[session['name']] == max_clicks and user_test_counter_dict[session['name']] == max_test):
             # end_id = session['name']
             print user_test_ans_dict 
+            user_test_time_dict[session['name']] = time.time() - user_test_time_dict[session['name']] 
             user_test_error_dict[session['name']] = 1-float(np.sum(user_test_ans_dict[session['name']])) / float(max_test)
             end_id = hashlib.md5(str(session['name'])).hexdigest()
             print user_test_counter_dict
@@ -200,7 +201,7 @@ def logout():
                     myfile.write("%s," % item)
                 myfile.write("\n")
                 myfile.write(str(user_test_error_dict[session['name']]) + '\n')
-                myfile.write(str(time.time() - user_test_time_dict[session['name']]) + '\n')
+                myfile.write(str(user_test_time_dict[session['name']]) + '\n')
 
             return render_template('end.html', end_id=end_id)
     else:
