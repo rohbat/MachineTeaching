@@ -12,23 +12,38 @@ import time
 import hashlib
 import sys
 
+print 'Initializing site!'
 
+def update_page_with_indices(main, comp1, comp2):
+    page_model_dict[session['name']].main_img = main
+    page_model_dict[session['name']].compare_img_1 = comp1
+    page_model_dict[session['name']].compare_img_2 = comp2
 
-print >> sys.stderr, "lol"
-print "HELLO"
+    page_model_dict[session['name']].main_path = image_list[main]
+    page_model_dict[session['name']].compare_1_path = image_list[comp1]
+    page_model_dict[session['name']].compare_2_path = image_list[comp2]
+
 
 # Choose a random triplet and set the page's triplet accordingly
 
-def update_page_with_random():
-    page_ims = random.sample(range(len(image_list)), 3)
+def update_page(selection_method):
+    train = range(N)
+    X = user_x_dict[session['name']]
+    no_dims = 5
+    alpha = no_dims - 1
+    lamb = 0
+    eta = .1
 
-    page_model_dict[session['name']].main_img = page_ims[0]
-    page_model_dict[session['name']].compare_img_1 = page_ims[1]
-    page_model_dict[session['name']].compare_img_2 = page_ims[2]
+    if selection_method == 1:
+        (main, comp1, comp2) = random_triplet(train, classes, classes_dict)
+    elif selection_method == 2:
+        ((main, comp1, comp2), p) = most_uncertain_triplet(train,X,N,no_dims,alpha,lamb,classes,classes_dict,eta,no_classes=3,sample_class = 0.135)
+    elif selection_method == 3:
+        ((main, comp1, comp2), p) = best_gradient_triplet(train,X,N,no_dims,alpha,lamb,classes,classes_dict,eta,no_classes=3,sample_class = 0.06)
+    else:
+        ((main, comp1, comp2), p) = best_gradient_triplet_rand_evaluation(train,X,N,no_dims,alpha,lamb,classes,classes_dict,eta,no_classes=3,sample_class = 0.025)
 
-    page_model_dict[session['name']].main_path = image_list[page_ims[0]]
-    page_model_dict[session['name']].compare_1_path = image_list[page_ims[1]]
-    page_model_dict[session['name']].compare_2_path = image_list[page_ims[2]]
+    update_page_with_indices(main, comp1, comp2)
 
 
 def get_label_list():
@@ -147,6 +162,7 @@ user_id_dict = {}
 user_time_dict = {}
 user_code_dict = {}
 user_test_counter_dict = {}
+user_selection_method_dict = {}
 user_images_dict = {}
 user_test_images_dict = {}
 user_test_error_dict = {}
@@ -178,7 +194,8 @@ def get_imgs():
         user_test_ans_dict[session['name']] = []
         user_test_time_dict[session['name']] = time.time()
         return jsonify([url_for('testing_index'), 0])
-    update_page_with_random()
+
+    update_page(user_selection_method_dict[session['name']])
     user_images_dict[session['name']].update(page_model_dict[session['name']].get_index_list())
     return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
 
@@ -319,7 +336,7 @@ def login():
         session['name'] = counter
         counter += 1
         page_model_dict[session['name']] = PageModel()
-        update_page_with_random()
+        user_selection_method_dict[session['name']] = random.randint(1, 4)
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
         user_x_dict[session['name']] = np.random.rand(N, no_dims)

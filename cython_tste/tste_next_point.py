@@ -97,7 +97,7 @@ def random_triplet(train, classes, classes_dict):
     k = random.choice(classes_dict['not'+str(classes[i])])
     return (i, j, k)
 
-def most_uncertain_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.135):
+def most_uncertain_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,eta,no_classes=3,sample_class = 0.135):
     K = np.zeros((N, N))
     #compute_kernel(X, N, no_dims, alpha, K)
     best_triplet = None
@@ -118,7 +118,7 @@ def most_uncertain_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,no
                     best_p = P
     return best_triplet, best_p
 
-def best_gradient_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2, sample_class = 0.06):
+def best_gradient_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,eta,no_classes=3,sample_class = 0.06):
     best_triplet = None
     max_val = 0
     best_p = None
@@ -197,7 +197,7 @@ def score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes,classes_d
     prob2 /= sm
     return p*prob1+(1.0-p)*prob2-prob0, p
 
-def best_gradient_triplet_rand_evaluation(train,X,N,no_dims,alpha,lamb,classes,classes_dict,no_classes=3,eta=0.2,sample_class = 0.025):
+def best_gradient_triplet_rand_evaluation(train,X,N,no_dims,alpha,lamb,classes,classes_dict,eta,no_classes=3,sample_class = 0.025):
     best_triplet = None
     max_val = 0
     best_p = None
