@@ -193,8 +193,8 @@ def logout():
             print user_test_counter_dict
             print user_test_error_dict
 
-            np.save('/testfiles/ans_dict.npy', user_test_ans_dict)
-            np.save('/testfiles/error_dict.npy', user_test_error_dict)
+            # np.save('/testfiles/ans_dict.npy', user_test_ans_dict)
+            # np.save('/testfiles/error_dict.npy', user_test_error_dict)
             with open(str(session['name']) + "_test.txt", "w") as myfile:
                 myfile.write(user_test_ans_dict[session['name']])
                 myfile.write(user_test_error_dict[session['name']])
