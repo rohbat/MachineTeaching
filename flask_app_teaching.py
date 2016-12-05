@@ -245,11 +245,12 @@ def get_response_testing():
     if request.method == 'POST':
         print 'clicked'
         data = request.get_data()
-        print data # class name 'stem' 'mound' 'fart'
-        print image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
-        print user_test_images_dict[session['name']]
-        truth = classes[image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]]
-        print truth 
+        print 'data', data # class name 'stem' 'mound' 'fart'
+        print 'image', image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
+        print 'test image index', user_test_counter_dict[session['name']]-1
+        print 'image index', user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]
+        truth = classes[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
+        print 'truth', truth 
         print user_test_ans_dict
         print user_test_counter_dict
 
