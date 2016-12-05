@@ -197,9 +197,8 @@ def logout():
             np.save('./testfiles/error_dict.npy', user_test_error_dict)
             with open('./testfiles/' + str(session['name']) + "_test.txt", "w") as myfile:
                 for item in user_test_ans_dict[session['name']]: 
-                    myfile.write("%s" % item)
-                myfile.write('\n')
-                myfile.write(user_test_ans_dict[session['name']])
+                    myfile.write("%s," % item)
+                myfile.write("\n")
                 myfile.write(str(user_test_error_dict[session['name']]) + '\n')
                 myfile.write(str(time.time() - user_test_time_dict[session['name']]) + '\n')
 
