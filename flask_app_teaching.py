@@ -243,6 +243,7 @@ def get_response_testing():
     if user_test_counter_dict[session['name']] == max_test: 
         return jsonify([url_for('logout'), 0])
     if request.method == 'POST':
+        print 'clicked'
         data = request.get_data()
         print data # class name 'stem' 'mound' 'fart'
         print image_list[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
@@ -278,6 +279,9 @@ def teaching_index():
 def testing_index():
     if not 'name' in session or not session['name'] in user_test_counter_dict:
         return redirect(url_for('login'))
+    print 'going to test'
+    print user_test_ans_dict
+    print user_test_ans_dict
     return render_template('test.html')
 
 
