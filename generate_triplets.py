@@ -1,4 +1,4 @@
-from flask_app import db
+from flask_app_crowd import db
 from page_model import PageModel
 import numpy
 from cython_tste import cy_tste
