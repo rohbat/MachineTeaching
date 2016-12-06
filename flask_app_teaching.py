@@ -13,6 +13,9 @@ import hashlib
 import sys
 
 print 'Initializing site!'
+import os
+cwd = os.getcwd()
+print "Path", cwd
 
 def update_page_with_indices(main, comp1, comp2):
     # Switch order of images with probability .5
