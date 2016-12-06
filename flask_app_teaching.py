@@ -79,7 +79,7 @@ app = Flask(__name__)
 # )
 # app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 # app.config["SQLALCHEMY_POOL_RECYCLE"] = 200
-# app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 # db.init_app(app)
 # db.app = app
