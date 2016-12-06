@@ -334,7 +334,7 @@ def login():
     global counter
     error = None
     if request.method == 'GET':
-        session['name'] = str(urls.index(url_for('login'))) + "," + str(counter)
+        session['name'] = str(urls.index(request.url)) + "," + str(counter)
         print "Session name", session['name']
         counter += 1
     if request.method == 'POST' and request.form['cont'] == "Continue":
