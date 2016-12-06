@@ -97,8 +97,6 @@ path = os.getcwd()
 class_names = glob.glob(path + "/MachineTeaching/static/chinese/ims/*")
 class_names.sort()
 
-print 'CLASS NAMES'
-print class_names
 class_name_dict = {}
 for class_name in class_names:
     class_name_dict[class_name] = glob.glob(class_name + "/*")
@@ -134,8 +132,8 @@ for key in classes_dict.keys():
         if key != key1 and not 'not' in str(key1):
             classes_dict['not'+str(key)].extend(classes_dict[key1])
 
-print classes, len(classes)
-print classes_dict, len(classes_dict)
+# print classes, len(classes)
+# print classes_dict, len(classes_dict)
 
 
 
@@ -208,21 +206,25 @@ def logout():
     if ('name' in session and session['name'] in user_nclicks_dict and 
         user_nclicks_dict[session['name']] == max_clicks and user_test_counter_dict[session['name']] == max_test):
             # end_id = session['name']
-            print user_test_ans_dict 
+            
             user_test_time_dict[session['name']] = time.time() - user_test_time_dict[session['name']] 
             user_test_error_dict[session['name']] = 1-float(np.sum(user_test_ans_dict[session['name']])) / float(max_test)
             end_id = hashlib.md5(str(session['name'])).hexdigest()
-            print user_test_counter_dict
-            print user_test_error_dict
 
+            print 'name: ', session['name'], '\n'
+            print 'method: ', user_selection_method_dict[session['name']], '\n'
+            print 'error: ', user_test_error_dict[session['name']], '\n'
+            
             np.save('./testfiles/ans_dict.npy', user_test_ans_dict)
             np.save('./testfiles/error_dict.npy', user_test_error_dict)
+            np.save('./testfiles/method_dict.npy', user_selection_method_dict)
             with open('./testfiles/' + str(session['name']) + "_test.txt", "w") as myfile:
                 for item in user_test_ans_dict[session['name']]: 
                     myfile.write("%s," % item)
                 myfile.write("\n")
                 myfile.write(str(user_test_error_dict[session['name']]) + '\n')
                 myfile.write(str(user_test_time_dict[session['name']]) + '\n')
+                myfile.write(str(user_selection_method_dict['name']]) + '\n')
 
             return render_template('end.html', end_id=end_id)
     else:
@@ -281,8 +283,7 @@ def get_response_testing():
         # print 'test image index', user_test_counter_dict[session['name']]-1
         # print 'image index', user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]
         truth = classes[user_test_images_dict[session['name']][user_test_counter_dict[session['name']]-1]]
-        print 'data', data 
-        print 'truth', truth 
+
         # print user_test_ans_dict
         # print user_test_counter_dict
         # print '\n'
@@ -316,9 +317,6 @@ def teaching_index():
 def testing_index():
     if not 'name' in session or not session['name'] in user_test_counter_dict:
         return redirect(url_for('login'))
-    print 'going to test'
-    print user_test_ans_dict
-    print user_test_counter_dict
     return render_template('test.html')
 
 
