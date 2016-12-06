@@ -321,22 +321,22 @@ def testing_index():
     return render_template('test.html')
 
 
-
+counter = 0
 # Create new user
 #
 # - Store given user name
 # - Create initial kernel for new user
 
+urls = ['http://cs101teaching2.pythonanywhere.com/login']
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global counter
     error = None
     if request.method == 'GET':
-        f = open("counter.txt", 'rb')
-        for line in f:
-            counter = int(line)
-        f.close()
-        session['name'] = counter
-        print "Awesome"
+        session['name'] = str(urls.index(request.url)) + "," + str(counter)
+        print "Session name", session['name']
+        counter += 1
     if request.method == 'POST' and request.form['cont'] == "Continue":
         np.save('nclicks_dict.npy', user_nclicks_dict)
         np.save('time_dict.npy', user_time_dict)
@@ -353,22 +353,12 @@ def login():
         return redirect(url_for('teaching_index'))
     return render_template('login_rand.html', error=error)
 
-urls = ['http://cs101teaching2.pythonanywhere.com/login']
+routing_counter = 0
 @app.route('/route', methods=['GET', 'POST'])
 def route():
-    counter = 0
-    try:
-        f = open("counter.txt", 'rb')
-        for line in f:
-            counter = int(line)
-        counter += 1
-        f.close()
-    except IOError:
-        pass
-    f = open("counter.txt", 'wb')
-    f.write(str(counter) + "\n")
-    f.close()
-    return redirect(urls[counter%len(urls)])
+    global routing_counter
+    routing_counter += 1
+    return redirect(urls[routing_counter%len(urls)])
 
 
 # Run
