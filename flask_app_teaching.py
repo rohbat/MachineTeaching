@@ -362,7 +362,7 @@ def login():
 routing_counter = 0
 @app.route('/route', methods=['GET', 'POST'])
 def route():
-    global routing_counter\
+    global routing_counter
     routing_counter += 1
     return redirect(urls[routing_counter%len(urls)])
 
