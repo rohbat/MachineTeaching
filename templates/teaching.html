@@ -4,6 +4,11 @@
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
+  $(document).ajaxStart(function(){
+    $('#loading').show();
+  }).ajaxStop(function(){
+    $('#loading').hide();
+  });
   processed = false;
 
   function processRequest(data) {
@@ -73,6 +78,9 @@ figure {
   </div>
 
   <div style="text-align: center">
+    <div id="loading">
+        <img src="/static/ajax-loader.gif" />
+    </div>
     <h1>Target Image</h1>
     <img id="result_img" height="100" width="100" />
     <figure class="item">  
