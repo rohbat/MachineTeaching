@@ -59,7 +59,7 @@ def get_result_img(result):
     if result == True:
         return '/static/correct_check_mark.png'
     else:
-        return '/static/you_know_you_fucked_up_right.jpg'
+        return '/static/incorrect_x_mark.png'
 
 # Make Flask app
 
@@ -200,7 +200,7 @@ def get_imgs():
 
     update_page(user_selection_method_dict[session['name']])
     user_images_dict[session['name']].update(page_model_dict[session['name']].get_index_list())
-    return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']])]) 
+    return jsonify(page_model_dict[session['name']].get_imgs_list() + [str(user_nclicks_dict[session['name']]), get_label_list()[0]]) 
 
 @app.route("/end/")
 def logout():
