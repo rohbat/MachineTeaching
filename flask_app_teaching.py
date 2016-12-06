@@ -328,16 +328,14 @@ def testing_index():
 # - Create initial kernel for new user
 
 @app.route('/login', methods=['GET', 'POST'])
-def login(): 
-    global counter 
-
+def login():
     error = None
+    if request.method == 'GET':
+        session['name'] = counter
     if request.method == 'POST' and request.form['cont'] == "Continue":
         np.save('nclicks_dict.npy', user_nclicks_dict)
         np.save('time_dict.npy', user_time_dict)
         np.save('code_dict.npy', user_code_dict)
-        session['name'] = counter
-        counter += 1
         page_model_dict[session['name']] = PageModel()
         user_selection_method_dict[session['name']] = random.randint(1, 4)
         user_nclicks_dict[session['name']] = 0
@@ -350,6 +348,13 @@ def login():
         return redirect(url_for('teaching_index'))
     return render_template('login_rand.html', error=error)
 
+urls = ['http://cs101teaching2.pythonanywhere.com/login']
+counter = 0
+@app.route('/route', methods=['GET', 'POST'])
+def route():
+    global counter
+    counter += 1
+    return redirect(urls[(counter-1)%len(urls)]+"?counter="+counter)
 
 
 # Run
