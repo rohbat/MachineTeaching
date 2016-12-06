@@ -177,8 +177,8 @@ user_test_time_dict = {}
 
 random.seed()
 counter = 0
-max_clicks = 2
-max_test = 5
+max_clicks = 9
+max_test = 30
 
 
 # Redirect user to login page
@@ -259,7 +259,7 @@ def get_response_kernel():
         K = np.zeros((N, N))
         Q = np.zeros((N, N))
         G = np.zeros((N, no_dims))
-        tste_grad(user_x_dict[session['name']], N, no_dims, page_model_dict[session['name']].get_index_list(), 0, no_dims-1, K, Q, G)
+        tste_grad(user_x_dict[session['name']], N, no_dims, page_model_dict[session['name']].get_index_list(), 0, no_dims-1.0, K, Q, G)
         user_x_dict[session['name']] = user_x_dict[session['name']] - 0.4 * G
         #print user_x_dict[session['name']]
 
