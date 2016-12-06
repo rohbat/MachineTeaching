@@ -327,7 +327,12 @@ counter = 0
 # - Store given user name
 # - Create initial kernel for new user
 
-urls = ['http://cs101teaching2.pythonanywhere.com/login']
+urls = ['http://cs101teaching2.pythonanywhere.com/login', 
+'http://machineteaching1.pythonanywhere.com/', 
+'http://machineteaching2.pythonanywhere.com/', 
+'http://machineteaching3.pythonanywhere.com/', 
+'http://machineteaching4.pythonanywhere.com/', 
+'http://machineteaching5.pythonanywhere.com/']
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
