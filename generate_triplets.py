@@ -2,8 +2,16 @@ from flask_app_crowd import db
 from page_model import PageModel
 import numpy
 from cython_tste import cy_tste
+import cPickle
+import random
 
-db_data = PageModel.query.all()
+random.seed(1)
+numpy.random.seed(1)
+#db_data = PageModel.query.all()
+f = open("triplets_chinese_chars.txt", "rb")
+db_data = cPickle.load(f)
+f.close()
+print len(db_data)
 triplets = []
 for pg_model in db_data:
     indices = pg_model.get_index_list()
@@ -13,11 +21,11 @@ for pg_model in db_data:
 triplets = numpy.array(triplets)
 print triplets
 embedding = cy_tste.tste(triplets,
-     no_dims=2,
+     no_dims=5,
      lamb=0,
      alpha=None,
      verbose=True,
-     max_iter=100,
+     max_iter=4000,
      save_each_iteration=False,
      initial_X=None,
      static_points=numpy.array([]),
@@ -26,3 +34,6 @@ embedding = cy_tste.tste(triplets,
      use_log=False,
      )
 print embedding
+numpy.save("X_initial", embedding)
+embedding1 = numpy.load("X_initial.npy")
+print embedding1

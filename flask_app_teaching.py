@@ -143,7 +143,7 @@ print classes_dict, len(classes_dict)
 
 N = len(classes)
 no_dims = 5
-alpha = no_dims - 1
+alpha = no_dims - 1.0
 eta = 0.1
 
 
@@ -260,7 +260,7 @@ def get_response_kernel():
         Q = np.zeros((N, N))
         G = np.zeros((N, no_dims))
         tste_grad(user_x_dict[session['name']], N, no_dims, page_model_dict[session['name']].get_index_list(), 0, no_dims-1, K, Q, G)
-        user_x_dict[session['name']] = user_x_dict[session['name']] - (float(eta) / N) * G
+        user_x_dict[session['name']] = user_x_dict[session['name']] - 0.4 * G
         #print user_x_dict[session['name']]
 
     # make_transient(page_model_dict[session['name']])
@@ -351,7 +351,7 @@ def login():
         user_selection_method_dict[session['name']] = random.randint(1, 4)
         user_nclicks_dict[session['name']] = 0
         user_time_dict[session['name']] = [time.time(), 0]
-        user_x_dict[session['name']] = np.random.rand(N, no_dims)
+        user_x_dict[session['name']] = np.load("MachineTeaching/static/X_initial.npy")
         user_images_dict[session['name']] = set([])
 
         print 'Selection Method: ' + str(user_selection_method_dict[session['name']])
@@ -362,7 +362,7 @@ def login():
 routing_counter = 0
 @app.route('/route', methods=['GET', 'POST'])
 def route():
-    global routing_counter
+    global routing_counter\
     routing_counter += 1
     return redirect(urls[routing_counter%len(urls)])
 

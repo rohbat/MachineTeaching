@@ -136,11 +136,11 @@ def best_gradient_triplet(train, X,N,no_dims,alpha,lamb,classes,classes_dict,eta
                 triplet = (i, j, k)
                 p = tste_grad(X, N, no_dims, (i, j, k), lamb, alpha, K, Q, G)
                 for a in triplet:
-                    X1[a, :] = X[a, :] - (float(eta) / no_classes * N) * G[a, :]
+                    X1[a, :] = X[a, :] - 0.4 * G[a, :]
                 p1 = compute_kernel_and_probability_at_triplet(X1, N, triplet, no_dims, alpha, K)
                 tste_grad(X, N, no_dims, (i, k, j), lamb, alpha, K, Q, G)
                 for a in triplet:
-                    X1[a, :] = X[a, :] - (float(eta) / no_classes * N) * G[a, :]
+                    X1[a, :] = X[a, :] - 0.4 * G[a, :]
                 p2 = compute_kernel_and_probability_at_triplet(X1, N, triplet, no_dims, alpha, K)
                 val = p*p1+(1.0-p)*p2 - p
                 if val > max_val:
@@ -170,7 +170,7 @@ def score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes,classes_d
 
     p = tste_grad(X, N, no_dims, (a, b, c), lamb, alpha, K, Q, G)
     for t in triplet:
-        X_new[t, :] = X[t, :] - (float(eta) / no_classes * N) * G[t, :]
+        X_new[t, :] = X[t, :] - 0.4 * G[t, :]
     compute_kernel_from_triplet_to_dst_triplets(X, X_new, N, triplet, no_dims, alpha, K, rand_triplets)
 
     # Compute probability (or log-prob) for each triplet
@@ -186,7 +186,7 @@ def score_triplet_random_sample(X,N,no_dims,alpha,lamb,triplet,classes,classes_d
 
     tste_grad(X, N, no_dims, (a, c, b), lamb, alpha, K, Q, G)
     for t in triplet:
-        X_new[t, :] = X[t, :] - (float(eta) / no_classes * N) * G[t, :]
+        X_new[t, :] = X[t, :] - 0.4 * G[t, :]
     compute_kernel_from_triplet_to_dst_triplets(X, X_new, N, triplet, no_dims, alpha, K, rand_triplets)
 
     prob2 = 0.0
