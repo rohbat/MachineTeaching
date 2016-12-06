@@ -331,7 +331,12 @@ def testing_index():
 def login():
     error = None
     if request.method == 'GET':
+        f = open("counter.txt", 'rb')
+        for line in f:
+            counter = int(line)
+        f.close()
         session['name'] = counter
+        print "Awesome"
     if request.method == 'POST' and request.form['cont'] == "Continue":
         np.save('nclicks_dict.npy', user_nclicks_dict)
         np.save('time_dict.npy', user_time_dict)
@@ -349,12 +354,21 @@ def login():
     return render_template('login_rand.html', error=error)
 
 urls = ['http://cs101teaching2.pythonanywhere.com/login']
-counter = 0
 @app.route('/route', methods=['GET', 'POST'])
 def route():
-    global counter
-    counter += 1
-    return redirect(urls[(counter-1)%len(urls)]+"?counter="+str(counter))
+    counter = 0
+    try:
+        f = open("counter.txt", 'rb')
+        for line in f:
+            counter = int(line)
+        counter += 1
+        f.close()
+    except IOError:
+        pass
+    f = open("counter.txt", 'wb')
+    f.write(str(counter) + "\n")
+    f.close()
+    return redirect(urls[counter%len(urls)])
 
 
 # Run
