@@ -214,7 +214,7 @@ def logout():
             print 'name: ', session['name'], '\n'
             print 'method: ', user_selection_method_dict[session['name']], '\n'
             print 'error: ', user_test_error_dict[session['name']], '\n'
-            
+
             np.save('./testfiles/ans_dict.npy', user_test_ans_dict)
             np.save('./testfiles/error_dict.npy', user_test_error_dict)
             np.save('./testfiles/method_dict.npy', user_selection_method_dict)
@@ -224,7 +224,7 @@ def logout():
                 myfile.write("\n")
                 myfile.write(str(user_test_error_dict[session['name']]) + '\n')
                 myfile.write(str(user_test_time_dict[session['name']]) + '\n')
-                myfile.write(str(user_selection_method_dict['name']]) + '\n')
+                myfile.write(str(user_selection_method_dict[session['name']]) + '\n')
 
             return render_template('end.html', end_id=end_id)
     else:
