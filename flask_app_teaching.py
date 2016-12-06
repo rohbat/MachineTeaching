@@ -331,11 +331,11 @@ counter = 0
 # - Create initial kernel for new user
 
 urls = ['http://cs101teaching2.pythonanywhere.com/login', 
-'http://machineteaching1.pythonanywhere.com/', 
-'http://machineteaching2.pythonanywhere.com/', 
-'http://machineteaching3.pythonanywhere.com/', 
-'http://machineteaching4.pythonanywhere.com/', 
-'http://machineteaching5.pythonanywhere.com/']
+'http://machineteaching1.pythonanywhere.com/login', 
+'http://machineteaching2.pythonanywhere.com/login', 
+'http://machineteaching3.pythonanywhere.com/login', 
+'http://machineteaching4.pythonanywhere.com/login', 
+'http://machineteaching5.pythonanywhere.com/login']
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
