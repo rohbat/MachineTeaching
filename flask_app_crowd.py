@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template, redirect, url_for, s
 from sqlalchemy.orm.session import sessionmaker, make_transient
 from sqlalchemy import create_engine
 from database import db
-from page_model import PageModel
+from page_model_seabed import PageModel
 import glob
 import os 
 import random
@@ -65,7 +65,7 @@ session_sql = Session_sql()
 
 # Make image list
 
-image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/chinese/ims/*/*")
+image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/seabed/ims/*/*")
 image_list.sort()
 
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
