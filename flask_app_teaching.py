@@ -262,8 +262,8 @@ def get_response_kernel():
         user_x_dict[session['name']] = user_x_dict[session['name']] - (float(eta) / N) * G
         #print user_x_dict[session['name']]
 
-    make_transient(page_model_dict[session['name']])
-    page_model_dict[session['name']].id = None
+    # make_transient(page_model_dict[session['name']])
+    # page_model_dict[session['name']].id = None
     # session_sql.add(page_model_dict[session['name']])
     # session_sql.commit()
 
