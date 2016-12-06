@@ -13,9 +13,6 @@ import hashlib
 import sys
 
 print 'Initializing site!'
-import os
-cwd = os.getcwd()
-print "Path", cwd
 
 def update_page_with_indices(main, comp1, comp2):
     # Switch order of images with probability .5
@@ -95,8 +92,9 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 # Set up classes and classes_dict
-
-class_names = glob.glob("/home/cs101teaching2/MachineTeaching/static/chinese/ims/*")
+import os
+path = os.getcwd()
+class_names = glob.glob(path + "/MachineTeaching/static/chinese/ims/*")
 class_names.sort()
 
 print 'CLASS NAMES'
@@ -110,7 +108,7 @@ for k, v in class_name_dict.iteritems():
     for elm in v:
         name_class[elm] = k
 
-image_list = glob.glob("/home/cs101teaching2/MachineTeaching/static/chinese/ims/*/*")
+image_list = glob.glob(path + "/MachineTeaching/static/chinese/ims/*/*")
 image_list.sort()
 N = len(image_list)
 
@@ -119,7 +117,7 @@ for i in range(len(image_list)):
     classes[i] = class_names.index(name_class[image_list[i]])
 
 
-class_names = [c.replace("/home/cs101teaching2/MachineTeaching/static/chinese/ims/", "") for c in class_names]
+class_names = [c.replace(path + "/MachineTeaching/static/chinese/ims/", "") for c in class_names]
 
 classes_dict = {}
 for i in range(len(class_names)):
@@ -152,7 +150,7 @@ eta = 0.1
 
 # Make image list
 
-image_list = [img.replace("/home/cs101teaching2/MachineTeaching", "") for img in image_list]
+image_list = [img.replace(path + "/MachineTeaching", "") for img in image_list]
 
 
 
