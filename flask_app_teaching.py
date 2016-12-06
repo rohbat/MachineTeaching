@@ -184,7 +184,7 @@ max_test = 5
 
 @app.route("/")
 def to_login():
-    return redirect(url_for('login'))
+    return redirect(url_for('route'))
 
 # Return image list in JSON format 
 
@@ -354,7 +354,7 @@ counter = 0
 def route():
     global counter
     counter += 1
-    return redirect(urls[(counter-1)%len(urls)]+"?counter="+counter)
+    return redirect(urls[(counter-1)%len(urls)]+"?counter="+str(counter))
 
 
 # Run
