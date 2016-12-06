@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for, session
-from sqlalchemy.orm.session import sessionmaker, make_transient
-from sqlalchemy import create_engine
-from database import db
-from page_model import PageModel
+# from sqlalchemy.orm.session import sessionmaker, make_transient
+# from sqlalchemy import create_engine
+# from database import db
+from page_model_no_db import PageModel
 import glob
 import os 
 import random
@@ -69,25 +69,25 @@ app = Flask(__name__)
 
 
 
-# Set up database
+# # Set up database
 
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="cs101teaching2",
-    password="gogo_teaching",
-    hostname="cs101teaching2.mysql.pythonanywhere-services.com",
-    databasename="cs101teaching2$teaching",
-)
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 200
+# SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+#     username="cs101teaching2",
+#     password="gogo_teaching",
+#     hostname="cs101teaching2.mysql.pythonanywhere-services.com",
+#     databasename="cs101teaching2$teaching",
+# )
+# app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+# app.config["SQLALCHEMY_POOL_RECYCLE"] = 200
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
-db.init_app(app)
-db.app = app
+# db.init_app(app)
+# db.app = app
 
-engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_recycle=200)
+# engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_recycle=200)
 
-Session_sql = sessionmaker(bind=engine, expire_on_commit=False)
-session_sql = Session_sql()
+# Session_sql = sessionmaker(bind=engine, expire_on_commit=False)
+# session_sql = Session_sql()
 
 
 
@@ -264,8 +264,8 @@ def get_response_kernel():
 
     make_transient(page_model_dict[session['name']])
     page_model_dict[session['name']].id = None
-    session_sql.add(page_model_dict[session['name']])
-    session_sql.commit()
+    # session_sql.add(page_model_dict[session['name']])
+    # session_sql.commit()
 
     
     return jsonify([main_label, c1_label, c2_label, get_result_img(result)])
