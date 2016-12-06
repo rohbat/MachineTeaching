@@ -70,6 +70,13 @@
 figure { 
     display: inline-block;
 }
+
+#loading {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
 </style>
 
 <body>
@@ -78,15 +85,15 @@ figure {
   </div>
 
   <div style="text-align: center">
-    <div id="loading">
-        <img src="/static/ajax-loader.gif" />
-    </div>
     <h1>Target Image</h1>
     <img id="result_img" height="100" width="100" />
     <figure class="item">  
       <img id="main_img" height="250" width="250" />
       <figcaption class="caption" id="main_label"> </figcaption>
     </figure>
+    <div id="loading">
+        <img src="/static/ajax-loader.gif" />
+    </div>
   </div>
   <div style="text-align: center">
     <h3>Please click on the image below that looks most similar to the one above: </h3>
