@@ -122,7 +122,7 @@ classes_dict_seabed = {}
 for i in range(len(class_names)):
     classes_dict_seabed[i] = []
 
-N_test = 30
+N_test = 5
 
 for i in range(N):
     classes_dict_seabed[classes[i]].append(i)
@@ -171,6 +171,7 @@ user_test_images_dict_seabed = {}
 user_test_error_dict_seabed = {}
 user_test_ans_dict_seabed = {}
 user_test_time_dict_seabed = {}
+user_train_ans_dict_seabed = {}
 
 # Set triplet
 
@@ -195,6 +196,7 @@ def get_imgs():
         user_test_counter_dict_seabed[session['name']] = 1
         user_test_error_dict_seabed[session['name']] = 0
         user_test_ans_dict_seabed[session['name']] = []
+        user_train_ans_dict_seabed[session['name']] = []
         user_test_time_dict_seabed[session['name']] = time.time()
         return jsonify([url_for('testing_index'), 0])
 
@@ -206,7 +208,6 @@ def get_imgs():
 def logout():
     if ('name' in session and session['name'] in user_nclicks_dict_seabed and 
         user_nclicks_dict_seabed[session['name']] == max_clicks and user_test_counter_dict_seabed[session['name']] == max_test):
-            # end_id = session['name']
             
             user_test_time_dict_seabed[session['name']] = time.time() - user_test_time_dict_seabed[session['name']] 
             user_test_error_dict_seabed[session['name']] = 1-float(np.sum(user_test_ans_dict_seabed[session['name']])) / float(max_test)
@@ -257,8 +258,9 @@ def get_response_kernel():
                 result = True
             else:
                 result = False
-        print 'truth: ', main_label
-        print 'result: ', result
+        print 'RESULT: ', result
+        user_train_ans_dict_seabed[session['name']].append(result)
+        print 'TRAIN ANS: ', user_train_ans_dict_seabed[session['name']]
         user_nclicks_dict_seabed[session['name']] += 1
         user_time_dict_seabed[session['name']][1] = time.time()
         K = np.zeros((N, N))
@@ -295,6 +297,7 @@ def get_response_testing():
             user_test_ans_dict_seabed[session['name']].append(1)
         else: 
             user_test_ans_dict_seabed[session['name']].append(0)
+        print 'ANSWERS: ', user_test_ans_dict_seabed[session['name']]
     if user_test_counter_dict_seabed[session['name']] == max_test: 
         return jsonify([url_for('logout'), 0])
     user_test_counter_dict_seabed[session['name']] += 1
@@ -354,7 +357,6 @@ def login():
         user_time_dict_seabed[session['name']] = [time.time(), 0]
         # user_x_dict_seabed[session['name']] = np.load("MachineTeaching/static/X_initial.npy")
         user_x_dict_seabed[session['name']] = np.random.rand(N, no_dims)
-        print 'dims: ', user_x_dict_seabed[session['name']].shape
         user_images_dict_seabed[session['name']] = set([])
 
         print 'Selection Method: ' + str(user_selection_method_dict_seabed[session['name']])
