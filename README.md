@@ -16,7 +16,7 @@ For strategies 2-4, it is too computationaly intensive to evalute all possible t
 
 We launched a session on Amazon Mechanical Turk to evaluate our aglorithms. The hit consisted of a teaching phase and a testing phase. In the teaching phase, we randomly assigned each user to a selection strategy, and presented a series of triplets using that strategy. We displayed both the triplet and the class labels, and told users whether they identified the triplet correctly/incorrectly. In the testing phase, we only showed single images to the users and asked users to select which class the image belongs to. 
 
-The test results of the different selection strategies for the China dataset can be found in graph.png. We will follow up with results on the Seabed dataset as well.
+The test results of the different selection strategies for the China dataset can be found in china_dataset_results.png. We will follow up with results on the Seabed dataset as well.
 
 In order to create the teaching interface, we used a Flask & SqlAlchemy backend hosted on Pythonanywhere along with a Javascript front end. We used "sessions" to personlize the teaching for each user. Note that since we designed the ML algorithms to take ~1.5s per click. So, in order to make our application responsive for real-time users, we had to scale our solution with multiple processors and randomized load-balancing to handle the concurrent load from Amazon MTURK. 
 
