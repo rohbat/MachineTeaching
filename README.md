@@ -8,7 +8,7 @@ The next step after obtaining the embedding was to actually teach through triple
 
 2) Most Uncertainty- Show the triplet with current probability closest to 0.5.
 
-3) Best Gradient Increase- Take a gradient step assuming the user identifies the triplet correctly. Next, take a gradient step assuming the user identifies the triplet incorrectly. Let p be the prior probability of the triplet before the graident steps, and let p1,p2 be the probabilities after gradient steps assuming the user gets the triplet correct/incorrect. So, selecting the triplet that maximizes p*p1+(1-p)*p2-p.
+3) Best Gradient Increase- Take a gradient step assuming the user identifies the triplet correctly. Next, take a gradient step assuming the user identifies the triplet incorrectly. Let p be the prior probability of the triplet before the graident steps, and let p1,p2 be the probabilities after gradient steps assuming the user gets the triplet correct/incorrect. So, selecting the triplet that maximizes p * p1+(1-p) * p2-p.
 
 4) Best Gradient Increase Random Sample- Similar the 3, except recognizing the fact that a gradient step affects not only the current triplet, but also O(n^2) other triplets. So, for each triplet, randomly sample from all other triplets that are affect by the gradient update and average method 3 across these triplets.
 
