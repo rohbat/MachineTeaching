@@ -94,7 +94,7 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 # Set up classes and classes_dict_seabed
 import os
 path = os.getcwd()
-class_names = glob.glob(path + "/MachineTeaching/static/chinese/ims/*")
+class_names = glob.glob(path + "/MachineTeaching/static/seabed/ims/*")
 class_names.sort()
 
 class_name_dict_seabed = {}
@@ -116,7 +116,7 @@ for i in range(len(image_list)):
 
 
 class_names = [c.replace(path + "/MachineTeaching/static/seabed/ims/", "") for c in class_names]
-print class_names
+print 'class names: ', class_names
 
 classes_dict_seabed = {}
 for i in range(len(class_names)):
