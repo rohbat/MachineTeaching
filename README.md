@@ -1,6 +1,6 @@
 # MachineTeaching 
 
-Our project was to conduct interactive machine teaching of images through triplets. We first collected data from the crowd, where we showed users triplets of images and had users identify which images were similar. For each dataset, we collected ~6000 triplets using Amazon Mturk. Then, we used the triplets to create a t-Stochastic Triplet Embedding (tSTE) for the images.
+Our project was to conduct the interactive multi-class machine teaching of images through triplets. We first collected data from the crowd, where we showed users triplets of images and had users identify which images were similar. For each dataset, we collected ~6000 triplets using Amazon Mturk. Then, we used the triplets to create a t-Stochastic Triplet Embedding (tSTE) for the images.
 
 The next step after obtaining the embedding was to actually teach through triplets. We noted the fact that the tSTE gave us a probabilisitc model representing the probability of each triplet under the embedding (p_ijk). We further realized that instead of optimizing over the kernel, we could directly optimize the tSTE objective function in an online manner through stochastic gradient descent. This led to the development of four different selection strategies for determining the next triplet to show to users:
 
