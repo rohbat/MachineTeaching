@@ -10,7 +10,7 @@ The next step after obtaining the embedding was to actually teach through triple
 
 3) Best Gradient Increase- Take a gradient step assuming the user identifies the triplet correctly. Next, take a gradient step assuming the user identifies the triplet incorrectly. Let p be the probability of the triplet before the gradient steps, and let p1, p2 be the probabilities after gradient step assuming the user gets the triplet correct/incorrect. So, select the triplet that maximizes p * p1 + (1-p) * p2 - p.
 
-4) Best Gradient Increase Random Sample- Similar the 3, except recognize the fact that a gradient step affects not only the current triplet, but also O(n^2) other triplets. So, for each triplet randomly sample from all other triplets that are affected by the gradient step and average method 3 across these triplets.
+4) Best Gradient Increase Random Sample- Similar the 3, except recognize the fact that a gradient step affects not only the current triplet, but also O(n^2) other triplets. So, for each triplet randomly sample from all other triplets that are affected by the gradient step and average across these, selecting the triplet the maximizes p * p1_avg + (1-p) * p2_avg - p_avg.
 
 For strategies 2-4, it is too computationaly intensive to evalute all possible triplets in the online scenerio. So, for each strategy we randomly sampled and scored as many triplets as possible given the online setting (<1.5s for algorithms).
 
