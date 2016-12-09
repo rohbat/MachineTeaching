@@ -257,6 +257,8 @@ def get_response_kernel():
                 result = True
             else:
                 result = False
+        print 'truth: ', main_label
+        print 'result: ', result
         user_nclicks_dict_seabed[session['name']] += 1
         user_time_dict_seabed[session['name']][1] = time.time()
         K = np.zeros((N, N))
@@ -351,6 +353,7 @@ def login():
         user_nclicks_dict_seabed[session['name']] = 0
         user_time_dict_seabed[session['name']] = [time.time(), 0]
         user_x_dict_seabed[session['name']] = np.load("MachineTeaching/static/X_initial.npy")
+        print 'dims: ', user_x_dict_seabed[session['name']].shape
         user_images_dict_seabed[session['name']] = set([])
 
         print 'Selection Method: ' + str(user_selection_method_dict_seabed[session['name']])
