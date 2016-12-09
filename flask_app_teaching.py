@@ -122,7 +122,7 @@ classes_dict_seabed = {}
 for i in range(len(class_names)):
     classes_dict_seabed[i] = []
 
-N_test = 5
+N_test = 30
 
 for i in range(N):
     classes_dict_seabed[classes[i]].append(i)
