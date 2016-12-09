@@ -196,7 +196,6 @@ def get_imgs():
         user_test_counter_dict_seabed[session['name']] = 1
         user_test_error_dict_seabed[session['name']] = 0
         user_test_ans_dict_seabed[session['name']] = []
-        user_train_ans_dict_seabed[session['name']] = []
         user_test_time_dict_seabed[session['name']] = time.time()
         return jsonify([url_for('testing_index'), 0])
 
@@ -355,6 +354,7 @@ def login():
         user_selection_method_dict_seabed[session['name']] = random.randint(1, 4)
         user_nclicks_dict_seabed[session['name']] = 0
         user_time_dict_seabed[session['name']] = [time.time(), 0]
+        user_train_ans_dict_seabed[session['name']] = []
         # user_x_dict_seabed[session['name']] = np.load("MachineTeaching/static/X_initial.npy")
         user_x_dict_seabed[session['name']] = np.random.rand(N, no_dims)
         user_images_dict_seabed[session['name']] = set([])
