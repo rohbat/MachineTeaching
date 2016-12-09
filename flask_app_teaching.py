@@ -352,7 +352,8 @@ def login():
         user_selection_method_dict_seabed[session['name']] = random.randint(1, 4)
         user_nclicks_dict_seabed[session['name']] = 0
         user_time_dict_seabed[session['name']] = [time.time(), 0]
-        user_x_dict_seabed[session['name']] = np.load("MachineTeaching/static/X_initial.npy")
+        # user_x_dict_seabed[session['name']] = np.load("MachineTeaching/static/X_initial.npy")
+        user_x_dict_seabed[session['name']] = np.random.rand([N, no_dims])
         print 'dims: ', user_x_dict_seabed[session['name']].shape
         user_images_dict_seabed[session['name']] = set([])
 
