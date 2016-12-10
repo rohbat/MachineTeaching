@@ -219,6 +219,7 @@ def logout():
             np.save('./testfiles_seabed/ans_dict_seabed.npy', user_test_ans_dict_seabed)
             np.save('./testfiles_seabed/error_dict_seabed.npy', user_test_error_dict_seabed)
             np.save('./testfiles_seabed/method_dict_seabed.npy', user_selection_method_dict_seabed)
+            np.save('./testfiles_seabed/train_ans_dict_seabed.npy', user_train_ans_dict_seabed)
             with open('./testfiles_seabed/' + str(session['name']) + "_test.txt", "w") as myfile:
                 for item in user_test_ans_dict_seabed[session['name']]: 
                     myfile.write("%s," % item)
