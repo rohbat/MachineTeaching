@@ -355,8 +355,8 @@ def login():
         user_nclicks_dict_seabed[session['name']] = 0
         user_time_dict_seabed[session['name']] = [time.time(), 0]
         user_train_ans_dict_seabed[session['name']] = []
-        # user_x_dict_seabed[session['name']] = np.load("MachineTeaching/static/X_initial.npy")
-        user_x_dict_seabed[session['name']] = np.random.rand(N, no_dims)
+        user_x_dict_seabed[session['name']] = np.load("MachineTeaching/static/X_initial_seabed.npy")
+        #user_x_dict_seabed[session['name']] = np.random.rand(N, no_dims)
         user_images_dict_seabed[session['name']] = set([])
 
         print 'Selection Method: ' + str(user_selection_method_dict_seabed[session['name']])
