@@ -330,7 +330,7 @@ def get_test_img():
 def teaching_index():
     if not 'name' in session or not session['name'] in user_nclicks_dict_seabed:
         return redirect(url_for('login'))
-    return render_template('teaching.html')
+    return render_template('teaching_seabed.html')
 
 @app.route("/testing/")
 def testing_index():
