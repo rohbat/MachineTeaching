@@ -27,7 +27,10 @@
         document.getElementById("main_label").innerHTML = data[4]; 
         document.getElementById("c1_label").innerHTML = ""; 
         document.getElementById("c2_label").innerHTML = ""; 
-        document.getElementById("result_img").style.display = "none";
+        $('#main_img').css('outline', '0px solid #1E90FF')
+        $('#compare1').css('outline', '0px solid #1E90FF')
+        $('#compare2').css('outline', '0px solid #1E90FF')
+
         $("#cont").prop("disabled", true);
         processed = false;
         }
@@ -44,8 +47,13 @@
           document.getElementById("main_label").innerHTML = data[0]; 
           document.getElementById("c1_label").innerHTML = data[1]; 
           document.getElementById("c2_label").innerHTML = data[2]; 
-          $("#result_img").attr("src", data[3])
-          document.getElementById("result_img").style.display = "none";
+          $('#main_img').css('outline', '5px solid #1E90FF')
+          $('#main_img').css('outline-offset', '-5px')
+          $('#compare1').css('outline', data[5])
+          $('#compare1').css('outline-offset', '-5px')
+          $('#compare2').css('outline', data[6])
+          $('#compare2').css('outline-offset', '-5px')
+
           $("#cont").prop("disabled", false);
           processed = true;
         }
@@ -53,8 +61,10 @@
   $(document).ready(function() {
     document.getElementById("insert").innerHTML = '0'; 
     document.getElementById("feedback").innerHTML = 'Please click on the image below that looks most similar to the one above: ';
-    $('#othertext').css('display', 'none');
+    $('#othertext').css('display', 'none')
+    $("#cont").prop("disabled", true)
 
+    
 
     $.get( "/get_imgs", function(data) {
       processRequest(data)
@@ -83,6 +93,14 @@ figure {
     display: inline-block;
 }
 
+h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+border {
+
+}
 
 #loading {
    position: fixed;
@@ -91,15 +109,13 @@ figure {
    transform: translate(-50%, -50%);
 }
 </style>
-
 <body>
-  <div style="text-align: right">
-  <h4> <b id="insert"></b> of 9 </h4>
+  <div style="text-align: right" display='inline-block'>
+  <h4><small> <b id="insert"></b> of 9 </small></h4>
   </div>
 
   <div style="text-align: center">
-    <h1>Target Image</h1>
-    <img id="result_img" height="100" width="100" />
+    <h1><nobr>Target Image</nobr></h1>
     <figure class="item">  
       <img id="main_img" height="200" width="200" />
       <figcaption class="caption" id="main_label"> </figcaption>
@@ -109,7 +125,7 @@ figure {
     </div>
   </div>
   <div style="text-align: center">
-    <h3> <b id="feedback"></b> <b id="othertext"> Please observe the correct response and click continue. </b> </h3>
+    <h3> <big><b id="feedback"></b></big> <b id="othertext"> Observe the correct labels and response boxed in blue, then click continue. </b> </h3>
     <figure class="item">
       <input type="image" id="compare1" width="200" />
       <figcaption class="caption" id="c1_label"> </figcaption>

@@ -55,6 +55,7 @@ def get_label_list():
     compare_img_2_label = class_names[classes[page_model_dict_seabed[session['name']].compare_img_2]]
     return (main_label, compare_img_1_label, compare_img_2_label)
 
+
 def get_result_img(result):
     if result == True:
         return '/static/correct_check_mark.png'
@@ -69,7 +70,7 @@ def get_result_text(result):
 
 def get_result_color(result): 
     if result == True: 
-        return 'green'
+        return '#1E90FF'
     else: 
         return 'red'
 
@@ -287,8 +288,15 @@ def get_response_kernel():
     # session_sql.add(page_model_dict_seabed[session['name']])
     # session_sql.commit()
 
+    if main_label == c1_label: 
+        c1_border = '5px solid #1E90FF'
+        c2_border = '0px solid #1E90FF'
+    elif main_label == c2_label: 
+        c1_border = '0px solid #1E90FF'
+        c2_border = '5px solid #1E90FF'
+
     
-    return jsonify([main_label, c1_label, c2_label, get_result_text(result), get_result_color(result)])
+    return jsonify([main_label, c1_label, c2_label, get_result_text(result), get_result_color(result), c1_border, c2_border])
     # return jsonify([main_label, c1_label, c2_label, get_result_img(result)])
 
 
