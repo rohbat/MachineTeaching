@@ -61,6 +61,18 @@ def get_result_img(result):
     else:
         return '/static/incorrect_x_mark.png'
 
+def get_result_text(result): 
+    if result == True: 
+        return 'CORRECT! Please observe the correct answer and click continue. '
+    else: 
+        return 'INCORRECT! Please observe the correct answer and click continue. '
+
+def get_result_color(result): 
+    if result == True: 
+        return 'green'
+    else: 
+        return 'red'
+
 # Make Flask app
 
 app = Flask(__name__)
@@ -276,7 +288,8 @@ def get_response_kernel():
     # session_sql.commit()
 
     
-    return jsonify([main_label, c1_label, c2_label, get_result_img(result)])
+    return jsonify([main_label, c1_label, c2_label, get_result_text(result), get_result_color(result)])
+    # return jsonify([main_label, c1_label, c2_label, get_result_img(result)])
 
 
 @app.route("/testing/get_response", methods = ['POST'])

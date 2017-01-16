@@ -1,0 +1,127 @@
+<html>
+<head>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+  $(document).ajaxStart(function(){
+    $('#loading').show();
+  }).ajaxStop(function(){
+    $('#loading').hide();
+  });
+  processed = false;
+
+  function processRequest(data) {
+        if(data.length == 2){
+          window.location.href = data[0]
+        }
+        else{
+        $("#main_img").attr("src", data[0])
+        $("#compare1").attr("src", data[1])
+        $("#compare2").attr("src", data[2])
+        document.getElementById("insert").innerHTML = data[3];
+        document.getElementById("feedback").innerHTML = 'Please click on the image below that looks most similar to the one above: ';
+        $('#feedback').css('color', 'black');
+        $('#othertext').css('display', 'none');
+
+        document.getElementById("main_label").innerHTML = data[4]; 
+        document.getElementById("c1_label").innerHTML = ""; 
+        document.getElementById("c2_label").innerHTML = ""; 
+        document.getElementById("result_img").style.display = "none";
+        $("#cont").prop("disabled", true);
+        processed = false;
+        }
+      }
+
+  function processResponse(data) {
+        if(!processed) {
+          $("#compare1").attr("onclick", "return false")
+          $("#compare2").attr("onclick", "return false")
+          document.getElementById("feedback").innerHTML = data[3]; 
+          $('#feedback').css('color', data[4]);
+          $('#othertext').css('display', 'inline');
+
+          document.getElementById("main_label").innerHTML = data[0]; 
+          document.getElementById("c1_label").innerHTML = data[1]; 
+          document.getElementById("c2_label").innerHTML = data[2]; 
+          $("#result_img").attr("src", data[3])
+          document.getElementById("result_img").style.display = "none";
+          $("#cont").prop("disabled", false);
+          processed = true;
+        }
+      }   
+  $(document).ready(function() {
+    document.getElementById("insert").innerHTML = '0'; 
+    document.getElementById("feedback").innerHTML = 'Please click on the image below that looks most similar to the one above: ';
+    $('#othertext').css('display', 'none');
+
+
+    $.get( "/get_imgs", function(data) {
+      processRequest(data)
+    });
+    $("#compare1").click(function() {
+      $.post( "/kernel/get_response", "0", function(data) {
+        processResponse(data)
+      });
+    });
+    $("#compare2").click(function() {
+      $.post( "/kernel/get_response", "1", function(data) {
+        processResponse(data)
+      });
+    });
+    $("#cont").click(function() {
+      $.post( "/get_imgs", function(data) {
+        processRequest(data)
+      });
+    });
+  });
+</script>
+</head>
+
+<style>
+figure { 
+    display: inline-block;
+}
+
+
+#loading {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+</style>
+
+<body>
+  <div style="text-align: right">
+  <h4> <b id="insert"></b> of 9 </h4>
+  </div>
+
+  <div style="text-align: center">
+    <h1>Target Image</h1>
+    <img id="result_img" height="100" width="100" />
+    <figure class="item">  
+      <img id="main_img" height="200" width="200" />
+      <figcaption class="caption" id="main_label"> </figcaption>
+    </figure>
+    <div id="loading">
+        <img src="/static/ajax-loader.gif" />
+    </div>
+  </div>
+  <div style="text-align: center">
+    <h3> <b id="feedback"></b> <b id="othertext"> Please observe the correct response and click continue. </b> </h3>
+    <figure class="item">
+      <input type="image" id="compare1" width="200" />
+      <figcaption class="caption" id="c1_label"> </figcaption>
+    </figure>
+    <figure class="item">
+      <input type="image" id="compare2" width="200" />
+      <figcaption class="caption" id="c2_label"> </figcaption>
+    </figure>
+  </div>
+  
+  <input id='cont' type="submit" value="Continue" style="border: none; background-color: #1E90FF; font-size: 20px; width: 400px; height: 30px; margin:auto; display:block;" /> 
+
+</body>
+
+</html>
