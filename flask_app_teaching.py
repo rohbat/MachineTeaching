@@ -384,7 +384,7 @@ def login():
         print 'Selection Method: ' + str(user_selection_method_dict_seabed[session['name']])
 
         return redirect(url_for('teaching_index'))
-    return render_template('login_rand.html', error=error)
+    return render_template('login_instr.html', error=error)
 
 routing_counter = 0
 @app.route('/route', methods=['GET', 'POST'])
