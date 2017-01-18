@@ -31,7 +31,7 @@
         $('#compare1').css('outline', '0px solid #1E90FF')
         $('#compare2').css('outline', '0px solid #1E90FF')
 
-        $("#cont").prop("disabled", true);
+        $('#cont').css('display', 'none')
         processed = false;
         }
       }
@@ -54,7 +54,7 @@
           $('#compare2').css('outline', data[6])
           $('#compare2').css('outline-offset', '-5px')
 
-          $("#cont").prop("disabled", false);
+          $('#cont').css('display', 'block')
           processed = true;
         }
       }   
@@ -62,10 +62,10 @@
     document.getElementById("insert").innerHTML = '0'; 
     document.getElementById("feedback").innerHTML = 'Please click on the image below that looks most similar to the one above: ';
     $('#othertext').css('display', 'none')
-    $("#cont").prop("disabled", true)
+    $('#cont').css('display', 'none')
 
-    
 
+  
     $.get( "/get_imgs", function(data) {
       processRequest(data)
     });
@@ -111,7 +111,7 @@ border {
 </style>
 <body>
   <div style="text-align: right" display='inline-block'>
-  <h4><small> <b id="insert"></b> of 9 </small></h4>
+  <h4><small> <b id="insert"></b> of 30 </small></h4>
   </div>
 
   <div style="text-align: center">

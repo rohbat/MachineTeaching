@@ -64,9 +64,9 @@ def get_result_img(result):
 
 def get_result_text(result): 
     if result == True: 
-        return 'CORRECT! Please observe the correct answer and click continue. '
+        return 'CORRECT! '
     else: 
-        return 'INCORRECT! Please observe the correct answer and click continue. '
+        return 'INCORRECT! '
 
 def get_result_color(result): 
     if result == True: 
