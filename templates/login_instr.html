@@ -10,6 +10,16 @@
  font-family: Helvetica; 
 }
 
+.did {
+    max-width:20%;
+    margin-left:40%;
+    margin-right:40%; /* 70+30 = 100 */
+}
+p {
+    margin-right: 130px;
+    margin-left: 130px;
+}
+
 input[type=submit] {
     width: 20em;  height: 5em;
 }
@@ -18,7 +28,50 @@ input[type=submit] {
   <body>
     <div class="container" style="text-align: center">
       <h1>Identifying Seabed Animals</h1>
-      <img src="../static/instructions.png" style="width:800px;height:500px;">
+      <h3>In this short experiment, you will learn to identify the following four seabed animals from pictures:</h3>
+      
+      <ul class='did' style="text-align: left">
+        <li>Ascidiidae</li>
+        <li>Molgulidae</li>
+        <li>Porifera Massive</li>
+        <li>Stylasterida</li>
+      </ul>
+      <h3>Please read the instructions below. </h3>
+      <hr>
+
+      <p>
+        The first 9 questions compose the <b>learning phase</b>. The user will be asked to select which of two images is most similar to a third. 
+      </p>
+
+      <p>
+        A simple example question is shown below. The <b>target image</b> is "A", and is <b>labeled</b> that it is "Animal A". The user will then <b>click</b> on either of the two images--"A" or "B"--in the second row which he/she believes is <b>most similar</b> to the target image. 
+      </p>
+      <img src="../static/instructions/ask.png" style='width:600px' border="1">
+      <hr>
+
+      <p>
+        The user will then be told whether his/her answer is <b><font color="#1E90FF">correct</font></b> or <b><font color="red">incorrect</font></b>, and shown the correct answer.
+      </p>
+      <p> 
+        In our example, if the user clicked image "A" on the bottom, the below <b><font color="#1E90FF">correct</font></b> window is shown. The correct answer is boxed in  <b><font color="#1E90FF">blue</font></b> and all <b>labels</b> are shown. <b>Please memorize these labels</b> as you will be assessed on your knowledge in the second half. Then click continue.
+      </p>
+      <img src="../static/instructions/correct.png" style="width:600px" border="1">
+      <hr>
+
+      <p>
+        If the user clicked image "B" on the bottom, the <b><font color="red">incorrect</font></b> window is shown. The correct answer is again boxed in  <b><font color="#1E90FF">blue</font></b> and all <b>labels</b> are shown. <b>Please memorize these labels</b> as you will be assessed on your knowledge in the second half. Then click continue.
+      </p>
+      <img src="../static/instructions/incorrect.png" style="width:600px" border="1">
+      <hr>
+
+      <p>
+      The next 30 multiple questions are multiple choice, and will <b>assess your knowledge</b>. You will be shown a picture, and be asked to <b>select its identity</b> from one of the 4 choices above. An example for "Animal A" is shown below. 
+      </p>
+      <img src="../static/instructions/test.png" style="width:800px" border="1">
+      <hr>
+
+      <p> Bonuses are granted for the top 10% of scores. Thank you for your time! </p>
+
       <h1>Click continue to begin your task. </h1>
       <form action="" method="post">
         <input class="button" name='cont' type="submit" value="Continue">
