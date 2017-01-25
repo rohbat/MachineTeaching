@@ -8,7 +8,7 @@ import random
 random.seed(1)
 numpy.random.seed(1)
 #db_data = PageModel.query.all()
-f = open("triplets_chinese_chars.txt", "rb")
+f = open("triplets_seabed.txt", "rb")
 db_data = cPickle.load(f)
 f.close()
 print len(db_data)
@@ -21,7 +21,7 @@ for pg_model in db_data:
 triplets = numpy.array(triplets)
 print triplets
 embedding = cy_tste.tste(triplets,
-     no_dims=5,
+     no_dims=2,
      lamb=0,
      alpha=None,
      verbose=True,
@@ -34,6 +34,6 @@ embedding = cy_tste.tste(triplets,
      use_log=False,
      )
 print embedding
-numpy.save("X_initial_repeat", embedding)
-embedding1 = numpy.load("X_initial_repeat.npy")
+numpy.save("X_initial_seabed_2", embedding)
+embedding1 = numpy.load("X_initial_seabed_2.npy")
 print embedding1
