@@ -135,7 +135,7 @@ classes_dict_seabed = {}
 for i in range(len(class_names)):
     classes_dict_seabed[i] = []
 
-N_test = 30
+N_test = 20
 
 for i in range(N):
     classes_dict_seabed[classes[i]].append(i)
@@ -190,8 +190,8 @@ user_train_ans_dict_seabed = {}
 
 random.seed()
 counter = 0
-max_clicks = 9
-max_test = 30
+max_clicks = 16
+max_test = 20
 
 
 # Redirect user to login page
