@@ -8,7 +8,7 @@ import random
 random.seed(1)
 numpy.random.seed(1)
 #db_data = PageModel.query.all()
-f = open("triplets_seabed.txt", "rb")
+f = open("triplets_chinese_chars.txt", "rb")
 db_data = cPickle.load(f)
 f.close()
 print len(db_data)
