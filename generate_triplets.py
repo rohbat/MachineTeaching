@@ -21,7 +21,7 @@ for pg_model in db_data:
 triplets = numpy.array(triplets)
 print triplets
 embedding = cy_tste.tste(triplets,
-     no_dims=2,
+     no_dims=10,
      lamb=0,
      alpha=None,
      verbose=True,
@@ -34,6 +34,6 @@ embedding = cy_tste.tste(triplets,
      use_log=False,
      )
 print embedding
-numpy.save("X_initial_seabed_2", embedding)
-embedding1 = numpy.load("X_initial_seabed_2.npy")
+numpy.save("X_initial_chinese_10", embedding)
+embedding1 = numpy.load("X_initial_chinese_10.npy")
 print embedding1
