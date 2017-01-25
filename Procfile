@@ -1,1 +1,1 @@
-web: python flask_app_teaching.py
+web: gunicorn gettingstarted.wsgi
