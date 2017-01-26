@@ -229,6 +229,7 @@ def logout():
             print 'method: ', user_selection_method_dict_seabed[session['name']], '\n'
             print 'error: ', user_test_error_dict_seabed[session['name']], '\n'
 
+            np.save('./testfiles_seabed/user_x_dict_seabed.npy', user_x_dict_seabed)
             np.save('./testfiles_seabed/ans_dict_seabed.npy', user_test_ans_dict_seabed)
             np.save('./testfiles_seabed/error_dict_seabed.npy', user_test_error_dict_seabed)
             np.save('./testfiles_seabed/method_dict_seabed.npy', user_selection_method_dict_seabed)
