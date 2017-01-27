@@ -20,7 +20,7 @@ import random
         
 # triplets = numpy.array(triplets)
 # print triplets
-triplets = np.load('user_x_dict_seabed.npy')
+triplets = numpy.load('user_x_dict_seabed.npy')
 print(triplets.shape)
 embedding = cy_tste.tste(triplets,
      no_dims=5,
