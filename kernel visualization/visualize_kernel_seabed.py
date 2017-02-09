@@ -52,16 +52,9 @@ def main():
 	'''
 	load data
 	'''
-	kernel_file = './user_x_dict_seabed.npy'
-	kernel_dic = np.load(kernel_file).item()
-
-	start_kernel_file = '../static/X_initial_seabed.npy'
-	start_kernel = np.load(start_kernel_file)
-	
-	kernel = kernel_dic['0,0']
-
-	print(float(np.sum(kernel != start_kernel)) / float(kernel.shape[0]*kernel.shape[1]))
-	
+	kernel_file = '../static/X_initial_seabed.npy'
+	# kernel_file = './static/X_initial_seabed.npy'
+	kernel = np.load(kernel_file)
 
 	'''
 	PCA into 2D
@@ -89,7 +82,7 @@ def main():
 	blue_patch = mpatches.Patch(color='cyan', label='porifera-Massive')
 	grey_patch = mpatches.Patch(color='blue', label='stylasterida')
 	plt.legend(handles=[red_patch, green_patch, blue_patch, grey_patch])
-	plt.savefig('seabed_kernel_after.png')
+	plt.savefig('seabed_kernel.png')
 	plt.show()
 
 

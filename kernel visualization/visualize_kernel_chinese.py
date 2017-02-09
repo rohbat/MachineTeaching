@@ -48,7 +48,7 @@ def main():
 	'''
 	load data
 	'''
-	kernel_file = '../static/X_initial_chinese.npy'
+	kernel_file = '../static/X_initial.npy'
 	# kernel_file = './static/X_initial_seabed.npy'
 	kernel = np.load(kernel_file)
 
