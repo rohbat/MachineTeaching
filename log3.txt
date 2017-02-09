@@ -1,0 +1,1077 @@
+2016-12-06 02:52:09 *** Starting uWSGI 2.0.5.1 (64bit) on [Tue Dec  6 02:52:08 2016] ***
+2016-12-06 02:52:09 compiled with version: 4.8.4 on 24 October 2016 12:07:25
+2016-12-06 02:52:09 os: Linux-3.13.0-100-generic #147-Ubuntu SMP Tue Oct 18 16:48:51 UTC 2016
+2016-12-06 02:52:09 nodename: harry-liveweb1
+2016-12-06 02:52:09 machine: x86_64
+2016-12-06 02:52:09 clock source: unix
+2016-12-06 02:52:09 pcre jit disabled
+2016-12-06 02:52:09 detected number of CPU cores: 4
+2016-12-06 02:52:09 current working directory: /etc/uwsgi/vassals
+2016-12-06 02:52:09 detected binary path: /usr/local/bin/uwsgi
+2016-12-06 02:52:09 *** dumping internal routing table ***
+2016-12-06 02:52:09 [rule: 0] subject: path_info regexp: \.svgz$ action: addheader:Content-Encoding:gzip
+2016-12-06 02:52:09 *** end of the internal routing table ***
+2016-12-06 02:52:09 using Linux cgroup /mnt/cgroups/cpu/user_types/free with mode 700
+2016-12-06 02:52:09 assigned process 13934 to cgroup /mnt/cgroups/cpu/user_types/free/tasks
+2016-12-06 02:52:09 created Linux cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 02:52:09 assigned process 13934 to cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 02:52:09 created Linux cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 02:52:09 assigned process 13934 to cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 02:52:09 uWSGI running as root, you can use --uid/--gid/--chroot options
+2016-12-06 02:52:09 chroot() to /mnt/chroots/machineteaching3/dangermouse
+2016-12-06 02:52:09 setgid() to 60000
+2016-12-06 02:52:09 setuid() to 2064185
+2016-12-06 02:52:09 limiting number of processes to 15...
+2016-12-06 02:52:09 your processes number limit is 15
+2016-12-06 02:52:09 your memory page size is 4096 bytes
+2016-12-06 02:52:09 detected max file descriptor number: 123456
+2016-12-06 02:52:09 building mime-types dictionary from file /etc/mime.types...
+2016-12-06 02:52:09 536 entry found
+2016-12-06 02:52:09 lock engine: pthread robust mutexes
+2016-12-06 02:52:09 thunder lock: disabled (you can enable it with --thunder-lock)
+2016-12-06 02:52:09 uwsgi socket 0 bound to UNIX address /var/sockets/machineteaching3.pythonanywhere.com/socket fd 7
+2016-12-06 02:52:09 Python version: 2.7.6 (default, Jun 22 2015, 18:01:27)  [GCC 4.8.2]
+2016-12-06 02:52:09 *** Python threads support is disabled. You can enable it with --enable-threads ***
+2016-12-06 02:52:09 Python main interpreter initialized at 0x854d30
+2016-12-06 02:52:09 your server socket listen backlog is limited to 3000 connections
+2016-12-06 02:52:09 your mercy for graceful operations on workers is 60 seconds
+2016-12-06 02:52:09 setting request body buffering size to 65536 bytes
+2016-12-06 02:52:09 mapped 333952 bytes (326 KB) for 1 cores
+2016-12-06 02:52:09 *** Operational MODE: single process ***
+2016-12-06 02:52:09 initialized 35 metrics
+2016-12-06 02:52:09 WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x854d30 pid: 13934 (default app)
+2016-12-06 02:52:09 *** uWSGI is running in multiple interpreter mode ***
+2016-12-06 02:52:09 spawned uWSGI master process (pid: 13934)
+2016-12-06 02:52:09 spawned uWSGI worker 1 (pid: 13937, cores: 1)
+2016-12-06 02:52:09 metrics collector thread started
+2016-12-06 02:52:09 spawned 2 offload threads for uWSGI worker 1
+2016-12-06 02:52:32 announcing my loyalty to the Emperor...
+2016-12-06 02:54:15 Tue Dec  6 02:54:15 2016 - received message 0 from emperor
+2016-12-06 02:54:15 SIGINT/SIGQUIT received...killing workers...
+2016-12-06 02:54:16 worker 1 buried after 1 seconds
+2016-12-06 02:54:16 goodbye to uWSGI.
+2016-12-06 02:54:16 chdir(): No such file or directory [core/uwsgi.c line 1541]
+2016-12-06 02:54:16 VACUUM: unix socket /var/sockets/machineteaching3.pythonanywhere.com/socket removed.
+2016-12-06 02:54:19 *** Starting uWSGI 2.0.5.1 (64bit) on [Tue Dec  6 02:54:19 2016] ***
+2016-12-06 02:54:19 compiled with version: 4.8.4 on 24 October 2016 12:07:25
+2016-12-06 02:54:19 os: Linux-3.13.0-100-generic #147-Ubuntu SMP Tue Oct 18 16:48:51 UTC 2016
+2016-12-06 02:54:19 nodename: harry-liveweb1
+2016-12-06 02:54:19 machine: x86_64
+2016-12-06 02:54:19 clock source: unix
+2016-12-06 02:54:19 pcre jit disabled
+2016-12-06 02:54:19 detected number of CPU cores: 4
+2016-12-06 02:54:19 current working directory: /etc/uwsgi/vassals
+2016-12-06 02:54:19 detected binary path: /usr/local/bin/uwsgi
+2016-12-06 02:54:19 *** dumping internal routing table ***
+2016-12-06 02:54:19 [rule: 0] subject: path_info regexp: \.svgz$ action: addheader:Content-Encoding:gzip
+2016-12-06 02:54:19 *** end of the internal routing table ***
+2016-12-06 02:54:19 using Linux cgroup /mnt/cgroups/cpu/user_types/free with mode 700
+2016-12-06 02:54:19 assigned process 14790 to cgroup /mnt/cgroups/cpu/user_types/free/tasks
+2016-12-06 02:54:19 using Linux cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 02:54:19 assigned process 14790 to cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 02:54:19 using Linux cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 02:54:19 assigned process 14790 to cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 02:54:19 uWSGI running as root, you can use --uid/--gid/--chroot options
+2016-12-06 02:54:19 chroot() to /mnt/chroots/machineteaching3/dangermouse
+2016-12-06 02:54:19 setgid() to 60000
+2016-12-06 02:54:19 setuid() to 2064185
+2016-12-06 02:54:19 limiting number of processes to 15...
+2016-12-06 02:54:19 your processes number limit is 15
+2016-12-06 02:54:19 your memory page size is 4096 bytes
+2016-12-06 02:54:19 detected max file descriptor number: 123456
+2016-12-06 02:54:19 building mime-types dictionary from file /etc/mime.types...
+2016-12-06 02:54:19 536 entry found
+2016-12-06 02:54:19 lock engine: pthread robust mutexes
+2016-12-06 02:54:19 thunder lock: disabled (you can enable it with --thunder-lock)
+2016-12-06 02:54:19 uwsgi socket 0 bound to UNIX address /var/sockets/machineteaching3.pythonanywhere.com/socket fd 7
+2016-12-06 02:54:19 Python version: 2.7.6 (default, Jun 22 2015, 18:01:27)  [GCC 4.8.2]
+2016-12-06 02:54:19 *** Python threads support is disabled. You can enable it with --enable-threads ***
+2016-12-06 02:54:19 Python main interpreter initialized at 0xf5da00
+2016-12-06 02:54:19 your server socket listen backlog is limited to 3000 connections
+2016-12-06 02:54:19 your mercy for graceful operations on workers is 60 seconds
+2016-12-06 02:54:19 setting request body buffering size to 65536 bytes
+2016-12-06 02:54:19 mapped 333952 bytes (326 KB) for 1 cores
+2016-12-06 02:54:19 *** Operational MODE: single process ***
+2016-12-06 02:54:19 initialized 35 metrics
+2016-12-06 02:54:19 WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xf5da00 pid: 14790 (default app)
+2016-12-06 02:54:19 *** uWSGI is running in multiple interpreter mode ***
+2016-12-06 02:54:19 spawned uWSGI master process (pid: 14790)
+2016-12-06 02:54:19 spawned uWSGI worker 1 (pid: 14793, cores: 1)
+2016-12-06 02:54:19 metrics collector thread started
+2016-12-06 02:54:19 spawned 2 offload threads for uWSGI worker 1
+2016-12-06 02:54:20 announcing my loyalty to the Emperor...
+2016-12-06 03:13:05 Tue Dec  6 03:13:05 2016 - received message 0 from emperor
+2016-12-06 03:13:05 SIGINT/SIGQUIT received...killing workers...
+2016-12-06 03:13:06 worker 1 buried after 1 seconds
+2016-12-06 03:13:06 goodbye to uWSGI.
+2016-12-06 03:13:06 chdir(): No such file or directory [core/uwsgi.c line 1541]
+2016-12-06 03:13:06 VACUUM: unix socket /var/sockets/machineteaching3.pythonanywhere.com/socket removed.
+2016-12-06 03:13:07 *** Starting uWSGI 2.0.5.1 (64bit) on [Tue Dec  6 03:13:06 2016] ***
+2016-12-06 03:13:07 compiled with version: 4.8.4 on 24 October 2016 12:07:25
+2016-12-06 03:13:07 os: Linux-3.13.0-100-generic #147-Ubuntu SMP Tue Oct 18 16:48:51 UTC 2016
+2016-12-06 03:13:07 nodename: harry-liveweb1
+2016-12-06 03:13:07 machine: x86_64
+2016-12-06 03:13:07 clock source: unix
+2016-12-06 03:13:07 pcre jit disabled
+2016-12-06 03:13:07 detected number of CPU cores: 4
+2016-12-06 03:13:07 current working directory: /etc/uwsgi/vassals
+2016-12-06 03:13:07 detected binary path: /usr/local/bin/uwsgi
+2016-12-06 03:13:07 *** dumping internal routing table ***
+2016-12-06 03:13:07 [rule: 0] subject: path_info regexp: \.svgz$ action: addheader:Content-Encoding:gzip
+2016-12-06 03:13:07 *** end of the internal routing table ***
+2016-12-06 03:13:07 using Linux cgroup /mnt/cgroups/cpu/user_types/free with mode 700
+2016-12-06 03:13:07 assigned process 21827 to cgroup /mnt/cgroups/cpu/user_types/free/tasks
+2016-12-06 03:13:07 using Linux cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 03:13:07 assigned process 21827 to cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 03:13:07 using Linux cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 03:13:07 assigned process 21827 to cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 03:13:07 uWSGI running as root, you can use --uid/--gid/--chroot options
+2016-12-06 03:13:07 chroot() to /mnt/chroots/machineteaching3/dangermouse
+2016-12-06 03:13:07 setgid() to 60000
+2016-12-06 03:13:07 setuid() to 2064185
+2016-12-06 03:13:07 limiting number of processes to 15...
+2016-12-06 03:13:07 your processes number limit is 15
+2016-12-06 03:13:07 your memory page size is 4096 bytes
+2016-12-06 03:13:07 detected max file descriptor number: 123456
+2016-12-06 03:13:07 building mime-types dictionary from file /etc/mime.types...
+2016-12-06 03:13:07 536 entry found
+2016-12-06 03:13:07 lock engine: pthread robust mutexes
+2016-12-06 03:13:07 thunder lock: disabled (you can enable it with --thunder-lock)
+2016-12-06 03:13:07 uwsgi socket 0 bound to UNIX address /var/sockets/machineteaching3.pythonanywhere.com/socket fd 7
+2016-12-06 03:13:07 Python version: 2.7.6 (default, Jun 22 2015, 18:01:27)  [GCC 4.8.2]
+2016-12-06 03:13:07 *** Python threads support is disabled. You can enable it with --enable-threads ***
+2016-12-06 03:13:07 Python main interpreter initialized at 0x751a00
+2016-12-06 03:13:07 your server socket listen backlog is limited to 3000 connections
+2016-12-06 03:13:07 your mercy for graceful operations on workers is 60 seconds
+2016-12-06 03:13:07 setting request body buffering size to 65536 bytes
+2016-12-06 03:13:07 mapped 333952 bytes (326 KB) for 1 cores
+2016-12-06 03:13:07 *** Operational MODE: single process ***
+2016-12-06 03:13:07 initialized 35 metrics
+2016-12-06 03:13:07 WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x751a00 pid: 21827 (default app)
+2016-12-06 03:13:07 *** uWSGI is running in multiple interpreter mode ***
+2016-12-06 03:13:07 spawned uWSGI master process (pid: 21827)
+2016-12-06 03:13:07 spawned uWSGI worker 1 (pid: 21832, cores: 1)
+2016-12-06 03:13:07 metrics collector thread started
+2016-12-06 03:13:07 spawned 2 offload threads for uWSGI worker 1
+2016-12-06 03:13:09 announcing my loyalty to the Emperor...
+2016-12-06 03:13:32 Tue Dec  6 03:13:32 2016 - received message 1 from emperor
+2016-12-06 03:13:32 ...gracefully killing workers...
+2016-12-06 03:13:32 Gracefully killing worker 1 (pid: 21832)...
+2016-12-06 03:13:33 worker 1 buried after 1 seconds
+2016-12-06 03:13:33 uWSGI: GAME OVER (insert coin)
+2016-12-06 03:13:33 chdir(): No such file or directory [core/uwsgi.c line 1541]
+2016-12-06 03:13:33 VACUUM: unix socket /var/sockets/machineteaching3.pythonanywhere.com/socket removed.
+2016-12-06 03:13:34 *** Starting uWSGI 2.0.5.1 (64bit) on [Tue Dec  6 03:13:33 2016] ***
+2016-12-06 03:13:34 compiled with version: 4.8.4 on 24 October 2016 12:07:25
+2016-12-06 03:13:34 os: Linux-3.13.0-100-generic #147-Ubuntu SMP Tue Oct 18 16:48:51 UTC 2016
+2016-12-06 03:13:34 nodename: harry-liveweb1
+2016-12-06 03:13:34 machine: x86_64
+2016-12-06 03:13:34 clock source: unix
+2016-12-06 03:13:34 pcre jit disabled
+2016-12-06 03:13:34 detected number of CPU cores: 4
+2016-12-06 03:13:34 current working directory: /etc/uwsgi/vassals
+2016-12-06 03:13:34 detected binary path: /usr/local/bin/uwsgi
+2016-12-06 03:13:34 *** dumping internal routing table ***
+2016-12-06 03:13:34 [rule: 0] subject: path_info regexp: \.svgz$ action: addheader:Content-Encoding:gzip
+2016-12-06 03:13:34 *** end of the internal routing table ***
+2016-12-06 03:13:34 using Linux cgroup /mnt/cgroups/cpu/user_types/free with mode 700
+2016-12-06 03:13:34 assigned process 21947 to cgroup /mnt/cgroups/cpu/user_types/free/tasks
+2016-12-06 03:13:34 using Linux cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 03:13:34 assigned process 21947 to cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 03:13:34 using Linux cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 03:13:34 assigned process 21947 to cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 03:13:34 uWSGI running as root, you can use --uid/--gid/--chroot options
+2016-12-06 03:13:34 chroot() to /mnt/chroots/machineteaching3/dangermouse
+2016-12-06 03:13:34 setgid() to 60000
+2016-12-06 03:13:34 setuid() to 2064185
+2016-12-06 03:13:34 limiting number of processes to 15...
+2016-12-06 03:13:34 your processes number limit is 15
+2016-12-06 03:13:34 your memory page size is 4096 bytes
+2016-12-06 03:13:34 detected max file descriptor number: 123456
+2016-12-06 03:13:34 building mime-types dictionary from file /etc/mime.types...
+2016-12-06 03:13:34 536 entry found
+2016-12-06 03:13:34 lock engine: pthread robust mutexes
+2016-12-06 03:13:34 thunder lock: disabled (you can enable it with --thunder-lock)
+2016-12-06 03:13:34 uwsgi socket 0 bound to UNIX address /var/sockets/machineteaching3.pythonanywhere.com/socket fd 7
+2016-12-06 03:13:34 Python version: 2.7.6 (default, Jun 22 2015, 18:01:27)  [GCC 4.8.2]
+2016-12-06 03:13:34 *** Python threads support is disabled. You can enable it with --enable-threads ***
+2016-12-06 03:13:34 Python main interpreter initialized at 0x1811a00
+2016-12-06 03:13:34 your server socket listen backlog is limited to 3000 connections
+2016-12-06 03:13:34 your mercy for graceful operations on workers is 60 seconds
+2016-12-06 03:13:34 setting request body buffering size to 65536 bytes
+2016-12-06 03:13:34 mapped 333952 bytes (326 KB) for 1 cores
+2016-12-06 03:13:34 *** Operational MODE: single process ***
+2016-12-06 03:13:34 initialized 35 metrics
+2016-12-06 03:13:34 Initializing site!
+2016-12-06 03:13:34 CLASS NAMES
+2016-12-06 03:13:34 []
+2016-12-06 03:13:34 [] 0
+2016-12-06 03:13:34 {} 0
+2016-12-06 03:13:34 WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x1811a00 pid: 21947 (default app)
+2016-12-06 03:13:34 *** uWSGI is running in multiple interpreter mode ***
+2016-12-06 03:13:34 spawned uWSGI master process (pid: 21947)
+2016-12-06 03:13:34 spawned uWSGI worker 1 (pid: 21955, cores: 1)
+2016-12-06 03:13:34 metrics collector thread started
+2016-12-06 03:13:34 spawned 2 offload threads for uWSGI worker 1
+2016-12-06 03:13:36 announcing my loyalty to the Emperor...
+2016-12-06 03:40:18 Tue Dec  6 03:40:18 2016 - received message 1 from emperor
+2016-12-06 03:40:18 ...gracefully killing workers...
+2016-12-06 03:40:18 Gracefully killing worker 1 (pid: 21955)...
+2016-12-06 03:40:19 worker 1 buried after 1 seconds
+2016-12-06 03:40:19 uWSGI: GAME OVER (insert coin)
+2016-12-06 03:40:19 chdir(): No such file or directory [core/uwsgi.c line 1541]
+2016-12-06 03:40:19 VACUUM: unix socket /var/sockets/machineteaching3.pythonanywhere.com/socket removed.
+2016-12-06 03:40:20 *** Starting uWSGI 2.0.5.1 (64bit) on [Tue Dec  6 03:40:19 2016] ***
+2016-12-06 03:40:20 compiled with version: 4.8.4 on 24 October 2016 12:07:25
+2016-12-06 03:40:20 os: Linux-3.13.0-100-generic #147-Ubuntu SMP Tue Oct 18 16:48:51 UTC 2016
+2016-12-06 03:40:20 nodename: harry-liveweb1
+2016-12-06 03:40:20 machine: x86_64
+2016-12-06 03:40:20 clock source: unix
+2016-12-06 03:40:20 pcre jit disabled
+2016-12-06 03:40:20 detected number of CPU cores: 4
+2016-12-06 03:40:20 current working directory: /etc/uwsgi/vassals
+2016-12-06 03:40:20 detected binary path: /usr/local/bin/uwsgi
+2016-12-06 03:40:20 *** dumping internal routing table ***
+2016-12-06 03:40:20 [rule: 0] subject: path_info regexp: \.svgz$ action: addheader:Content-Encoding:gzip
+2016-12-06 03:40:20 *** end of the internal routing table ***
+2016-12-06 03:40:20 using Linux cgroup /mnt/cgroups/cpu/user_types/free with mode 700
+2016-12-06 03:40:20 assigned process 2684 to cgroup /mnt/cgroups/cpu/user_types/free/tasks
+2016-12-06 03:40:20 using Linux cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 03:40:20 assigned process 2684 to cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 03:40:20 using Linux cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 03:40:20 assigned process 2684 to cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 03:40:20 uWSGI running as root, you can use --uid/--gid/--chroot options
+2016-12-06 03:40:20 chroot() to /mnt/chroots/machineteaching3/dangermouse
+2016-12-06 03:40:20 setgid() to 60000
+2016-12-06 03:40:20 setuid() to 2064185
+2016-12-06 03:40:20 limiting number of processes to 15...
+2016-12-06 03:40:20 your processes number limit is 15
+2016-12-06 03:40:20 your memory page size is 4096 bytes
+2016-12-06 03:40:20 detected max file descriptor number: 123456
+2016-12-06 03:40:20 building mime-types dictionary from file /etc/mime.types...
+2016-12-06 03:40:20 536 entry found
+2016-12-06 03:40:20 lock engine: pthread robust mutexes
+2016-12-06 03:40:20 thunder lock: disabled (you can enable it with --thunder-lock)
+2016-12-06 03:40:20 uwsgi socket 0 bound to UNIX address /var/sockets/machineteaching3.pythonanywhere.com/socket fd 7
+2016-12-06 03:40:20 Python version: 2.7.6 (default, Jun 22 2015, 18:01:27)  [GCC 4.8.2]
+2016-12-06 03:40:20 *** Python threads support is disabled. You can enable it with --enable-threads ***
+2016-12-06 03:40:20 Python main interpreter initialized at 0x1381a00
+2016-12-06 03:40:20 your server socket listen backlog is limited to 3000 connections
+2016-12-06 03:40:20 your mercy for graceful operations on workers is 60 seconds
+2016-12-06 03:40:20 setting request body buffering size to 65536 bytes
+2016-12-06 03:40:20 mapped 333952 bytes (326 KB) for 1 cores
+2016-12-06 03:40:20 *** Operational MODE: single process ***
+2016-12-06 03:40:20 initialized 35 metrics
+2016-12-06 03:40:20 Initializing site!
+2016-12-06 03:40:20 CLASS NAMES
+2016-12-06 03:40:20 []
+2016-12-06 03:40:20 [] 0
+2016-12-06 03:40:20 {} 0
+2016-12-06 03:40:20 WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x1381a00 pid: 2684 (default app)
+2016-12-06 03:40:20 *** uWSGI is running in multiple interpreter mode ***
+2016-12-06 03:40:20 spawned uWSGI master process (pid: 2684)
+2016-12-06 03:40:20 spawned uWSGI worker 1 (pid: 2730, cores: 1)
+2016-12-06 03:40:20 metrics collector thread started
+2016-12-06 03:40:20 spawned 2 offload threads for uWSGI worker 1
+2016-12-06 03:40:22 announcing my loyalty to the Emperor...
+2016-12-06 03:59:49 Tue Dec  6 03:59:49 2016 - received message 1 from emperor
+2016-12-06 03:59:49 ...gracefully killing workers...
+2016-12-06 03:59:49 Gracefully killing worker 1 (pid: 2730)...
+2016-12-06 03:59:50 worker 1 buried after 1 seconds
+2016-12-06 03:59:50 uWSGI: GAME OVER (insert coin)
+2016-12-06 03:59:50 chdir(): No such file or directory [core/uwsgi.c line 1541]
+2016-12-06 03:59:50 VACUUM: unix socket /var/sockets/machineteaching3.pythonanywhere.com/socket removed.
+2016-12-06 03:59:51 *** Starting uWSGI 2.0.5.1 (64bit) on [Tue Dec  6 03:59:50 2016] ***
+2016-12-06 03:59:51 compiled with version: 4.8.4 on 24 October 2016 12:07:25
+2016-12-06 03:59:51 os: Linux-3.13.0-100-generic #147-Ubuntu SMP Tue Oct 18 16:48:51 UTC 2016
+2016-12-06 03:59:51 nodename: harry-liveweb1
+2016-12-06 03:59:51 machine: x86_64
+2016-12-06 03:59:51 clock source: unix
+2016-12-06 03:59:51 pcre jit disabled
+2016-12-06 03:59:51 detected number of CPU cores: 4
+2016-12-06 03:59:51 current working directory: /etc/uwsgi/vassals
+2016-12-06 03:59:51 detected binary path: /usr/local/bin/uwsgi
+2016-12-06 03:59:51 *** dumping internal routing table ***
+2016-12-06 03:59:51 [rule: 0] subject: path_info regexp: \.svgz$ action: addheader:Content-Encoding:gzip
+2016-12-06 03:59:51 *** end of the internal routing table ***
+2016-12-06 03:59:51 using Linux cgroup /mnt/cgroups/cpu/user_types/free with mode 700
+2016-12-06 03:59:51 assigned process 9209 to cgroup /mnt/cgroups/cpu/user_types/free/tasks
+2016-12-06 03:59:51 using Linux cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 03:59:51 assigned process 9209 to cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 03:59:51 using Linux cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 03:59:51 assigned process 9209 to cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 03:59:51 uWSGI running as root, you can use --uid/--gid/--chroot options
+2016-12-06 03:59:51 chroot() to /mnt/chroots/machineteaching3/dangermouse
+2016-12-06 03:59:51 setgid() to 60000
+2016-12-06 03:59:51 setuid() to 2064185
+2016-12-06 03:59:51 limiting number of processes to 15...
+2016-12-06 03:59:51 your processes number limit is 15
+2016-12-06 03:59:51 your memory page size is 4096 bytes
+2016-12-06 03:59:51 detected max file descriptor number: 123456
+2016-12-06 03:59:51 building mime-types dictionary from file /etc/mime.types...
+2016-12-06 03:59:51 536 entry found
+2016-12-06 03:59:51 lock engine: pthread robust mutexes
+2016-12-06 03:59:51 thunder lock: disabled (you can enable it with --thunder-lock)
+2016-12-06 03:59:51 uwsgi socket 0 bound to UNIX address /var/sockets/machineteaching3.pythonanywhere.com/socket fd 7
+2016-12-06 03:59:51 Python version: 2.7.6 (default, Jun 22 2015, 18:01:27)  [GCC 4.8.2]
+2016-12-06 03:59:51 *** Python threads support is disabled. You can enable it with --enable-threads ***
+2016-12-06 03:59:51 Python main interpreter initialized at 0x1349d30
+2016-12-06 03:59:51 your server socket listen backlog is limited to 3000 connections
+2016-12-06 03:59:51 your mercy for graceful operations on workers is 60 seconds
+2016-12-06 03:59:51 setting request body buffering size to 65536 bytes
+2016-12-06 03:59:51 mapped 333952 bytes (326 KB) for 1 cores
+2016-12-06 03:59:51 *** Operational MODE: single process ***
+2016-12-06 03:59:51 initialized 35 metrics
+2016-12-06 03:59:51 Initializing site!
+2016-12-06 03:59:51 CLASS NAMES
+2016-12-06 03:59:51 ['/home/machineteaching3/MachineTeaching/static/chinese/ims/grass', '/home/machineteaching3/MachineTeaching/static/chinese/ims/mound', '/home/machineteaching3/MachineTeaching/static/chinese/ims/stem']
+2016-12-06 03:59:51 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+2016-12-06 03:59:51  2 2 2 2 2 2 2 2 2 2 2 2 2 2] 717
+2016-12-06 03:59:51 {0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208
+2016-12-06 03:59:51 41, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568,
+2016-12-06 03:59:51 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 
+2016-12-06 03:59:51 WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x1349d30 pid: 9209 (default app)
+2016-12-06 03:59:51 *** uWSGI is running in multiple interpreter mode ***
+2016-12-06 03:59:51 spawned uWSGI master process (pid: 9209)
+2016-12-06 03:59:51 spawned uWSGI worker 1 (pid: 9225, cores: 1)
+2016-12-06 03:59:51 metrics collector thread started
+2016-12-06 03:59:51 spawned 2 offload threads for uWSGI worker 1
+2016-12-06 03:59:53 announcing my loyalty to the Emperor...
+2016-12-06 04:00:05 Session name 3,0
+2016-12-06 04:00:06 Selection Method: 1
+2016-12-06 04:00:19 going to test
+2016-12-06 04:00:19 {'3,0': []}
+2016-12-06 04:00:19 {'3,0': 1}
+2016-12-06 04:00:32 data 0
+2016-12-06 04:00:32 truth 0
+2016-12-06 04:00:37 data 0
+2016-12-06 04:00:37 truth 0
+2016-12-06 04:00:39 data 0
+2016-12-06 04:00:39 truth 0
+2016-12-06 04:00:41 data 0
+2016-12-06 04:00:41 truth 0
+2016-12-06 04:00:42 data 0
+2016-12-06 04:00:42 truth 0
+2016-12-06 04:00:43 {'3,0': [1, 1, 1, 1, 1]}
+2016-12-06 04:00:43 {'3,0': 5}
+2016-12-06 04:00:43 {'3,0': 0.0}
+2016-12-06 04:02:11 Session name 3,1
+2016-12-06 04:02:13 Selection Method: 4
+2016-12-06 04:02:44 Session name 3,2
+2016-12-06 04:02:56 Session name 3,3
+2016-12-06 04:02:58 Selection Method: 3
+2016-12-06 04:07:00 Session name 3,4
+2016-12-06 04:08:20 Tue Dec  6 04:08:20 2016 - received message 1 from emperor
+2016-12-06 04:08:20 ...gracefully killing workers...
+2016-12-06 04:08:20 Gracefully killing worker 1 (pid: 9225)...
+2016-12-06 04:08:21 worker 1 buried after 1 seconds
+2016-12-06 04:08:21 uWSGI: GAME OVER (insert coin)
+2016-12-06 04:08:21 chdir(): No such file or directory [core/uwsgi.c line 1541]
+2016-12-06 04:08:21 VACUUM: unix socket /var/sockets/machineteaching3.pythonanywhere.com/socket removed.
+2016-12-06 04:08:21 *** Starting uWSGI 2.0.5.1 (64bit) on [Tue Dec  6 04:08:21 2016] ***
+2016-12-06 04:08:21 compiled with version: 4.8.4 on 24 October 2016 12:07:25
+2016-12-06 04:08:21 os: Linux-3.13.0-100-generic #147-Ubuntu SMP Tue Oct 18 16:48:51 UTC 2016
+2016-12-06 04:08:21 nodename: harry-liveweb1
+2016-12-06 04:08:21 machine: x86_64
+2016-12-06 04:08:21 clock source: unix
+2016-12-06 04:08:21 pcre jit disabled
+2016-12-06 04:08:21 detected number of CPU cores: 4
+2016-12-06 04:08:21 current working directory: /etc/uwsgi/vassals
+2016-12-06 04:08:21 detected binary path: /usr/local/bin/uwsgi
+2016-12-06 04:08:21 *** dumping internal routing table ***
+2016-12-06 04:08:21 [rule: 0] subject: path_info regexp: \.svgz$ action: addheader:Content-Encoding:gzip
+2016-12-06 04:08:21 *** end of the internal routing table ***
+2016-12-06 04:08:21 using Linux cgroup /mnt/cgroups/cpu/user_types/free with mode 700
+2016-12-06 04:08:21 assigned process 11294 to cgroup /mnt/cgroups/cpu/user_types/free/tasks
+2016-12-06 04:08:21 using Linux cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 04:08:21 assigned process 11294 to cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 04:08:21 using Linux cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 04:08:21 assigned process 11294 to cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 04:08:21 uWSGI running as root, you can use --uid/--gid/--chroot options
+2016-12-06 04:08:21 chroot() to /mnt/chroots/machineteaching3/dangermouse
+2016-12-06 04:08:21 setgid() to 60000
+2016-12-06 04:08:21 setuid() to 2064185
+2016-12-06 04:08:21 limiting number of processes to 15...
+2016-12-06 04:08:21 your processes number limit is 15
+2016-12-06 04:08:21 your memory page size is 4096 bytes
+2016-12-06 04:08:21 detected max file descriptor number: 123456
+2016-12-06 04:08:21 building mime-types dictionary from file /etc/mime.types...
+2016-12-06 04:08:21 536 entry found
+2016-12-06 04:08:21 lock engine: pthread robust mutexes
+2016-12-06 04:08:21 thunder lock: disabled (you can enable it with --thunder-lock)
+2016-12-06 04:08:21 uwsgi socket 0 bound to UNIX address /var/sockets/machineteaching3.pythonanywhere.com/socket fd 7
+2016-12-06 04:08:21 Python version: 2.7.6 (default, Jun 22 2015, 18:01:27)  [GCC 4.8.2]
+2016-12-06 04:08:21 *** Python threads support is disabled. You can enable it with --enable-threads ***
+2016-12-06 04:08:21 Python main interpreter initialized at 0x2575d30
+2016-12-06 04:08:21 your server socket listen backlog is limited to 3000 connections
+2016-12-06 04:08:21 your mercy for graceful operations on workers is 60 seconds
+2016-12-06 04:08:21 setting request body buffering size to 65536 bytes
+2016-12-06 04:08:21 mapped 333952 bytes (326 KB) for 1 cores
+2016-12-06 04:08:21 *** Operational MODE: single process ***
+2016-12-06 04:08:21 initialized 35 metrics
+2016-12-06 04:08:21 Initializing site!
+2016-12-06 04:08:21 CLASS NAMES
+2016-12-06 04:08:21 ['/home/machineteaching3/MachineTeaching/static/chinese/ims/grass', '/home/machineteaching3/MachineTeaching/static/chinese/ims/mound', '/home/machineteaching3/MachineTeaching/static/chinese/ims/stem']
+2016-12-06 04:08:21 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+2016-12-06 04:08:21  2 2 2 2 2 2 2 2 2 2 2 2 2 2] 717
+2016-12-06 04:08:21 {0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208
+2016-12-06 04:08:21 41, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568,
+2016-12-06 04:08:21 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 
+2016-12-06 04:08:21 WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x2575d30 pid: 11294 (default app)
+2016-12-06 04:08:21 *** uWSGI is running in multiple interpreter mode ***
+2016-12-06 04:08:21 spawned uWSGI master process (pid: 11294)
+2016-12-06 04:08:21 spawned uWSGI worker 1 (pid: 11300, cores: 1)
+2016-12-06 04:08:21 metrics collector thread started
+2016-12-06 04:08:21 spawned 2 offload threads for uWSGI worker 1
+2016-12-06 04:08:24 announcing my loyalty to the Emperor...
+2016-12-06 04:10:26 Session name 3,0
+2016-12-06 04:11:25 Session name 3,1
+2016-12-06 04:18:17 Session name 3,2
+2016-12-06 04:18:18 Selection Method: 2
+2016-12-06 04:18:36 Session name 3,3
+2016-12-06 04:18:37 Selection Method: 4
+2016-12-06 04:18:46 going to test
+2016-12-06 04:18:46 {'3,3': []}
+2016-12-06 04:18:46 {'3,3': 1}
+2016-12-06 04:18:49 data 1
+2016-12-06 04:18:49 truth 1
+2016-12-06 04:18:51 data 0
+2016-12-06 04:18:51 truth 0
+2016-12-06 04:18:53 data 2
+2016-12-06 04:18:53 truth 2
+2016-12-06 04:18:56 data 0
+2016-12-06 04:18:56 truth 0
+2016-12-06 04:18:57 data 1
+2016-12-06 04:18:57 truth 1
+2016-12-06 04:18:58 {'3,3': [1, 1, 1, 1, 1]}
+2016-12-06 04:18:58 {'3,3': 5}
+2016-12-06 04:18:58 {'3,3': 0.0}
+2016-12-06 05:00:50 Tue Dec  6 05:00:50 2016 - received message 1 from emperor
+2016-12-06 05:00:50 ...gracefully killing workers...
+2016-12-06 05:00:50 Gracefully killing worker 1 (pid: 11300)...
+2016-12-06 05:00:52 worker 1 buried after 2 seconds
+2016-12-06 05:00:52 uWSGI: GAME OVER (insert coin)
+2016-12-06 05:00:52 chdir(): No such file or directory [core/uwsgi.c line 1541]
+2016-12-06 05:00:52 VACUUM: unix socket /var/sockets/machineteaching3.pythonanywhere.com/socket removed.
+2016-12-06 05:00:53 *** Starting uWSGI 2.0.5.1 (64bit) on [Tue Dec  6 05:00:52 2016] ***
+2016-12-06 05:00:53 compiled with version: 4.8.4 on 24 October 2016 12:07:25
+2016-12-06 05:00:53 os: Linux-3.13.0-100-generic #147-Ubuntu SMP Tue Oct 18 16:48:51 UTC 2016
+2016-12-06 05:00:53 nodename: harry-liveweb1
+2016-12-06 05:00:53 machine: x86_64
+2016-12-06 05:00:53 clock source: unix
+2016-12-06 05:00:53 pcre jit disabled
+2016-12-06 05:00:53 detected number of CPU cores: 4
+2016-12-06 05:00:53 current working directory: /etc/uwsgi/vassals
+2016-12-06 05:00:53 detected binary path: /usr/local/bin/uwsgi
+2016-12-06 05:00:53 *** dumping internal routing table ***
+2016-12-06 05:00:53 [rule: 0] subject: path_info regexp: \.svgz$ action: addheader:Content-Encoding:gzip
+2016-12-06 05:00:53 *** end of the internal routing table ***
+2016-12-06 05:00:53 using Linux cgroup /mnt/cgroups/cpu/user_types/free with mode 700
+2016-12-06 05:00:53 assigned process 24726 to cgroup /mnt/cgroups/cpu/user_types/free/tasks
+2016-12-06 05:00:53 using Linux cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 05:00:53 assigned process 24726 to cgroup /mnt/cgroups/cpuacct/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 05:00:53 using Linux cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com with mode 700
+2016-12-06 05:00:53 assigned process 24726 to cgroup /mnt/cgroups/memory/domains/machineteaching3.pythonanywhere.com/tasks
+2016-12-06 05:00:53 uWSGI running as root, you can use --uid/--gid/--chroot options
+2016-12-06 05:00:53 chroot() to /mnt/chroots/machineteaching3/dangermouse
+2016-12-06 05:00:53 setgid() to 60000
+2016-12-06 05:00:53 setuid() to 2064185
+2016-12-06 05:00:53 limiting number of processes to 15...
+2016-12-06 05:00:53 your processes number limit is 15
+2016-12-06 05:00:53 your memory page size is 4096 bytes
+2016-12-06 05:00:53 detected max file descriptor number: 123456
+2016-12-06 05:00:53 building mime-types dictionary from file /etc/mime.types...
+2016-12-06 05:00:53 536 entry found
+2016-12-06 05:00:53 lock engine: pthread robust mutexes
+2016-12-06 05:00:53 thunder lock: disabled (you can enable it with --thunder-lock)
+2016-12-06 05:00:53 uwsgi socket 0 bound to UNIX address /var/sockets/machineteaching3.pythonanywhere.com/socket fd 7
+2016-12-06 05:00:53 Python version: 2.7.6 (default, Jun 22 2015, 18:01:27)  [GCC 4.8.2]
+2016-12-06 05:00:53 *** Python threads support is disabled. You can enable it with --enable-threads ***
+2016-12-06 05:00:53 Python main interpreter initialized at 0xfa8d30
+2016-12-06 05:00:53 your server socket listen backlog is limited to 3000 connections
+2016-12-06 05:00:53 your mercy for graceful operations on workers is 60 seconds
+2016-12-06 05:00:53 setting request body buffering size to 65536 bytes
+2016-12-06 05:00:53 mapped 333952 bytes (326 KB) for 1 cores
+2016-12-06 05:00:53 *** Operational MODE: single process ***
+2016-12-06 05:00:53 initialized 35 metrics
+2016-12-06 05:00:53 Initializing site!
+2016-12-06 05:00:53 CLASS NAMES
+2016-12-06 05:00:53 ['/home/machineteaching3/MachineTeaching/static/chinese/ims/grass', '/home/machineteaching3/MachineTeaching/static/chinese/ims/mound', '/home/machineteaching3/MachineTeaching/static/chinese/ims/stem']
+2016-12-06 05:00:53 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0#012 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1#012 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+2016-12-06 05:00:53  2 2 2 2 2 2 2 2 2 2 2 2 2 2] 717
+2016-12-06 05:00:53 {0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208
+2016-12-06 05:00:53 41, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568,
+2016-12-06 05:00:53 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 
+2016-12-06 05:00:53 WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xfa8d30 pid: 24726 (default app)
+2016-12-06 05:00:53 *** uWSGI is running in multiple interpreter mode ***
+2016-12-06 05:00:53 spawned uWSGI master process (pid: 24726)
+2016-12-06 05:00:53 spawned uWSGI worker 1 (pid: 24741, cores: 1)
+2016-12-06 05:00:53 metrics collector thread started
+2016-12-06 05:00:53 spawned 2 offload threads for uWSGI worker 1
+2016-12-06 05:00:54 announcing my loyalty to the Emperor...
+2016-12-06 05:01:38 Session name 3,0
+2016-12-06 05:01:53 Session name 3,1
+2016-12-06 05:18:21 Session name 3,2
+2016-12-06 05:31:45 Session name 3,3
+2016-12-06 05:31:49 Selection Method: 3
+2016-12-06 05:32:07 Session name 3,4
+2016-12-06 05:32:10 Selection Method: 4
+2016-12-06 05:33:36 going to test
+2016-12-06 05:33:36 {'3,4': [], '3,3': []}
+2016-12-06 05:33:36 {'3,4': 1, '3,3': 1}
+2016-12-06 05:33:36 going to test
+2016-12-06 05:33:36 {'3,4': [], '3,3': []}
+2016-12-06 05:33:36 {'3,4': 1, '3,3': 1}
+2016-12-06 05:33:42 data 0
+2016-12-06 05:33:42 truth 2
+2016-12-06 05:33:47 data 0
+2016-12-06 05:33:47 truth 2
+2016-12-06 05:33:48 data 2
+2016-12-06 05:33:48 truth 1
+2016-12-06 05:33:50 data 0
+2016-12-06 05:33:50 truth 0
+2016-12-06 05:33:54 data 1
+2016-12-06 05:33:54 truth 2
+2016-12-06 05:33:57 data 2
+2016-12-06 05:33:57 truth 2
+2016-12-06 05:33:58 data 1
+2016-12-06 05:33:58 truth 2
+2016-12-06 05:34:01 data 2
+2016-12-06 05:34:01 truth 2
+2016-12-06 05:34:04 data 0
+2016-12-06 05:34:04 truth 0
+2016-12-06 05:34:08 data 2
+2016-12-06 05:34:08 truth 2
+2016-12-06 05:34:15 data 0
+2016-12-06 05:34:15 truth 2
+2016-12-06 05:34:19 data 0
+2016-12-06 05:34:19 truth 0
+2016-12-06 05:34:24 data 0
+2016-12-06 05:34:24 truth 0
+2016-12-06 05:34:28 data 0
+2016-12-06 05:34:28 truth 2
+2016-12-06 05:34:37 data 0
+2016-12-06 05:34:37 truth 0
+2016-12-06 05:34:41 data 0
+2016-12-06 05:34:41 truth 1
+2016-12-06 05:34:47 data 2
+2016-12-06 05:34:47 truth 2
+2016-12-06 05:34:56 data 2
+2016-12-06 05:34:56 truth 1
+2016-12-06 05:35:00 data 0
+2016-12-06 05:35:00 truth 0
+2016-12-06 05:35:03 data 0
+2016-12-06 05:35:03 truth 1
+2016-12-06 05:35:08 data 1
+2016-12-06 05:35:08 truth 2
+2016-12-06 05:35:16 data 2
+2016-12-06 05:35:16 truth 1
+2016-12-06 05:35:20 data 2
+2016-12-06 05:35:20 truth 1
+2016-12-06 05:35:22 data 0
+2016-12-06 05:35:22 truth 0
+2016-12-06 05:35:25 data 0
+2016-12-06 05:35:25 truth 1
+2016-12-06 05:35:29 data 0
+2016-12-06 05:35:29 truth 1
+2016-12-06 05:35:31 data 0
+2016-12-06 05:35:31 truth 0
+2016-12-06 05:35:33 data 0
+2016-12-06 05:35:33 truth 0
+2016-12-06 05:35:37 data 2
+2016-12-06 05:35:37 truth 2
+2016-12-06 05:35:41 data 0
+2016-12-06 05:35:41 truth 1
+2016-12-06 05:35:43 data 0
+2016-12-06 05:35:43 truth 1
+2016-12-06 05:35:44 data 0
+2016-12-06 05:35:44 truth 0
+2016-12-06 05:35:49 data 2
+2016-12-06 05:35:49 truth 2
+2016-12-06 05:35:49 {'3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,3': [0, 0, 0]}
+2016-12-06 05:35:49 {'3,4': 30, '3,3': 4}
+2016-12-06 05:35:49 {'3,4': 0.4666666666666667, '3,3': 0}
+2016-12-06 05:36:09 Session name 3,5
+2016-12-06 05:36:12 Selection Method: 1
+2016-12-06 05:44:36 Session name 3,6
+2016-12-06 05:44:42 Selection Method: 2
+2016-12-06 05:47:00 going to test
+2016-12-06 05:47:00 {'3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [], '3,3': [0, 0, 0]}
+2016-12-06 05:47:00 {'3,4': 30, '3,6': 1, '3,3': 4}
+2016-12-06 05:47:08 data 1
+2016-12-06 05:47:08 truth 1
+2016-12-06 05:47:12 data 2
+2016-12-06 05:47:12 truth 0
+2016-12-06 05:47:16 data 2
+2016-12-06 05:47:16 truth 2
+2016-12-06 05:47:21 data 1
+2016-12-06 05:47:21 truth 1
+2016-12-06 05:47:24 data 1
+2016-12-06 05:47:24 truth 2
+2016-12-06 05:47:27 data 0
+2016-12-06 05:47:27 truth 2
+2016-12-06 05:47:31 data 1
+2016-12-06 05:47:31 truth 0
+2016-12-06 05:47:34 data 2
+2016-12-06 05:47:34 truth 2
+2016-12-06 05:47:39 data 2
+2016-12-06 05:47:39 truth 1
+2016-12-06 05:47:43 data 0
+2016-12-06 05:47:43 truth 0
+2016-12-06 05:47:46 data 2
+2016-12-06 05:47:46 truth 2
+2016-12-06 05:47:50 data 1
+2016-12-06 05:47:50 truth 2
+2016-12-06 05:47:58 data 0
+2016-12-06 05:47:58 truth 0
+2016-12-06 05:48:03 data 1
+2016-12-06 05:48:03 truth 0
+2016-12-06 05:48:06 data 1
+2016-12-06 05:48:06 truth 1
+2016-12-06 05:48:10 data 1
+2016-12-06 05:48:10 truth 1
+2016-12-06 05:48:14 data 2
+2016-12-06 05:48:14 truth 0
+2016-12-06 05:48:18 data 2
+2016-12-06 05:48:18 truth 2
+2016-12-06 05:48:22 data 0
+2016-12-06 05:48:22 truth 2
+2016-12-06 05:48:26 data 2
+2016-12-06 05:48:26 truth 0
+2016-12-06 05:48:31 data 1
+2016-12-06 05:48:31 truth 1
+2016-12-06 05:48:34 data 1
+2016-12-06 05:48:34 truth 2
+2016-12-06 05:48:37 data 2
+2016-12-06 05:48:37 truth 1
+2016-12-06 05:48:41 data 1
+2016-12-06 05:48:41 truth 1
+2016-12-06 05:48:44 data 1
+2016-12-06 05:48:44 truth 1
+2016-12-06 05:48:48 data 0
+2016-12-06 05:48:48 truth 2
+2016-12-06 05:48:51 data 0
+2016-12-06 05:48:51 truth 2
+2016-12-06 05:48:55 data 1
+2016-12-06 05:48:55 truth 2
+2016-12-06 05:48:59 data 1
+2016-12-06 05:48:59 truth 2
+2016-12-06 05:49:04 data 2
+2016-12-06 05:49:04 truth 2
+2016-12-06 05:49:04 {'3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0]}
+2016-12-06 05:49:04 {'3,4': 30, '3,6': 30, '3,3': 4}
+2016-12-06 05:49:04 {'3,4': 0.4666666666666667, '3,6': 0.5333333333333333, '3,3': 0}
+2016-12-06 06:05:06 Session name 3,7
+2016-12-06 06:17:12 Session name 3,8
+2016-12-06 06:17:40 Selection Method: 2
+2016-12-06 06:19:58 going to test
+2016-12-06 06:19:58 {'3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,8': [], '3,3': [0, 0, 0]}
+2016-12-06 06:19:58 {'3,4': 30, '3,6': 30, '3,8': 1, '3,3': 4}
+2016-12-06 06:20:04 data 2
+2016-12-06 06:20:04 truth 0
+2016-12-06 06:20:07 data 1
+2016-12-06 06:20:07 truth 1
+2016-12-06 06:20:18 data 0
+2016-12-06 06:20:18 truth 1
+2016-12-06 06:20:18 data 2
+2016-12-06 06:20:18 truth 2
+2016-12-06 06:20:21 data 1
+2016-12-06 06:20:21 truth 1
+2016-12-06 06:20:23 data 2
+2016-12-06 06:20:23 truth 1
+2016-12-06 06:20:25 data 1
+2016-12-06 06:20:25 truth 2
+2016-12-06 06:20:28 data 0
+2016-12-06 06:20:28 truth 2
+2016-12-06 06:20:29 data 2
+2016-12-06 06:20:29 truth 2
+2016-12-06 06:20:32 data 1
+2016-12-06 06:20:32 truth 1
+2016-12-06 06:21:10 data 1
+2016-12-06 06:21:10 truth 2
+2016-12-06 06:21:11 data 0
+2016-12-06 06:21:11 truth 0
+2016-12-06 06:21:13 data 2
+2016-12-06 06:21:13 truth 2
+2016-12-06 06:21:17 data 2
+2016-12-06 06:21:17 truth 0
+2016-12-06 06:21:22 data 0
+2016-12-06 06:21:22 truth 0
+2016-12-06 06:21:23 data 2
+2016-12-06 06:21:23 truth 2
+2016-12-06 06:21:25 data 1
+2016-12-06 06:21:25 truth 1
+2016-12-06 06:21:26 data 1
+2016-12-06 06:21:26 truth 1
+2016-12-06 06:21:29 data 2
+2016-12-06 06:21:29 truth 0
+2016-12-06 06:21:30 data 0
+2016-12-06 06:21:30 truth 0
+2016-12-06 06:21:32 data 1
+2016-12-06 06:21:32 truth 2
+2016-12-06 06:21:33 data 2
+2016-12-06 06:21:33 truth 1
+2016-12-06 06:21:35 data 1
+2016-12-06 06:21:35 truth 2
+2016-12-06 06:21:39 data 0
+2016-12-06 06:21:39 truth 2
+2016-12-06 06:21:41 data 2
+2016-12-06 06:21:41 truth 0
+2016-12-06 06:21:43 data 1
+2016-12-06 06:21:43 truth 1
+2016-12-06 06:21:54 data 0
+2016-12-06 06:21:54 truth 2
+2016-12-06 06:21:56 data 1
+2016-12-06 06:21:56 truth 0
+2016-12-06 06:21:57 data 2
+2016-12-06 06:21:57 truth 2
+2016-12-06 06:21:59 data 0
+2016-12-06 06:21:59 truth 0
+2016-12-06 06:21:59 {'3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,3': [0, 0, 0]}
+2016-12-06 06:21:59 {'3,4': 30, '3,6': 30, '3,8': 30, '3,3': 4}
+2016-12-06 06:21:59 {'3,4': 0.4666666666666667, '3,6': 0.5333333333333333, '3,8': 0.5, '3,3': 0}
+2016-12-06 06:45:51 Session name 3,9
+2016-12-06 06:46:42 Selection Method: 2
+2016-12-06 06:56:58 Session name 3,10
+2016-12-06 06:57:05 Selection Method: 3
+2016-12-06 06:59:04 going to test
+2016-12-06 06:59:04 {'3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,10': [], '3,3': [0, 0, 0]}
+2016-12-06 06:59:04 {'3,4': 30, '3,6': 30, '3,8': 30, '3,10': 1, '3,3': 4}
+2016-12-06 06:59:16 data 0
+2016-12-06 06:59:16 truth 0
+2016-12-06 06:59:24 data 2
+2016-12-06 06:59:24 truth 0
+2016-12-06 06:59:30 data 1
+2016-12-06 06:59:30 truth 1
+2016-12-06 06:59:36 data 0
+2016-12-06 06:59:36 truth 2
+2016-12-06 06:59:42 data 0
+2016-12-06 06:59:42 truth 0
+2016-12-06 06:59:45 data 2
+2016-12-06 06:59:45 truth 0
+2016-12-06 06:59:48 data 0
+2016-12-06 06:59:48 truth 0
+2016-12-06 06:59:53 data 2
+2016-12-06 06:59:53 truth 1
+2016-12-06 06:59:57 data 0
+2016-12-06 06:59:57 truth 2
+2016-12-06 07:00:03 data 2
+2016-12-06 07:00:03 truth 0
+2016-12-06 07:00:06 data 0
+2016-12-06 07:00:06 truth 0
+2016-12-06 07:00:13 data 2
+2016-12-06 07:00:13 truth 2
+2016-12-06 07:00:13 data 1
+2016-12-06 07:00:13 truth 2
+2016-12-06 07:00:16 data 0
+2016-12-06 07:00:16 truth 0
+2016-12-06 07:00:24 data 2
+2016-12-06 07:00:24 truth 2
+2016-12-06 07:00:27 data 0
+2016-12-06 07:00:27 truth 1
+2016-12-06 07:00:30 data 2
+2016-12-06 07:00:30 truth 1
+2016-12-06 07:00:34 data 1
+2016-12-06 07:00:34 truth 2
+2016-12-06 07:00:43 data 0
+2016-12-06 07:00:43 truth 2
+2016-12-06 07:00:46 data 1
+2016-12-06 07:00:46 truth 0
+2016-12-06 07:00:50 data 2
+2016-12-06 07:00:50 truth 1
+2016-12-06 07:00:54 data 0
+2016-12-06 07:00:54 truth 0
+2016-12-06 07:01:00 data 2
+2016-12-06 07:01:00 truth 2
+2016-12-06 07:01:04 data 2
+2016-12-06 07:01:04 truth 1
+2016-12-06 07:01:07 data 0
+2016-12-06 07:01:07 truth 0
+2016-12-06 07:01:10 data 2
+2016-12-06 07:01:10 truth 1
+2016-12-06 07:02:15 data 0
+2016-12-06 07:02:15 truth 1
+2016-12-06 07:02:16 data 2
+2016-12-06 07:02:16 truth 0
+2016-12-06 07:02:16 data 0
+2016-12-06 07:02:16 truth 0
+2016-12-06 07:02:57 data 1
+2016-12-06 07:02:57 truth 0
+2016-12-06 07:02:58 {'3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,3': [0, 0, 0]}
+2016-12-06 07:02:58 {'3,4': 30, '3,6': 30, '3,8': 30, '3,10': 30, '3,3': 4}
+2016-12-06 07:02:58 {'3,4': 0.4666666666666667, '3,6': 0.5333333333333333, '3,8': 0.5, '3,10': 0.6, '3,3': 0}
+2016-12-06 07:28:02 Session name 3,11
+2016-12-06 07:28:04 Selection Method: 2
+2016-12-06 07:29:01 going to test
+2016-12-06 07:29:01 {'3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,11': []}
+2016-12-06 07:29:01 {'3,8': 30, '3,4': 30, '3,6': 30, '3,3': 4, '3,10': 30, '3,11': 1}
+2016-12-06 07:29:11 data 2
+2016-12-06 07:29:11 truth 0
+2016-12-06 07:29:15 data 0
+2016-12-06 07:29:15 truth 1
+2016-12-06 07:29:17 data 1
+2016-12-06 07:29:17 truth 2
+2016-12-06 07:29:32 data 2
+2016-12-06 07:29:32 truth 0
+2016-12-06 07:29:34 data 2
+2016-12-06 07:29:34 truth 0
+2016-12-06 07:29:37 data 2
+2016-12-06 07:29:37 truth 0
+2016-12-06 07:29:42 data 2
+2016-12-06 07:29:42 truth 0
+2016-12-06 07:29:46 data 2
+2016-12-06 07:29:46 truth 2
+2016-12-06 07:29:49 data 1
+2016-12-06 07:29:49 truth 1
+2016-12-06 07:29:52 data 2
+2016-12-06 07:29:52 truth 0
+2016-12-06 07:29:55 data 0
+2016-12-06 07:29:55 truth 2
+2016-12-06 07:29:57 data 1
+2016-12-06 07:29:57 truth 2
+2016-12-06 07:29:59 data 1
+2016-12-06 07:29:59 truth 2
+2016-12-06 07:30:03 data 0
+2016-12-06 07:30:03 truth 2
+2016-12-06 07:30:05 data 2
+2016-12-06 07:30:05 truth 0
+2016-12-06 07:30:07 data 1
+2016-12-06 07:30:07 truth 1
+2016-12-06 07:30:10 data 0
+2016-12-06 07:30:10 truth 1
+2016-12-06 07:30:13 data 2
+2016-12-06 07:30:13 truth 1
+2016-12-06 07:30:15 data 2
+2016-12-06 07:30:15 truth 1
+2016-12-06 07:30:16 data 2
+2016-12-06 07:30:16 truth 1
+2016-12-06 07:30:19 data 2
+2016-12-06 07:30:19 truth 0
+2016-12-06 07:30:22 data 1
+2016-12-06 07:30:22 truth 2
+2016-12-06 07:30:24 data 0
+2016-12-06 07:30:24 truth 2
+2016-12-06 07:30:26 data 2
+2016-12-06 07:30:26 truth 1
+2016-12-06 07:30:27 data 2
+2016-12-06 07:30:27 truth 2
+2016-12-06 07:30:30 data 2
+2016-12-06 07:30:30 truth 1
+2016-12-06 07:30:32 data 0
+2016-12-06 07:30:32 truth 2
+2016-12-06 07:30:38 data 0
+2016-12-06 07:30:38 truth 2
+2016-12-06 07:30:41 data 2
+2016-12-06 07:30:41 truth 0
+2016-12-06 07:30:45 data 1
+2016-12-06 07:30:45 truth 1
+2016-12-06 07:30:45 {'3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,11': [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
+2016-12-06 07:30:45 {'3,8': 30, '3,4': 30, '3,6': 30, '3,3': 4, '3,10': 30, '3,11': 30}
+2016-12-06 07:30:45 {'3,8': 0.5, '3,4': 0.4666666666666667, '3,6': 0.5333333333333333, '3,3': 0, '3,10': 0.6, '3,11': 0.8333333333333334}
+2016-12-06 08:03:12 Session name 3,12
+2016-12-06 08:03:15 Selection Method: 1
+2016-12-06 08:04:44 going to test
+2016-12-06 08:04:44 {'3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0], '3,12': [], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,11': [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
+2016-12-06 08:04:44 {'3,8': 30, '3,4': 30, '3,6': 30, '3,3': 4, '3,12': 1, '3,10': 30, '3,11': 30}
+2016-12-06 08:04:58 data 2
+2016-12-06 08:04:58 truth 0
+2016-12-06 08:05:07 data 0
+2016-12-06 08:05:07 truth 0
+2016-12-06 08:05:11 data 1
+2016-12-06 08:05:11 truth 1
+2016-12-06 08:05:18 data 1
+2016-12-06 08:05:18 truth 0
+2016-12-06 08:05:21 data 1
+2016-12-06 08:05:21 truth 1
+2016-12-06 08:05:25 data 0
+2016-12-06 08:05:25 truth 1
+2016-12-06 08:05:31 data 2
+2016-12-06 08:05:31 truth 2
+2016-12-06 08:05:35 data 1
+2016-12-06 08:05:35 truth 1
+2016-12-06 08:05:41 data 1
+2016-12-06 08:05:41 truth 1
+2016-12-06 08:05:43 data 0
+2016-12-06 08:05:43 truth 0
+2016-12-06 08:05:47 data 2
+2016-12-06 08:05:47 truth 0
+2016-12-06 08:05:51 data 2
+2016-12-06 08:05:51 truth 0
+2016-12-06 08:05:55 data 1
+2016-12-06 08:05:55 truth 1
+2016-12-06 08:06:08 data 0
+2016-12-06 08:06:08 truth 0
+2016-12-06 08:06:15 data 2
+2016-12-06 08:06:15 truth 2
+2016-12-06 08:06:21 data 0
+2016-12-06 08:06:21 truth 0
+2016-12-06 08:06:26 data 0
+2016-12-06 08:06:26 truth 1
+2016-12-06 08:06:29 data 2
+2016-12-06 08:06:29 truth 0
+2016-12-06 08:06:33 data 2
+2016-12-06 08:06:33 truth 2
+2016-12-06 08:06:39 data 1
+2016-12-06 08:06:39 truth 0
+2016-12-06 08:06:44 data 2
+2016-12-06 08:06:44 truth 2
+2016-12-06 08:06:48 data 0
+2016-12-06 08:06:48 truth 0
+2016-12-06 08:06:59 data 0
+2016-12-06 08:06:59 truth 2
+2016-12-06 08:07:05 data 0
+2016-12-06 08:07:05 truth 2
+2016-12-06 08:07:09 data 2
+2016-12-06 08:07:09 truth 2
+2016-12-06 08:07:13 data 1
+2016-12-06 08:07:13 truth 1
+2016-12-06 08:07:17 data 0
+2016-12-06 08:07:17 truth 2
+2016-12-06 08:07:21 data 0
+2016-12-06 08:07:21 truth 2
+2016-12-06 08:07:25 data 2
+2016-12-06 08:07:25 truth 2
+2016-12-06 08:07:29 data 2
+2016-12-06 08:07:29 truth 2
+2016-12-06 08:07:29 {'3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0], '3,12': [0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,11': [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
+2016-12-06 08:07:29 {'3,8': 30, '3,4': 30, '3,6': 30, '3,3': 4, '3,12': 30, '3,10': 30, '3,11': 30}
+2016-12-06 08:07:29 {'3,8': 0.5, '3,4': 0.4666666666666667, '3,6': 0.5333333333333333, '3,3': 0, '3,12': 0.4, '3,10': 0.6, '3,11': 0.8333333333333334}
+2016-12-06 08:28:01 Session name 3,13
+2016-12-06 08:29:23 Selection Method: 1
+2016-12-06 08:30:39 going to test
+2016-12-06 08:30:39 {'3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0], '3,12': [0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], '3,13': [], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,11': [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
+2016-12-06 08:30:39 {'3,8': 30, '3,4': 30, '3,6': 30, '3,3': 4, '3,12': 30, '3,13': 1, '3,10': 30, '3,11': 30}
+2016-12-06 08:30:46 data 2
+2016-12-06 08:30:46 truth 2
+2016-12-06 08:30:50 data 0
+2016-12-06 08:30:50 truth 0
+2016-12-06 08:30:54 data 1
+2016-12-06 08:30:54 truth 1
+2016-12-06 08:30:57 data 2
+2016-12-06 08:30:57 truth 0
+2016-12-06 08:31:02 data 2
+2016-12-06 08:31:02 truth 0
+2016-12-06 08:31:04 data 2
+2016-12-06 08:31:04 truth 2
+2016-12-06 08:31:07 data 2
+2016-12-06 08:31:07 truth 2
+2016-12-06 08:31:11 data 1
+2016-12-06 08:31:11 truth 1
+2016-12-06 08:31:13 data 0
+2016-12-06 08:31:13 truth 1
+2016-12-06 08:31:16 data 0
+2016-12-06 08:31:16 truth 2
+2016-12-06 08:31:23 data 0
+2016-12-06 08:31:23 truth 0
+2016-12-06 08:31:25 data 2
+2016-12-06 08:31:25 truth 2
+2016-12-06 08:31:28 data 2
+2016-12-06 08:31:28 truth 2
+2016-12-06 08:31:31 data 0
+2016-12-06 08:31:31 truth 0
+2016-12-06 08:31:34 data 1
+2016-12-06 08:31:34 truth 2
+2016-12-06 08:31:36 data 0
+2016-12-06 08:31:36 truth 1
+2016-12-06 08:31:38 data 0
+2016-12-06 08:31:38 truth 1
+2016-12-06 08:31:41 data 1
+2016-12-06 08:31:41 truth 2
+2016-12-06 08:31:44 data 0
+2016-12-06 08:31:44 truth 1
+2016-12-06 08:31:46 data 0
+2016-12-06 08:31:46 truth 1
+2016-12-06 08:31:49 data 0
+2016-12-06 08:31:49 truth 1
+2016-12-06 08:31:51 data 0
+2016-12-06 08:31:51 truth 2
+2016-12-06 08:31:53 data 0
+2016-12-06 08:31:53 truth 1
+2016-12-06 08:31:55 data 1
+2016-12-06 08:31:55 truth 1
+2016-12-06 08:31:57 data 1
+2016-12-06 08:31:57 truth 2
+2016-12-06 08:32:00 data 2
+2016-12-06 08:32:00 truth 2
+2016-12-06 08:32:03 data 0
+2016-12-06 08:32:03 truth 1
+2016-12-06 08:32:05 data 0
+2016-12-06 08:32:05 truth 0
+2016-12-06 08:32:09 data 2
+2016-12-06 08:32:09 truth 2
+2016-12-06 08:32:11 data 1
+2016-12-06 08:32:11 truth 0
+2016-12-06 08:32:12 {'3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0], '3,12': [0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], '3,13': [1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,11': [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
+2016-12-06 08:32:12 {'3,8': 30, '3,4': 30, '3,6': 30, '3,3': 4, '3,12': 30, '3,13': 30, '3,10': 30, '3,11': 30}
+2016-12-06 08:32:12 {'3,8': 0.5, '3,4': 0.4666666666666667, '3,6': 0.5333333333333333, '3,3': 0, '3,12': 0.4, '3,13': 0.5333333333333333, '3,10': 0.6, '3,11': 0.8333333333333334}
+2016-12-06 09:01:59 Session name 3,14
+2016-12-06 09:02:04 Selection Method: 2
+2016-12-06 09:04:19 going to test
+2016-12-06 09:04:19 {'3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0], '3,14': [], '3,12': [0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], '3,13': [1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,11': [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
+2016-12-06 09:04:19 {'3,8': 30, '3,4': 30, '3,6': 30, '3,3': 4, '3,14': 1, '3,12': 30, '3,13': 30, '3,10': 30, '3,11': 30}
+2016-12-06 09:04:37 data 1
+2016-12-06 09:04:37 truth 2
+2016-12-06 09:04:45 data 0
+2016-12-06 09:04:45 truth 2
+2016-12-06 09:05:25 data 1
+2016-12-06 09:05:25 truth 1
+2016-12-06 09:05:30 data 2
+2016-12-06 09:05:30 truth 2
+2016-12-06 09:05:33 data 0
+2016-12-06 09:05:33 truth 1
+2016-12-06 09:05:37 data 1
+2016-12-06 09:05:37 truth 1
+2016-12-06 09:05:41 data 0
+2016-12-06 09:05:41 truth 2
+2016-12-06 09:05:44 data 1
+2016-12-06 09:05:44 truth 1
+2016-12-06 09:05:48 data 2
+2016-12-06 09:05:48 truth 2
+2016-12-06 09:05:51 data 1
+2016-12-06 09:05:51 truth 0
+2016-12-06 09:05:54 data 0
+2016-12-06 09:05:54 truth 1
+2016-12-06 09:05:57 data 2
+2016-12-06 09:05:57 truth 2
+2016-12-06 09:06:00 data 2
+2016-12-06 09:06:00 truth 1
+2016-12-06 09:06:04 data 2
+2016-12-06 09:06:04 truth 1
+2016-12-06 09:06:10 data 0
+2016-12-06 09:06:10 truth 0
+2016-12-06 09:06:15 data 2
+2016-12-06 09:06:15 truth 1
+2016-12-06 09:06:19 data 1
+2016-12-06 09:06:19 truth 0
+2016-12-06 09:06:23 data 0
+2016-12-06 09:06:23 truth 1
+2016-12-06 09:06:27 data 0
+2016-12-06 09:06:27 truth 1
+2016-12-06 09:06:30 data 1
+2016-12-06 09:06:30 truth 2
+2016-12-06 09:06:34 data 0
+2016-12-06 09:06:34 truth 1
+2016-12-06 09:06:37 data 2
+2016-12-06 09:06:37 truth 1
+2016-12-06 09:06:40 data 1
+2016-12-06 09:06:40 truth 0
+2016-12-06 09:06:43 data 1
+2016-12-06 09:06:43 truth 2
+2016-12-06 09:06:47 data 2
+2016-12-06 09:06:47 truth 1
+2016-12-06 09:06:50 data 0
+2016-12-06 09:06:50 truth 1
+2016-12-06 09:06:53 data 0
+2016-12-06 09:06:53 truth 2
+2016-12-06 09:06:57 data 1
+2016-12-06 09:06:57 truth 0
+2016-12-06 09:07:00 data 2
+2016-12-06 09:07:00 truth 1
+2016-12-06 09:07:04 data 0
+2016-12-06 09:07:04 truth 2
+2016-12-06 09:07:04 {'3,8': [0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1], '3,4': [0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1], '3,6': [1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], '3,3': [0, 0, 0], '3,14': [0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '3,12': [0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], '3,13': [1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0], '3,10': [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0], '3,11': [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
+2016-12-06 09:07:04 {'3,8': 30, '3,4': 30, '3,6': 30, '3,3': 4, '3,14': 30, '3,12': 30, '3,13': 30, '3,10': 30, '3,11': 30}
+2016-12-06 09:07:04 {'3,8': 0.5, '3,4': 0.4666666666666667, '3,6': 0.5333333333333333, '3,3': 0, '3,14': 0.7666666666666666, '3,12': 0.4, '3,13': 0.5333333333333333, '3,10': 0.6, '3,11': 0.8333333333333334}
+2016-12-06 09:37:10 Session name 3,15
+2016-12-06 09:37:13 Selection Method: 1
+2016-12-06 10:14:45 Session name 3,16

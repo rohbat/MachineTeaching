@@ -1,0 +1,72 @@
+<html>
+<head>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+  
+  function processRequest(data) {
+    if(data.length == 2){
+      window.location.href = data[0]
+    }
+    else{
+    $("#main_img").attr("src", data[0])
+    document.getElementById("insert").innerHTML = data[1]; 
+  }
+  }
+
+  $(document).ready(function() {
+    document.getElementById("insert").innerHTML = '0';
+    
+    $.get( "/get_test_img", function(data) {
+      processRequest(data)
+    });
+
+    $("#register").click(function() {
+      $.post( "/testing/get_response", $('input[name=radio]:checked').val(), function(data) {
+        processRequest(data)
+      });
+      $("input[name='radio']").removeAttr("checked");
+      $("#register").prop("disabled", true);
+    });
+    
+    $("input[name='radio']").change(function(){
+      $("#register").prop("disabled", false);
+    })
+
+  });
+</script>
+</head>
+
+<style>
+input[type=button] {
+    width: 20em;  height: 5em;
+}
+</style>
+
+<body>
+  <div style="text-align: right">
+  <h4> <b id="insert"></b> of 30 </h4>
+  </div>
+
+  <div style="text-align: center">
+    <h1>Target Image</h1>
+    <img id="main_img" height="250" width="250" />
+  </div>
+  <div style="text-align: center">
+    <h2>Please select and submit the option which matches the target image. </h2>
+  </div>
+  <div style="text-align: center">
+    <form name='form' >
+      <input type="radio" id="id0" name="radio" value="1"> Animal A &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="id1" name="radio" value="3"> Animal B &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="id2" name="radio" value="2"> Animal C &nbsp; &nbsp; &nbsp;
+      <input type="radio" id="id3" name="radio" value="0"> Animal D <br>
+      <br>
+      <br>
+      <input type="button" id='register' value="Submit" disabled="disabled" >
+    </form>
+  </div>
+  
+
+</body>

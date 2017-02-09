@@ -9,7 +9,7 @@ import os
 
 
 def get_img_class_mapping(): 
-	path = '/Users/ottery/Documents/machine_teaching_data/chinese/ims/'
+	path = '/Users/ottery/Documents/machine_teaching_data/seabed/ims/'
 	image_list = glob.glob(path + '*/*')
 	image_list.sort()
 
@@ -20,12 +20,14 @@ def get_img_class_mapping():
 	classes = np.zeros([len(image_list), ])
 	for i in range(len(img_list)): 
 		class_name = img_list[i].split('/')[-2]
-		if class_name == 'grass': 
+		if class_name == 'ascidiidae': 
 			classes[i] = 1
-		elif class_name == 'mound': 
+		elif class_name == 'molgulidae': 
 			classes[i] = 2
-		elif class_name == 'stem': 
+		elif class_name == 'porifera-Massive': 
 			classes[i] = 3
+		elif class_name == 'stylasterida': 
+			classes[i] = 4
 
 	return classes 
 
@@ -38,6 +40,8 @@ def get_class_color_mapping(classes):
 		elif classes[i] == 2: 
 			colors.append('green')
 		elif classes[i] == 3: 
+			colors.append('cyan')
+		elif classes[i] == 4: 
 			colors.append('blue')
 	return colors
 
@@ -48,21 +52,16 @@ def main():
 	'''
 	load data
 	'''
-	kernel_file = '../static/X_initial_chinese.npy'
+	kernel_file = '../static/X_initial_seabed_2.npy'
 	# kernel_file = './static/X_initial_seabed.npy'
 	kernel = np.load(kernel_file)
 
-	'''
-	PCA into 2D
-	'''
-	pca = decomposition.PCA(n_components=2)
-	pca.fit(kernel)
-	kernel_pca = pca.transform(kernel)
-
+	
 	'''
 	map image indices to class 
 	'''
 	classes = get_img_class_mapping()
+
 
 	'''
 	map class to color
@@ -70,13 +69,14 @@ def main():
 	colors = get_class_color_mapping(classes)	
 
 	fig = plt.figure()
-	plt.title('Chinese Character Kernel')
-	plt.scatter(kernel_pca[:,0], kernel_pca[:,1], c=colors)
-	red_patch = mpatches.Patch(color='red', label='grass')
-	green_patch = mpatches.Patch(color='green', label='mound')
-	blue_patch = mpatches.Patch(color='blue', label='stem')
-	plt.legend(handles=[red_patch, green_patch, blue_patch])
-	plt.savefig('chinese_kernel.png')
+	plt.title('Seabed Kernel')
+	plt.scatter(kernel[:,0], kernel[:,1], c=colors)
+	red_patch = mpatches.Patch(color='red', label='ascidiidae')
+	green_patch = mpatches.Patch(color='green', label='molgulidae')
+	blue_patch = mpatches.Patch(color='cyan', label='porifera-Massive')
+	grey_patch = mpatches.Patch(color='blue', label='stylasterida')
+	plt.legend(handles=[red_patch, green_patch, blue_patch, grey_patch])
+	plt.savefig('seabed_kernel_2.png')
 	plt.show()
 
 
