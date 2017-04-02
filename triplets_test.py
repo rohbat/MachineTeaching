@@ -43,17 +43,15 @@ for i in range(len(triplets)):
 
 	if class_dic[x[0]] == class_dic[x[1]]: 
 		score_dic[x[0]][0] += 1 
-		score_dic[x[1]][0] += 1 
 
 	score_dic[x[0]][1] += 1
-	score_dic[x[1]][1] += 1
 
 scores = np.zeros(len(image_list))
 for key in score_dic: 
 	scores[key] = score_dic[key][0] / score_dic[key][1]
 
-# np.save('chinese_triplet_scores.npy', scores)
-print(class_dic)
+np.save('chinese_triplet_scores.npy', scores)
+
 
 
 
