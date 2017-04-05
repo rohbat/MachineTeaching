@@ -209,8 +209,8 @@ user_train_ans_dict_chinese = {}
 
 random.seed()
 counter = 0
-max_clicks = 16
-max_test = 20
+max_clicks = 3
+max_test = 5
 
 
 # Redirect user to login page
