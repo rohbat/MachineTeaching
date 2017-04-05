@@ -84,9 +84,6 @@ def get_result_color(result):
 def get_test_images(selection_method): 
     result = []
     train = range(N)
-    '''
-    we double defined N
-    '''
 
     for i in range(N_test): 
         result.append(random_triplet(train, classes, classes_dict_chinese))
