@@ -35,6 +35,7 @@ def update_page_with_indices(main, comp1, comp2):
 
 def update_page(selection_method):
     train = range(N)
+    print 'N', N
     X = user_x_dict_chinese[session['name']]
     lamb = 0
 
