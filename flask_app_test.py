@@ -345,7 +345,7 @@ def get_response_testing():
     user_test_counter_dict_chinese[session['name']] += 1
     update_test() 
     
-    return jsonify(page_model_dict[session['name']].get_imgs_list()  +\
+    return jsonify(page_model_dict_chinese[session['name']].get_imgs_list()  +\
      [str(user_test_counter_dict_chinese[session['name']])]) 
 
 
