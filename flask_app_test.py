@@ -35,7 +35,6 @@ def update_page_with_indices(main, comp1, comp2):
 
 def update_page(selection_method):
     train = range(N)
-    print 'N', N
     X = user_x_dict_chinese[session['name']]
     lamb = 0
 
@@ -85,9 +84,6 @@ def get_result_color(result):
 def get_test_images(selection_method): 
     result = []
     train = range(N)
-    '''
-    we double defined N
-    '''
 
     for i in range(N_test): 
         result.append(random_triplet(train, classes, classes_dict_chinese))
