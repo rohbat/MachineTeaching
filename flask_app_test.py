@@ -51,7 +51,7 @@ def update_page(selection_method):
 
 
 def update_test(): 
-    (main, comp1, comp2) = user_test_images_dict_chinese[session['name']][user_test_counter_dict_chinese[session['name']]-1]]
+    (main, comp1, comp2) = user_test_images_dict_chinese[session['name']][user_test_counter_dict_chinese[session['name']]-1]
     update_page_with_indices(main, comp1, comp2)
 
 
