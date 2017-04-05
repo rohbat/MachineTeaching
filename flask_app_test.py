@@ -254,7 +254,7 @@ def get_imgs():
 
 @app.route("/testing/get_imgs", methods = ['GET', 'POST'])
 def testing_get_imgs():
-    if user_test_counter_dict_seabed[session['name']] == max_test: 
+    if user_test_counter_dict_chinese[session['name']] == max_test: 
         return jsonify([url_for('logout'), 0])
 
    
