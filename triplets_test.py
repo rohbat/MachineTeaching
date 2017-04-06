@@ -21,13 +21,13 @@ class_names.sort()
 image_list = glob.glob(path + '/Documents/machine_teaching_data/chinese/ims/*/*')
 image_list.sort()
 
-print(path)
-print(image_list[:10])
 
 class_dic = {}
 score_dic = {}
+num_dic = {}
 for i in range(len(image_list)):  
 	score_dic[i] = [0, 0] # (right, total)
+	num_dic[i] = 0
 	
 	if 'grass' in image_list[i]: 
 		class_dic[i] = 0
@@ -40,6 +40,7 @@ for i in range(len(image_list)):
 
 for i in range(len(triplets)): 
 	x = triplets[i]
+	num_dic[x[0]] += 1
 
 	if class_dic[x[0]] == class_dic[x[1]]: 
 		score_dic[x[0]][0] += 1 
@@ -50,7 +51,12 @@ scores = np.zeros(len(image_list))
 for key in score_dic: 
 	scores[key] = score_dic[key][0] / score_dic[key][1]
 
-np.save('chinese_triplet_scores.npy', scores)
+# np.save('chinese_triplet_scores.npy', scores)
+
+minn = np.argmin(scores)
+maxx = np.argmax(scores)
+
+
 
 
 
