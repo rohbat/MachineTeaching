@@ -24,9 +24,9 @@
         $('#feedback').css('color', 'black');
         $('#othertext').css('display', 'none');
 
-        document.getElementById("main_label").innerHTML = data[4]; 
-        document.getElementById("c1_label").innerHTML = ""; 
-        document.getElementById("c2_label").innerHTML = ""; 
+        // document.getElementById("main_label").innerHTML = data[4]; 
+        // document.getElementById("c1_label").innerHTML = ""; 
+        // document.getElementById("c2_label").innerHTML = ""; 
         $('#main_img').css('outline', '0px solid #1E90FF')
         $('#compare1').css('outline', '0px solid #1E90FF')
         $('#compare2').css('outline', '0px solid #1E90FF')
@@ -44,9 +44,9 @@
           $('#feedback').css('color', data[4]);
           $('#othertext').css('display', 'inline');
 
-          document.getElementById("main_label").innerHTML = data[0]; 
-          document.getElementById("c1_label").innerHTML = data[1]; 
-          document.getElementById("c2_label").innerHTML = data[2]; 
+          // document.getElementById("main_label").innerHTML = data[0]; 
+          // document.getElementById("c1_label").innerHTML = data[1]; 
+          // document.getElementById("c2_label").innerHTML = data[2]; 
           $('#main_img').css('outline', '5px solid #1E90FF')
           $('#main_img').css('outline-offset', '-5px')
           $('#compare1').css('outline', data[5])
@@ -127,7 +127,7 @@ figcaption {
     <h1><nobr>Target Image</nobr></h1>
     <figure class="item">  
       <img id="main_img" height="200" width="200" />
- <figcaption class="caption" id="main_label"> </figcaption>
+<!--  <figcaption class="caption" id="main_label"> </figcaption> -->
     </figure>
     <div id="loading">
         <img src="/static/ajax-loader.gif" />
@@ -137,11 +137,11 @@ figcaption {
     <h3> <nobr><big><b id="feedback"></b></big> <b id="othertext"> Observe the correct response boxed in blue, then click continue. </b> </nobr></h3>
     <figure class="item">
       <input type="image" id="compare1" width="200" />
-     <figcaption class="caption" id="c1_label"> </figcaption>
+<!--      <figcaption class="caption" id="c1_label"> </figcaption> -->
     </figure>
     <figure class="item">
       <input type="image" id="compare2" width="200" />
-  <figcaption class="caption" id="c2_label"> </figcaption>
+<!--   <figcaption class="caption" id="c2_label"> </figcaption> -->
     </figure>
   </div>
   

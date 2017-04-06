@@ -352,7 +352,7 @@ def get_response_testing():
 def teaching_index():
     if not 'name' in session or not session['name'] in user_nclicks_dict_chinese:
         return redirect(url_for('login'))
-    return render_template('teaching_seabed.html')
+    return render_template('teaching_triplet_chinese.html')
 
 @app.route("/testing/")
 def testing_index():
