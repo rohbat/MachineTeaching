@@ -4,6 +4,8 @@ import numpy as np
 import cPickle as cp
 import os
 import glob
+import matplotlib.mlab as mlab
+import matplotlib.pyplot as plt
 
 
 db_data = np.load('triplets_chinese.npy')
@@ -24,10 +26,9 @@ image_list.sort()
 
 class_dic = {}
 score_dic = {}
-num_dic = {}
+num_dic = np.zeros(len(image_list))
 for i in range(len(image_list)):  
 	score_dic[i] = [0, 0] # (right, total)
-	num_dic[i] = 0
 	
 	if 'grass' in image_list[i]: 
 		class_dic[i] = 0
@@ -53,11 +54,15 @@ for key in score_dic:
 
 # np.save('chinese_triplet_scores.npy', scores)
 
-minn = np.argmin(scores)
-maxx = np.argmax(scores)
 
+plt.subplot(2, 1, 1)
+plt.title('kernel target accuracy')
+plt.hist(scores, bins=20)
 
-
+plt.subplot(2, 1, 2)
+plt.title('kernel target frequency')
+plt.hist(num_dic, bins = 20)
+plt.show()
 
 
 
