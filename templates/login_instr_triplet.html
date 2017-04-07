@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Flask Intro - login page a</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+ 
+<style>
+* {
+ font-family: Helvetica; 
+}
+
+.did {
+    max-width:20%;
+    margin-left:40%;
+    margin-right:40%; /* 70+30 = 100 */
+}
+p {
+    margin-right: 130px;
+    margin-left: 130px;
+}
+
+input[type=submit] {
+    width: 20em;  height: 5em;
+}
+</style>
+
+  <body>
+    <div class="container" style="text-align: center">
+      <h1>Learning Similarity</h1>
+      <h3>In this short experiment, you will learn to compare the similarity of 3 Chinese characters. </h3>
+      
+     <!--  <ul class='did' style="text-align: left">
+        <li>Ascidiidae</li>
+        <li>Molgulidae</li>
+        <li>Porifera Massive</li>
+        <li>Stylasterida</li>
+      </ul> -->
+      <h3>Please read the instructions below. </h3>
+      <hr>
+
+      <p>
+        The first 16 questions compose the <b>learning phase</b>. The user will be asked to select which of two images is most similar to a third. Then the user will be given the correct answer, and be asked to learn from the example. 
+      </p>
+      <hr>
+
+      <p>
+        A simple example question is shown below. The <b>target image</b> is "A". The user will then <b>click</b> on either of the bottom two images--"A" or "B"--in the second row which he/she believes is <b>most similar</b> to the target image. 
+      </p>
+      <img src="../static/instructions/ask.png" style='width:600px' border="1">
+      <hr>
+
+      <p>
+        The user will then be told whether his/her answer is <b><font color="#1E90FF">correct</font></b> or <b><font color="red">incorrect</font></b>, and shown the correct answer.
+      </p>
+      <p> 
+        In our example, if the user clicked image "A" on the bottom, the below <b><font color="#1E90FF">correct</font></b> window is shown. The correct answer is boxed in  <b><font color="#1E90FF">blue</font></b>. <b>Please memorize the correct response</b> as you will be assessed on your knowledge in the second half. Then click continue.
+      </p>
+      <img src="../static/instructions/correct.png" style="width:600px" border="1">
+      <hr>
+
+      <p>
+        If the user clicked image "B" on the bottom, the <b><font color="red">incorrect</font></b> window is shown. The correct answer is again boxed in  <b><font color="#1E90FF">blue</font></b>. <b>Please memorize the correct response</b> as you will be assessed on your knowledge in the second half. Then click continue.
+      </p>
+      <img src="../static/instructions/incorrect.png" style="width:600px" border="1">
+      <hr>
+
+      <p>
+        The next 20 <b>testing</b> questions will assess the user's knowledge. Again, the user will be asked to select which of two images is most similar to a third. However, <b>there is no correct/incorrect feedback</b> after the user selects a response. An example is shown below. 
+      </p>
+      <img src="../static/instructions/test.png" style="width:600px" border="1">
+      <hr>
+
+      <p> Bonuses are granted for the top 25% of scores. Thank you for your time! </p>
+
+      <h1>Click continue to begin your task. </h1>
+      <form action="" method="post">
+        <input class="button" name='cont' type="submit" value="Continue">
+      </form>
+    </div>
+  </body>
+</html>
