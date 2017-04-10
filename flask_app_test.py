@@ -88,9 +88,12 @@ def get_test_images(selection_method):
 
     for i in range(N_test): 
         result.append(random_triplet(train, classes, classes_dict_chinese))
-    temp = np.random.choice(difficult_all, diff_test)
+    temp = np.random.choice(range(len(difficult_all)), diff_test)
     print 'temp', temp
-    result = result + temp
+
+    
+    result = result + [difficult_all[i] for i in temp]
+    print 'result', result
     return result
 
 
