@@ -87,6 +87,7 @@ def get_test_images(selection_method):
 
     for i in range(N_test): 
         result.append(random_triplet(train, classes, classes_dict_chinese))
+    result += random.choice(difficult_all, diff_test)
     return result
 
 
@@ -207,13 +208,17 @@ user_train_ans_dict_chinese = {}
 random.seed()
 counter = 0
 max_clicks = 3
-max_test = 5
+diff_test = 5
+max_test = 5 + diff_test
 
 difficult_triplets_distance = [(147, 142, 451), (30, 59, 619), (261, 288, 37), \
 (452, 288, 536), (488, 701, 43), (539, 701, 376)]
 difficult_triplets_acc = [(95, 216, 360), (95, 216, 607), (120, 81, 95), \
 (120, 81, 607), (127, 69, 95), (127, 69, 360)]
-difficult_triplets_tste = [] 
+difficult_triplets_tste = [(648, 617, 81), (612, 497, 392), (644, 666, 346), \
+(701, 599, 7), (520, 664, 150), (115, 84, 708), (99, 53, 284), (561, 610, 289), \
+(18, 159, 302), (26, 98, 641)] 
+difficult_all = difficult_triplets_distance + difficult_triplets_acc + difficult_triplets_tste
 
 # Redirect user to login page
 
