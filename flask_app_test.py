@@ -398,7 +398,7 @@ def login():
         print 'Selection Method: ' + str(user_selection_method_dict_chinese[session['name']])
 
         return redirect(url_for('teaching_index'))
-    return render_template('login_instr.html', error=error)
+    return render_template('login_instr_triplet.html', error=error)
 
 
 
