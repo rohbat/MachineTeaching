@@ -2,6 +2,7 @@ import numpy as np
 import random
 import operator
 import glob
+import os
 
 def compute_kernel_at_pair(X, N, pair, no_dims, alpha):
     i, j = pair
@@ -36,6 +37,7 @@ def main():
     no_dims = 5
     alpha = no_dims - 1.0
 
+    path = os.getcwd()
     image_list = glob.glob(path + "/MachineTeaching/static/chinese/ims/*/*")
     image_list.sort()
     N = len(image_list)
