@@ -55,6 +55,7 @@ def main():
     image_list = glob.glob(path + "/MachineTeaching/static/chinese/ims/*/*")
     image_list.sort()
     N = len(image_list)
+    train = range(N)
 
     classes = np.zeros(len(image_list), dtype=int)
     for i in range(len(image_list)):
