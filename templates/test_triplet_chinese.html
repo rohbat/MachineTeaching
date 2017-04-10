@@ -31,11 +31,13 @@
       $.post( "/testing/get_response", "0", function(data) {
         processRequest(data)
       });
+      $("#compare1").blur();
     });
     $("#compare2").click(function() {
       $.post( "/testing/get_response", "1", function(data) {
         processRequest(data)
       });
+      $("#compare2").blur();
     });
   });
 </script>

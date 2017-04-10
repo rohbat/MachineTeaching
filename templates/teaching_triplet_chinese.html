@@ -72,11 +72,13 @@
       $.post( "/kernel/get_response", "0", function(data) {
         processResponse(data)
       });
+      $("#compare1").blur();
     });
     $("#compare2").click(function() {
       $.post( "/kernel/get_response", "1", function(data) {
         processResponse(data)
       });
+      $("#compare2").blur();
     });
     $("#cont").click(function() {
       $.post( "/get_imgs", function(data) {
