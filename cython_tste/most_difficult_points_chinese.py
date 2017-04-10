@@ -1,6 +1,7 @@
 import numpy as np
 import random
 import operator
+import glob
 
 def compute_kernel_at_pair(X, N, pair, no_dims, alpha):
     i, j = pair
