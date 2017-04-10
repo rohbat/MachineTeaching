@@ -28,6 +28,7 @@ def most_uncertain_triplets(train, X,N,no_dims,alpha,classes,classes_dict):
 
     sorted_triplets = sorted(triplet_probs.items(), key=operator.itemgetter(1))
 
+    np.save('sorted_triplets.npy', sorted_triplets)
     hardest100 = sorted_triplets[:100]
     hard4 = random.sample(hardest100, 4)
 
@@ -55,10 +56,11 @@ def main():
     image_list = glob.glob(path + "/MachineTeaching/static/chinese/ims/*/*")
     image_list.sort()
     N = len(image_list)
+    print N
     train = range(N)
 
-    classes = np.zeros(len(image_list), dtype=int)
-    for i in range(len(image_list)):
+    classes = np.zeros(N, dtype=int)
+    for i in range(N):
         classes[i] = class_names.index(name_class[image_list[i]])
 
 
@@ -78,6 +80,7 @@ def main():
             if key != key1 and not 'not' in str(key1):
                 classes_dict_chinese['not'+str(key)].extend(classes_dict_chinese[key1])
 
+    print classes_dict_chinese
     hardest100, hard4 = most_uncertain_triplets(train, X,N,no_dims,alpha,classes,classes_dict_chinese)
     print hardest100
     print hard4
