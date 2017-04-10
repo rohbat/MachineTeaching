@@ -231,12 +231,10 @@ def to_login():
 
 @app.route("/get_imgs", methods = ['GET', 'POST'])
 def get_imgs():
+    print 'nclicks', user_nclicks_dict_chinese
     if user_nclicks_dict_chinese[session['name']] == max_clicks:
         # user_test_images_dict_chinese[session['name']] = random.sample(set(range(N)) - user_images_dict_chinese[session['name']], N_test)
-        '''
-        TODO: 
-        test image selection
-        '''
+
         user_test_images_dict_chinese[session['name']] = get_test_images('random')
         user_test_counter_dict_chinese[session['name']] = 1
         user_test_error_dict_chinese[session['name']] = 0
