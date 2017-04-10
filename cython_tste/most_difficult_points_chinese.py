@@ -16,6 +16,7 @@ def most_uncertain_triplets(train, X,N,no_dims,alpha,classes,classes_dict):
     triplet_probs = {}
 
     for i in train:
+        print i
         for j in classes_dict[classes[i]]:
             if j == i:
                 continue
@@ -63,8 +64,8 @@ def main():
             if key != key1 and not 'not' in str(key1):
                 classes_dict_chinese['not'+str(key)].extend(classes_dict_chinese[key1])
 
-    hard100, hard4 = most_uncertain_triplets(train, X,N,no_dims,alpha,classes,classes_dict_chinese)
-    print hard100
+    hardest100, hard4 = most_uncertain_triplets(train, X,N,no_dims,alpha,classes,classes_dict_chinese)
+    print hardest100
     print hard4
 
 
