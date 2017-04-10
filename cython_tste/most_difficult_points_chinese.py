@@ -60,7 +60,7 @@ def main():
             if key != key1 and not 'not' in str(key1):
                 classes_dict_chinese['not'+str(key)].extend(classes_dict_chinese[key1])
 
-    hard100, hard4 = most_uncertain_triplets(train, X,N,no_dims,alpha,classes,classes_dict)
+    hard100, hard4 = most_uncertain_triplets(train, X,N,no_dims,alpha,classes,classes_dict_chinese)
     print hard100
     print hard4
 
