@@ -38,15 +38,28 @@ def main():
     no_dims = 5
     alpha = no_dims - 1.0
 
+    # Set up classes and classes_dict_chinese
     path = os.getcwd()
+    class_names = glob.glob(path + "/MachineTeaching/static/chinese/ims/*")
+    class_names.sort()
+
+    class_name_dict_chinese = {}
+    for class_name in class_names:
+        class_name_dict_chinese[class_name] = glob.glob(class_name + "/*")
+
+    name_class = {}
+    for k, v in class_name_dict_chinese.iteritems():
+        for elm in v:
+            name_class[elm] = k
+
     image_list = glob.glob(path + "/MachineTeaching/static/chinese/ims/*/*")
     image_list.sort()
     N = len(image_list)
-    train = range(N)
 
     classes = np.zeros(len(image_list), dtype=int)
     for i in range(len(image_list)):
         classes[i] = class_names.index(name_class[image_list[i]])
+
 
     class_names = [c.replace(path + "/MachineTeaching/static/chinese/ims/", "") for c in class_names]
     print 'class names: ', class_names
