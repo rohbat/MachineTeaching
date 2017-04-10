@@ -209,6 +209,11 @@ counter = 0
 max_clicks = 3
 max_test = 5
 
+difficult_triplets_distance = [(147, 142, 451), (30, 59, 619), (261, 288, 37), \
+(452, 288, 536), (488, 701, 43), (539, 701, 376)]
+difficult_triplets_acc = [(95, 216, 360), (95, 216, 607), (120, 81, 95), \
+(120, 81, 607), (127, 69, 95), (127, 69, 360)]
+difficult_triplets_tste = [] 
 
 # Redirect user to login page
 
