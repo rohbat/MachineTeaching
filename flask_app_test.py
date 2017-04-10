@@ -158,7 +158,7 @@ classes_dict_chinese = {}
 for i in range(len(class_names)):
     classes_dict_chinese[i] = []
 
-N_test = 20
+N_test = 15
 
 for i in range(N):
     classes_dict_chinese[classes[i]].append(i)
@@ -213,9 +213,9 @@ user_train_ans_dict_chinese = {}
 
 random.seed()
 counter = 0
-max_clicks = 3
+max_clicks = 15
 diff_test = 5
-max_test = 5 + diff_test
+max_test = N_test + diff_test
 
 difficult_triplets_distance = [(147, 142, 451), (30, 59, 619), (261, 288, 37), \
 (452, 288, 536), (488, 701, 43), (539, 701, 376)]
