@@ -52,7 +52,7 @@ def update_page(selection_method):
 
 def update_test(): 
     (main, comp1, comp2) = user_test_images_dict_chinese[session['name']][user_test_counter_dict_chinese[session['name']]-1]
-    print user_test_counter_dict_chinese[session['name']], (main, comp1, comp2)
+    # print user_test_counter_dict_chinese[session['name']], (main, comp1, comp2)
     update_page_with_indices(main, comp1, comp2)
 
 
@@ -89,11 +89,11 @@ def get_test_images(selection_method):
     for i in range(N_test): 
         result.append(random_triplet(train, classes, classes_dict_chinese))
     temp = np.random.choice(range(len(difficult_all)), diff_test)
-    print 'temp', temp
+    # print 'temp', temp
 
     
     result = result + [difficult_all[i] for i in temp]
-    print 'result', result
+    # print 'result', result
     return result
 
 
@@ -152,7 +152,7 @@ for i in range(len(image_list)):
 
 
 class_names = [c.replace(path + "/MachineTeaching/static/chinese/ims/", "") for c in class_names]
-print 'class names: ', class_names
+# print 'class names: ', class_names
 
 classes_dict_chinese = {}
 for i in range(len(class_names)):
@@ -225,7 +225,7 @@ difficult_triplets_tste = [(648, 617, 81), (612, 497, 392), (644, 666, 346), \
 (701, 599, 7), (520, 664, 150), (115, 84, 708), (99, 53, 284), (561, 610, 289), \
 (18, 159, 302), (26, 98, 641)] 
 difficult_all = difficult_triplets_distance + difficult_triplets_acc + difficult_triplets_tste
-print 'difficult_all', difficult_all
+# print 'difficult_all', difficult_all
 
 # Redirect user to login page
 
@@ -237,7 +237,7 @@ def to_login():
 
 @app.route("/get_imgs", methods = ['GET', 'POST'])
 def get_imgs():
-    print 'nclicks', user_nclicks_dict_chinese
+    # print 'nclicks', user_nclicks_dict_chinese
     if user_nclicks_dict_chinese[session['name']] == max_clicks:
         # user_test_images_dict_chinese[session['name']] = random.sample(set(range(N)) - user_images_dict_chinese[session['name']], N_test)
 
@@ -300,9 +300,9 @@ def get_response_kernel():
                 result = True
             else:
                 result = False
-        print 'RESULT: ', result
+        # print 'RESULT: ', result
         user_train_ans_dict_chinese[session['name']].append(result)
-        print 'TRAIN ANS: ', user_train_ans_dict_chinese[session['name']]
+        # print 'TRAIN ANS: ', user_train_ans_dict_chinese[session['name']]
         user_nclicks_dict_chinese[session['name']] += 1
         user_time_dict_chinese[session['name']][1] = time.time()
         K = np.zeros((N, N))
@@ -347,7 +347,7 @@ def get_response_testing():
             else: 
                 result = False
 
-        print 'result: ', result
+        # print 'result: ', result
 
         user_test_ans_dict_chinese[session['name']].append(result)
 
@@ -410,7 +410,7 @@ def login():
         #user_x_dict_chinese[session['name']] = np.random.rand(N, no_dims)
         user_images_dict_chinese[session['name']] = set([])
 
-        print 'Selection Method: ' + str(user_selection_method_dict_chinese[session['name']])
+        # print 'Selection Method: ' + str(user_selection_method_dict_chinese[session['name']])
 
         return redirect(url_for('teaching_index'))
     return render_template('login_instr_triplet.html', error=error)
@@ -426,9 +426,9 @@ def logout():
             user_test_error_dict_chinese[session['name']] = 1-float(np.sum(user_test_ans_dict_chinese[session['name']])) / float(max_test)
             end_id = hashlib.md5(str(session['name'])).hexdigest()
 
-            print 'name: ', session['name'], '\n'
-            print 'method: ', user_selection_method_dict_chinese[session['name']], '\n'
-            print 'error: ', user_test_error_dict_chinese[session['name']], '\n'
+            # print 'name: ', session['name'], '\n'
+            # print 'method: ', user_selection_method_dict_chinese[session['name']], '\n'
+            # print 'error: ', user_test_error_dict_chinese[session['name']], '\n'
 
             np.save('./testfiles_chinese/user_x_dict_chinese.npy', user_x_dict_chinese)
             np.save('./testfiles_chinese/ans_dict_chinese.npy', user_test_ans_dict_chinese)
