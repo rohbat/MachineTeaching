@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 from database import db
 
 class PageModel(db.Model):
-    __tablename__ = 'chinese_triplets'
+    __tablename__ = 'opt_triplets'
     id = Column(Integer, primary_key=True)
     main_img = Column(Integer)
     compare_img_1 = Column(Integer)
