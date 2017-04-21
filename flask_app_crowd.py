@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template, redirect, url_for, s
 from sqlalchemy.orm.session import sessionmaker, make_transient
 from sqlalchemy import create_engine
 from database import db
-from page_model_seabed import PageModel
+from page_model_opt import PageModel
 import glob
 import os 
 import random
