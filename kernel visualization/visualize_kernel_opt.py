@@ -9,7 +9,7 @@ import os
 
 
 def get_img_class_mapping(): 
-	path = '/home/cs101teaching/MachineTeaching/static/oct/data_resized/*/*'
+	path = '/home/cs101teaching/MachineTeaching/static/oct/data_resized/'
 	image_list = glob.glob(path + '*/*')
 	image_list.sort()
 
