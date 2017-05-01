@@ -1,6 +1,7 @@
 import random
 import numpy as np
 from sklearn import decomposition
+from sklearn.manifold import TSNE
 import cPickle as cp
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -54,10 +55,11 @@ def main():
 	'''
 	PCA into 2D
 	'''
-	pca = decomposition.PCA(n_components=2)
-	pca.fit(kernel)
-	kernel_pca = pca.transform(kernel)
-
+	#pca = decomposition.PCA(n_components=2)
+	#pca.fit(kernel)
+	#kernel_pca = pca.transform(kernel)
+	model = TSNE()
+	kernel_pca = model.fit_transform(kernel)
 	'''
 	map image indices to class 
 	'''
@@ -70,13 +72,13 @@ def main():
 	colors = get_class_color_mapping(classes)	
 
 	fig = plt.figure()
-	plt.title('Seabed Kernel')
+	plt.title('Opt Kernel')
 	plt.scatter(kernel_pca[:,0], kernel_pca[:,1], c=colors)
 	red_patch = mpatches.Patch(color='red', label='Macular_edema')
 	green_patch = mpatches.Patch(color='green', label='Normal_drusen')
 	blue_patch = mpatches.Patch(color='cyan', label='Subretinal_fluid')
 	plt.legend(handles=[red_patch, green_patch, blue_patch])
-	plt.savefig('opt_kernel.png')
+	plt.savefig('opt_kernel1.png')
 	plt.show()
 
 
