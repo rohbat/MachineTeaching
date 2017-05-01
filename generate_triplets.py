@@ -21,7 +21,7 @@ for pg_model in db_data:
 triplets = numpy.array(triplets)
 print triplets
 embedding = cy_tste.tste(triplets,
-     no_dims=2,
+     no_dims=5,
      lamb=0,
      alpha=None,
      verbose=True,
