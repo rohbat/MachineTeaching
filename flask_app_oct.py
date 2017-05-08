@@ -89,10 +89,10 @@ def get_test_images(selection_method):
 
     for i in range(N_test): 
         result.append(random_triplet(train, classes, classes_dict_oct))
-    # temp = np.random.choice(range(len(difficult_all)), diff_test)
+    temp = np.random.choice(range(len(difficult_all)), diff_test)
 
     
-    # result = result + [difficult_all[i] for i in temp]
+    result = result + [difficult_all[i] for i in temp]
 
     # print 'result', result
     return result
@@ -218,15 +218,19 @@ max_clicks = 5
 diff_test = 5
 max_test = N_test + diff_test
 
-difficult_triplets_distance = [(147, 142, 451), (30, 59, 619), (261, 288, 37), \
-(452, 288, 536), (488, 701, 43), (539, 701, 376)]
-difficult_triplets_acc = [(95, 216, 360), (95, 216, 607), (120, 81, 95), \
-(120, 81, 607), (127, 69, 95), (127, 69, 360)]
-difficult_triplets_tste = [(648, 617, 81), (612, 497, 392), (644, 666, 346), \
-(701, 599, 7), (520, 664, 150), (115, 84, 708), (99, 53, 284), (561, 610, 289), \
-(18, 159, 302), (26, 98, 641)] 
+# difficult_triplets_distance = [(147, 142, 451), (30, 59, 619), (261, 288, 37), \
+# (452, 288, 536), (488, 701, 43), (539, 701, 376)]
+# difficult_triplets_acc = [(95, 216, 360), (95, 216, 607), (120, 81, 95), \
+# (120, 81, 607), (127, 69, 95), (127, 69, 360)]
+# difficult_triplets_tste = [(648, 617, 81), (612, 497, 392), (644, 666, 346), \
+# (701, 599, 7), (520, 664, 150), (115, 84, 708), (99, 53, 284), (561, 610, 289), \
+# (18, 159, 302), (26, 98, 641)] 
 
-# difficult_all = []
+difficult_all = [(1072, 1094, 563), (563, 460, 1072), (563, 456, 1072), \
+(233, 31, 851), (1072, 754, 563), (34, 31, 999), (96, 31, 491), (851, 1032, 233),\
+ (1072, 1032, 563), (563, 574, 1072), (1072, 942, 563), (1072, 711, 563), \
+ (490, 574, 1092), (1092, 1032, 490), (1072, 777, 563), (1072, 859, 563), \
+ (563, 397, 1072), (563, 615, 1072), (563, 378, 1072), (563, 428, 1072)]
 
 # for i in range(diff_test): 
 #     difficult_all.append((np.random.choice(image_list), np.random.choice(image_list), np.random.choice(image_list)))
