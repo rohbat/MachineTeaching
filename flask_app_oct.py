@@ -214,7 +214,7 @@ user_train_ans_dict_oct = {}
 
 random.seed()
 counter = 0
-max_clicks = 5
+max_clicks = 15
 diff_test = 5
 max_test = N_test + diff_test
 
@@ -232,11 +232,7 @@ difficult_all = [(1072, 1094, 563), (563, 460, 1072), (563, 456, 1072), \
  (490, 574, 1092), (1092, 1032, 490), (1072, 777, 563), (1072, 859, 563), \
  (563, 397, 1072), (563, 615, 1072), (563, 378, 1072), (563, 428, 1072)]
 
-# for i in range(diff_test): 
-#     difficult_all.append((np.random.choice(image_list), np.random.choice(image_list), np.random.choice(image_list)))
 
-# difficult_all = difficult_triplets_distance + difficult_triplets_acc + difficult_triplets_tste
-# print 'difficult_all', difficult_all
 
 # Redirect user to login page
 
