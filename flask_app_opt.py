@@ -413,7 +413,7 @@ def login():
         user_nclicks_dict_oct[session['name']] = 0
         user_time_dict_oct[session['name']] = [time.time(), 0]
         user_train_ans_dict_oct[session['name']] = []
-        user_x_dict_oct[session['name']] = np.load("MachineTeaching/static/X_initial_opt.npy")
+        user_x_dict_oct[session['name']] = np.load("MachineTeaching/static/X_initial_oct.npy")
         #user_x_dict_oct[session['name']] = np.random.rand(N, no_dims)
         user_images_dict_oct[session['name']] = set([])
 
