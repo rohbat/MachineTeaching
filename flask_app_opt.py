@@ -225,10 +225,10 @@ difficult_triplets_tste = [(648, 617, 81), (612, 497, 392), (644, 666, 346), \
 (701, 599, 7), (520, 664, 150), (115, 84, 708), (99, 53, 284), (561, 610, 289), \
 (18, 159, 302), (26, 98, 641)] 
 
-difficult_all = []
+# difficult_all = []
 
-for i in range(diff_test): 
-    difficult_all.append((np.random.choice(image_list), np.random.choice(image_list), np.random.choice(image_list)))
+# for i in range(diff_test): 
+#     difficult_all.append((np.random.choice(image_list), np.random.choice(image_list), np.random.choice(image_list)))
 
 # difficult_all = difficult_triplets_distance + difficult_triplets_acc + difficult_triplets_tste
 # print 'difficult_all', difficult_all
