@@ -58,6 +58,7 @@ def update_test():
 
 
 def get_label_list():
+    print page_model_dict_oct[session['name']].get_imgs_list()
     main_label = class_names[classes[page_model_dict_oct[session['name']].main_img]]
     compare_img_1_label = class_names[classes[page_model_dict_oct[session['name']].compare_img_1]]
     compare_img_2_label = class_names[classes[page_model_dict_oct[session['name']].compare_img_2]]
