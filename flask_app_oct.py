@@ -214,7 +214,7 @@ user_train_ans_dict_oct = {}
 
 random.seed()
 counter = 0
-max_clicks = 15
+max_clicks = 5
 diff_test = 5
 max_test = N_test + diff_test
 
@@ -240,6 +240,7 @@ difficult_triplets_tste = [(648, 617, 81), (612, 497, 392), (644, 666, 346), \
 def to_login():
     return redirect(url_for('route'))
 
+
 # Return image list in JSON format 
 
 @app.route("/get_imgs", methods = ['GET', 'POST'])
@@ -253,7 +254,8 @@ def get_imgs():
         user_test_error_dict_oct[session['name']] = 0
         user_test_ans_dict_oct[session['name']] = []
         user_test_time_dict_oct[session['name']] = time.time()
-        return jsonify([url_for('testing_index'), 0])
+        # return jsonify([url_for('testing_index'), 0])
+        return jsonify([url_for('to_test'), 0])
 
     update_page(user_selection_method_dict_oct[session['name']])
     user_images_dict_oct[session['name']].update(page_model_dict_oct[session['name']].get_index_list())
@@ -375,6 +377,14 @@ def teaching_index():
     if not 'name' in session or not session['name'] in user_nclicks_dict_oct:
         return redirect(url_for('login'))
     return render_template('teaching_triplet_chinese.html')
+
+@app.route("/to_testing", methods=['GET', 'POST'])
+def to_test(): 
+    if not 'name' in session or not session['name'] in user_test_counter_dict_oct:
+        return redirect(url_for('login'))
+    elif request.method == 'POST' and request.form['cont'] == "Continue":
+        return redirect(url_for('testing_index'))
+    return render_template('begin_testing.html')
 
 @app.route("/testing/")
 def testing_index():
