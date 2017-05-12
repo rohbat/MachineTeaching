@@ -4,9 +4,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
   </head>
+<style>
+* {
+ font-family: Helvetica; 
+}
+</style>
   <body>
     <div class="container" style="text-align: center">
-      <h1>Welcome, click continue to begin your task. </h1>
+      <h1>Image Similarity</h1>
+      <h3>In this short experiment, you will click on similar images of bird species. Please read the instructions below. </h3>
+     
+  
+      <hr>
+
+      <p>
+        The survey has 50 simple questions. The user will be asked to select which of two images is most similar to a third.
+      </p>
+      <hr>
+
+      <p>
+        A simple example question (using English letters) is shown below. The top row has the target image in question. Here, it is the letter "A". The user will then <b>click</b> on either of the bottom two images--"A" or "B"--in the second row which he/she believes is <b>most similar</b> to the target image. 
+      </p>
+      <img src="../static/instructions_triplet/ask.png" style='width:400px' border="1">
+      <hr>
+      <h1>Click continue to begin your task. </h1>
       <form action="" method="post">
         <input class="btn btn-default" name='cont' type="submit" value="Continue">
       </form>
