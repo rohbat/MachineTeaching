@@ -65,7 +65,8 @@ session_sql = Session_sql()
 
 # Make image list
 
-image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/oct/data_resized/*/*")
+# image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/oct/data_resized/*/*")
+image_list = glob.glob("/home/cs101teaching/MachineTeaching/static/birds/images/*/*")
 image_list.sort()
 
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
