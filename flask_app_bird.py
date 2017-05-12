@@ -71,6 +71,9 @@ image_list.sort()
 
 image_list = [img.replace("/home/cs101teaching/MachineTeaching", "") for img in image_list]
 
+print('len image list: ', len(image_list))
+print(image_list[::50])
+
 
 # Make dictionary to keep track of page models
 page_model_dict = {}
