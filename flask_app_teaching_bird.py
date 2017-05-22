@@ -14,6 +14,60 @@ import sys
 
 print 'Initializing site!'
 
+tern1 = [531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, \
+542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, \
+553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, \
+565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, \
+577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590]
+tern2 = [473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, \
+485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, \
+499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, \
+513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, \
+527, 528, 529, 530]
+black1 = [60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, \
+75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92,\
+ 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, \
+ 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119]
+black2 = [120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, \
+131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, \
+145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, \
+160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, \
+175, 176, 177, 178]
+
+def get_hard(n): 
+    hard = []
+    temp = np.random.randint(4, size=n)
+    for i in range(n): 
+        if temp[i] == 0: 
+            i = random.choice(tern1)
+            j = random.choice(tern1)
+            k = random.choice(tern2)
+        elif temp[i] == 1: 
+            i = random.choice(tern2)
+            j = random.choice(tern2)
+            k = random.choice(tern1)
+        elif temp[i] == 1: 
+            i = random.choice(black1)
+            j = random.choice(black1)
+            k = random.choice(black2)
+        else: 
+            i = random.choice(black2)
+            j = random.choice(black2)
+            k = random.choice(black1)
+
+        if random.random() > .5:
+            hard.append((i, j, k))
+        else: 
+            hard.append((i, k, j))
+
+    return hard
+
+
+
+
+
+
+
 def update_page_with_indices(main, comp1, comp2):
     # Switch order of images with probability .5
     if random.random() > .5:
@@ -88,12 +142,13 @@ def get_test_images(selection_method):
 
     for i in range(N_test): 
         result.append(random_triplet(train, classes, classes_dict_bird))
-    temp = np.random.choice(range(len(difficult_all)), diff_test)
-    # print 'temp', temp
+    
+    temp = get_hard(diff_test)
+    print 'temp', temp
 
     
-    result = result + [difficult_all[i] for i in temp]
-    # print 'result', result
+    result = result + temp
+    print 'result', result
     return result
 
 
@@ -216,6 +271,7 @@ counter = 0
 max_clicks = 15
 diff_test = 5
 max_test = N_test + diff_test
+
 
 
 # print 'difficult_all', difficult_all
