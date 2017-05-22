@@ -431,7 +431,7 @@ def teaching_index():
 
 @app.route("/to_testing", methods=['GET', 'POST'])
 def to_test(): 
-    if not 'name' in session or not session['name'] in user_test_counter_dict_oct:
+    if not 'name' in session or not session['name'] in user_test_counter_dict_bird:
         return redirect(url_for('login'))
     elif request.method == 'POST' and request.form['cont'] == "Continue":
         return redirect(url_for('testing_index'))
