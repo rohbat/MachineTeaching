@@ -33,10 +33,12 @@ black2 = [120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, \
 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, \
 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, \
 175, 176, 177, 178]
+brown1 = [413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472]
+brown2 = [353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412]
 
 def get_hard(n): 
     hard = []
-    temp = np.random.randint(4, size=n)
+    temp = np.random.randint(6, size=n)
     for i in range(n): 
         if temp[i] == 0: 
             i = random.choice(tern1)
@@ -46,14 +48,23 @@ def get_hard(n):
             i = random.choice(tern2)
             j = random.choice(tern2)
             k = random.choice(tern1)
-        elif temp[i] == 1: 
+        elif temp[i] == 2: 
             i = random.choice(black1)
             j = random.choice(black1)
             k = random.choice(black2)
-        else: 
+        elif temp[i] == 3: 
             i = random.choice(black2)
             j = random.choice(black2)
             k = random.choice(black1)
+        elif temp[i] == 4: 
+            i = random.choice(brown1)
+            j = random.choice(brown1)
+            k = random.choice(brown2)
+        elif temp[i] == 5: 
+            i = random.choice(brown2)
+            j = random.choice(brown2)
+            k = random.choice(brown1)
+
 
         if random.random() > .5:
             hard.append((i, j, k))
@@ -213,7 +224,7 @@ classes_dict_bird = {}
 for i in range(len(class_names)):
     classes_dict_bird[i] = []
 
-N_test = 15
+N_
 
 for i in range(N):
     classes_dict_bird[classes[i]].append(i)
