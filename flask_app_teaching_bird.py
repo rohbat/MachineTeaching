@@ -224,7 +224,7 @@ classes_dict_bird = {}
 for i in range(len(class_names)):
     classes_dict_bird[i] = []
 
-N_test = 15
+N_test = 20
 
 for i in range(N):
     classes_dict_bird[classes[i]].append(i)
@@ -279,10 +279,9 @@ user_train_ans_dict_bird = {}
 
 random.seed()
 counter = 0
-max_clicks = 15
-diff_test = 5
+max_clicks = 30
+diff_test = 10
 max_test = N_test + diff_test
-
 
 
 # print 'difficult_all', difficult_all
@@ -306,7 +305,8 @@ def get_imgs():
         user_test_error_dict_bird[session['name']] = 0
         user_test_ans_dict_bird[session['name']] = []
         user_test_time_dict_bird[session['name']] = time.time()
-        return jsonify([url_for('testing_index'), 0])
+        # return jsonify([url_for('testing_index'), 0])
+        return jsonify([url_for('to_test'), 0])
 
     update_page(user_selection_method_dict_bird[session['name']])
     user_images_dict_bird[session['name']].update(page_model_dict_bird[session['name']].get_index_list())
@@ -428,6 +428,14 @@ def teaching_index():
     if not 'name' in session or not session['name'] in user_nclicks_dict_bird:
         return redirect(url_for('login'))
     return render_template('teaching_triplet_chinese.html')
+
+@app.route("/to_testing", methods=['GET', 'POST'])
+def to_test(): 
+    if not 'name' in session or not session['name'] in user_test_counter_dict_oct:
+        return redirect(url_for('login'))
+    elif request.method == 'POST' and request.form['cont'] == "Continue":
+        return redirect(url_for('testing_index'))
+    return render_template('begin_testing.html')
 
 @app.route("/testing/")
 def testing_index():
