@@ -1,5 +1,5 @@
 from flask_app_crowd import db
-from page_model_opt import PageModel
+from page_model_bird import PageModel
 import numpy
 from cython_tste import cy_tste
 import cPickle
@@ -34,6 +34,6 @@ embedding = cy_tste.tste(triplets,
      use_log=False,
      )
 print embedding
-numpy.save("X_initial_opt", embedding)
-embedding1 = numpy.load("X_initial_opt.npy")
+numpy.save("X_initial_bird", embedding)
+embedding1 = numpy.load("X_initial_bird.npy")
 print embedding1
