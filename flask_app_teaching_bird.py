@@ -224,7 +224,7 @@ classes_dict_bird = {}
 for i in range(len(class_names)):
     classes_dict_bird[i] = []
 
-N_
+N_test = 15
 
 for i in range(N):
     classes_dict_bird[classes[i]].append(i)
