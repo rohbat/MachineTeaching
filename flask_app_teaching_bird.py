@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request, render_template, redirect, url_for, s
 # from database import db
 from page_model_no_db import PageModel
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+from PIL import Image
 import glob
 import os 
 import random
@@ -394,7 +394,8 @@ def get_response_kernel():
      str(user_nclicks_dict_bird[session['name']]) + ' | (' + main_label + ', ' + c1_label + ', '\
         + c2_label + ')')
     for i in range(3): 
-        im = mpimg.imread(imgs[i])
+        img = Image.open(imgs[i])
+        img.thumbnail((200, 200), Image.ANTIALIAS) # resizes image in-place
         plt.imshow(img)
         plt.axis('off')
     plt.savefig('./imgs/' + str(user_selection_method_dict_bird[session['name']]) + '_' + \
