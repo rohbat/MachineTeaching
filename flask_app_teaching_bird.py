@@ -390,15 +390,15 @@ def get_response_kernel():
 
     imgs = page_model_dict_bird[session['name']].get_imgs_list()
     plt.figure()
-    plt.title('Method ' + str(user_selection_method_dict_bird[session['name']]) + ': ' + \
-     str(user_nclicks_dict_bird[session['name']]) + ' | (' + main_label + ', ' + c1_label + ', '\
-        + c2_label + ')')
     for i in range(3): 
-        plt.subplot(2, 2, i+1)
+        plt.subplot(2, 2, i+2)
         img = Image.open(path + '/MachineTeaching/' + imgs[i])
         img.thumbnail((200, 200), Image.ANTIALIAS) # resizes image in-place
         plt.imshow(img)
         plt.axis('off')
+    plt.title('Method ' + str(user_selection_method_dict_bird[session['name']]) + ': ' + \
+     str(user_nclicks_dict_bird[session['name']]) + ' | (' + main_label + ', ' + c1_label + ', '\
+        + c2_label + ')')
     plt.savefig(path + '/MachineTeaching/imgs/' + str(user_selection_method_dict_bird[session['name']]) + '_' + \
         str(user_nclicks_dict_bird[session['name']]))
 
