@@ -3,6 +3,8 @@ from flask import Flask, jsonify, request, render_template, redirect, url_for, s
 # from sqlalchemy import create_engine
 # from database import db
 from page_model_no_db import PageModel
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 import glob
 import os 
 import random
