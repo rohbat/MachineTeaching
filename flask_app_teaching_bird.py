@@ -310,6 +310,8 @@ def get_imgs():
 
     update_page(user_selection_method_dict_bird[session['name']])
     user_images_dict_bird[session['name']].update(page_model_dict_bird[session['name']].get_index_list())
+
+
     return jsonify(page_model_dict_bird[session['name']].get_imgs_list() + [str(user_nclicks_dict_bird[session['name']]), get_label_list()[0]]) 
 
 
@@ -383,6 +385,18 @@ def get_response_kernel():
     elif main_label == c2_label: 
         c1_border = '0px solid #1E90FF'
         c2_border = '5px solid #1E90FF'
+
+    imgs = page_model_dict_bird[session['name']].get_imgs_list()
+    plt.figure()
+    plt.title('Method ' + str(user_selection_method_dict_bird[session['name']]) + ': '\
+     str(user_nclicks_dict_bird[session['name']]) + ' | (' + main_label + ', ' + c1_label + ', '\
+        + c2_label + ')')
+    for i in range(3): 
+        im = mpimg.imread(imgs[i])
+        plt.imshow(img)
+        plt.axis('off')
+    plt.savefig('./imgs/' + str(user_selection_method_dict_bird[session['name']]) + '_' + \
+        str(user_nclicks_dict_bird[session['name']]))
 
     
     return jsonify([main_label, c1_label, c2_label, get_result_text(result), get_result_color(result), c1_border, c2_border])
