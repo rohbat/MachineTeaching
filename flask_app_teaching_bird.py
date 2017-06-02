@@ -394,7 +394,7 @@ def get_response_kernel():
      str(user_nclicks_dict_bird[session['name']]) + ' | (' + main_label + ', ' + c1_label + ', '\
         + c2_label + ')')
     for i in range(3): 
-        img = Image.open(imgs[i])
+        img = Image.open(path + '/MachineTeaching/' + imgs[i])
         img.thumbnail((200, 200), Image.ANTIALIAS) # resizes image in-place
         plt.imshow(img)
         plt.axis('off')
