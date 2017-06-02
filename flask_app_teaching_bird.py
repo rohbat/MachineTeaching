@@ -388,7 +388,7 @@ def get_response_kernel():
 
     imgs = page_model_dict_bird[session['name']].get_imgs_list()
     plt.figure()
-    plt.title('Method ' + str(user_selection_method_dict_bird[session['name']]) + ': '\
+    plt.title('Method ' + str(user_selection_method_dict_bird[session['name']]) + ': ' + \
      str(user_nclicks_dict_bird[session['name']]) + ' | (' + main_label + ', ' + c1_label + ', '\
         + c2_label + ')')
     for i in range(3): 
