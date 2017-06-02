@@ -471,6 +471,9 @@ urls = ['http://cs101teaching2.pythonanywhere.com/login',
 'http://machineteaching4.pythonanywhere.com/login', 
 'http://machineteaching5.pythonanywhere.com/login']
 
+urls = ['http://cs101teaching2.pythonanywhere.com/login']
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     global counter
@@ -484,7 +487,7 @@ def login():
         np.save('./testfiles_bird/time_dict_bird.npy', user_time_dict_bird)
         np.save('./testfiles_bird/code_dict_bird.npy', user_code_dict_bird)
         page_model_dict_bird[session['name']] = PageModel()
-        user_selection_method_dict_bird[session['name']] = random.randint(1, 4)
+        user_selection_method_dict_bird[session['name']] = 4
         user_nclicks_dict_bird[session['name']] = 0
         user_time_dict_bird[session['name']] = [time.time(), 0]
         user_train_ans_dict_bird[session['name']] = []
