@@ -398,7 +398,7 @@ def get_response_kernel():
         img.thumbnail((200, 200), Image.ANTIALIAS) # resizes image in-place
         plt.imshow(img)
         plt.axis('off')
-    plt.savefig('./imgs/' + str(user_selection_method_dict_bird[session['name']]) + '_' + \
+    plt.savefig(path + '/MachineTeaching/imgs/' + str(user_selection_method_dict_bird[session['name']]) + '_' + \
         str(user_nclicks_dict_bird[session['name']]))
 
     
