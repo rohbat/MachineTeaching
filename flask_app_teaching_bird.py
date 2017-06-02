@@ -381,21 +381,26 @@ def get_response_kernel():
     # session_sql.add(page_model_dict_bird[session['name']])
     # session_sql.commit()
 
+    border = 0
     if main_label == c1_label: 
         c1_border = '5px solid #1E90FF'
         c2_border = '0px solid #1E90FF'
+        border = 1
     elif main_label == c2_label: 
         c1_border = '0px solid #1E90FF'
         c2_border = '5px solid #1E90FF'
+        border = 2
 
     imgs = page_model_dict_bird[session['name']].get_imgs_list()
     plt.figure()
     for i in range(3): 
         plt.subplot(2, 2, i+2)
-        if i == 1: 
-            plt.title('Method ' + str(user_selection_method_dict_bird[session['name']]) + ': ' + \
-     str(user_nclicks_dict_bird[session['name']]) + ' | (' + main_label + ', ' + c1_label + ', '\
-        + c2_label + ')')
+        if i == border: 
+            plt.title('***')
+     #    if i == 1: 
+     #        plt.title('Method ' + str(user_selection_method_dict_bird[session['name']]) + ': ' + \
+     # str(user_nclicks_dict_bird[session['name']]) + ' | (' + main_label + ', ' + c1_label + ', '\
+     #    + c2_label + ')')
         img = Image.open(path + '/MachineTeaching/' + imgs[i])
         img.resize((200, 200), Image.ANTIALIAS) # resizes image in-place
         plt.imshow(img)
