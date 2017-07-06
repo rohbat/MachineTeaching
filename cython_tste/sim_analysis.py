@@ -115,18 +115,23 @@ def graph_testing(path):
 	print(test_dict.keys())
 	print(np.shape(test_dict[0]))
 
+	test_dict2 = np.load(path + 'test_dict_' + user + '_2.npy').item()
+
 	plt.figure()
 	for i in range(4): 
 		ans = np.mean(test_dict[i], axis=0)
 		acc = test_acc(ans) / n_test
 		print(acc)
+
+		ans2 = np.mean(test_dict2[i], axis=0)
+		acc2 = test_acc(ans2) / n_test
 		
-		plt.plot(range(rounds + 1), [acc_0] + list(acc))
+		plt.plot(range(rounds * 2 + 1), [acc_0] + list(acc) + list(acc2))
 		plt.xlabel('Learning Iteration (% 5)')
 		plt.ylabel('Accuracy')
 		plt.title('Test Accuracy over 30 Teaching Examples, 30 Users')
 	plt.legend(labels, loc = 'upper left')
-	plt.savefig('./test_' + str(user))
+	plt.savefig('./test_' + str(user) + '_2')
 
 
 def main(): 
